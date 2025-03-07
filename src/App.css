@@ -1,4 +1,8 @@
 .app {
     min-height: 100vh;
     transition: 0.25s;
-  }
+    /* display: grid;
+    /* grid-template-rows: minmax(100px, auto) 1fr minmax(50px, auto); */
+    /* grid-template-rows: auto;
+    overflow-y:auto; */ 
+}
