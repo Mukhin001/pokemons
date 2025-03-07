@@ -1,6 +1,9 @@
 interface WrapperFooter {
-    display: string;
+    display?: string;
     justifyContent?: string;
+    opacity?: string;
+    transform?: string;
+    position?: any;
 };
 
 interface WrapperList {
@@ -10,7 +13,6 @@ interface WrapperList {
 export const wrapperWeb: WrapperFooter = {
     display: 'flex',
     justifyContent: 'space-evenly',
-
 };
 
 export const wrapperMob: WrapperFooter = {
@@ -18,11 +20,11 @@ export const wrapperMob: WrapperFooter = {
 };
 
 export const wrapperUlInfoWeb: WrapperFooter = {
-    display: 'block',
+    position: 'relative',
 };
 
 export const wrapperUlInfoMob: WrapperFooter = {
-    display: 'none'
+    position: 'absolute',
 };
 
 export const wrapperListMob: WrapperList = {
@@ -30,5 +32,5 @@ export const wrapperListMob: WrapperList = {
 };
 
 export const wrapperListWeb: WrapperList = {
-   
+    
 };

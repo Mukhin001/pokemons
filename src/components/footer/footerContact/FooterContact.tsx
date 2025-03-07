@@ -1,6 +1,8 @@
+import './style.css';
+
 const FooterContact = () => {
     return ( 
-        <div>
+        <div className="end">
             <h3>End</h3>
             <ul>
                 <li>1</li>

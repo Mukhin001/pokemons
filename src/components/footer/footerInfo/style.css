@@ -3,3 +3,13 @@
     justify-content: space-between;
     padding: 5px 0;
 }
+
+.wrapperUlInfo {
+    background-color: black;
+}
+
+.wrapperList {
+    position: relative;
+    transition: all 1s ease;
+    background-color: black;
+}
