@@ -1,0 +1,38 @@
+.wrapperMenu {
+    display: flex;
+    
+}
+
+.wrapperName {
+    margin: 30px;
+    
+}
+
+.name {
+    border-bottom: 2px solid wheat;
+}
+
+.line {
+    height: 6px;
+    width: 100%;
+    background-color: blueviolet;
+    display: block;
+    position: relative;
+}
+
+.strip {
+    height: 6px;
+    position: absolute;
+    top: 0;
+    background-color: antiquewhite;
+    transition: 0.5s all ease-in-out;
+}
+
+.wrapperLi {
+    display: none;
+}
+
+.headindTest {
+    display: flex;
+    gap: 40px;
+}

@@ -11,14 +11,16 @@ function App() {
     const theme = useAppSelector(state => state.theme.value);
 
     return (
-        <Router>
+       
             <div className='app' style={(theme === 'light') ? themeLight : themeDark}>
                 <WidthWindow />
-                <Header />
-                <Main />
+                <Router>
+                    <Header />
+                    <Main />
+                </Router>
                 <Footer />
             </div>
-        </Router>
+        
     )
 };
 

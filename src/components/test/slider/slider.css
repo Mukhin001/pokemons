@@ -1,0 +1,62 @@
+/* Контейнер слайдера */
+.slider-container {
+    /* position: relative;
+    width: 100%;
+    max-width: 800px; 
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); */
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  /* Лента слайдов */
+  .slider-track {
+    display: flex;
+    /* width: 200%;  */
+    /* Так как слайды удваиваются */
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .wrapperImg {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Слайды */
+  .slide {
+    width: 100%;
+    height: auto;
+    /* height: 400px;
+    object-fit: cover;
+    flex-shrink: 0; */
+  }
+  
+  /* Кнопки переключения */
+  .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .slider-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .slider-btn.left {
+    left: 10px;
+  }
+  
+  .slider-btn.right {
+    right: 10px;
+  }

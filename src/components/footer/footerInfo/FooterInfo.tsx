@@ -10,14 +10,18 @@ interface Props {
 const FooterInfo = ({ widthSelector }: Props) => {
     
     const handleClickTitle = (e: React.MouseEvent<HTMLHeadingElement, MouseEvent>): void => {
+        let height: any  = e.currentTarget.lastChild;
+        let btnH3: any = e.currentTarget.firstChild?.lastChild;
 
         if(!widthSelector) {
             if(e.currentTarget.style.marginBottom === '') {
-                e.currentTarget.style.marginBottom = '100px';
+                btnH3.textContent = 'x';
+                e.currentTarget.style.marginBottom = height.clientHeight + 'px';
             } else {
+                btnH3.textContent = '+';
                 e.currentTarget.style.marginBottom = '';
             }
-        }
+        }    
     };
 
     return ( 

@@ -3,16 +3,19 @@ import Home from "../../pages/home/Home";
 import Favorites from "../../pages/favorites/Favorites";
 import Menu from "../../pages/menu/Menu";
 import Profile from "../../pages/profile/Profile";
+import PokeCard from "../pokeList/pokeCard/PokeCard";
 
 const Main = () => {
+    
     return ( 
         <section>
             <h2>Main</h2>
             <Routes>
                 <Route path='/' element={<Home />} />
-                <Route path='/menu' element={<Menu />} />
-                <Route path='/favorites' element={<Favorites />} />
-                <Route path='/profile' element={<Profile />} />
+                <Route path='menu' element={<Menu />} />
+                <Route path="menu/:name" element={<PokeCard />} />
+                <Route path='favorites' element={<Favorites />} />
+                <Route path='profile' element={<Profile />} />
             </Routes>
         </section>
     );

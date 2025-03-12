@@ -1,5 +1,5 @@
-
-import NavBar from "../navbar/NavBar";
+import NavBar from "../navbar/navBar/NavBar";
+import NavIcon from "../navbar/navIcon/NavIcon";
 import Theme from "./theme/Theme";
 
 const Header = () => {
@@ -7,6 +7,7 @@ const Header = () => {
         <header>
             <h1>Header</h1>
             <Theme />
+            <NavIcon />
             <NavBar />
         </header>
      );

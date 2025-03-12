@@ -1,0 +1,34 @@
+.carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden; /* Hide overflow to handle the sliding effect */
+}
+
+.carousel-wrapper {
+    display: flex; /* Align children in a row */
+    transition: transform 0.5s ease; /* Smooth transition for the sliding effect */
+}
+
+.carousel-item {
+    min-width: 100%; /* Each item takes full width of the carousel */
+    box-sizing: border-box; /* Prevent padding from affecting width */
+    text-align: center; /* Center the content */
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.carousel-button:first-of-type {
+    left: 10px; /* Position for previous button */
+}
+
+.carousel-button:last-of-type {
+    right: 10px; /* Position for next button */
+}
