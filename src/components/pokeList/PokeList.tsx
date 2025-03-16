@@ -6,12 +6,12 @@ import { useAppSelector } from "../../app/hooks";
 import { pokeListWrapperDark, pokeListWrapperLight } from "./pokeListStyle";
 
 export const items = [
-    { name: 'belka', imgUrl: 'img-test-slider/belka.jpg', alt: 'Slide 1', description: 'Description for Slide 1' },
-    { name: 'fox', imgUrl: 'img-test-slider/fox.jpg', alt: 'Slide 2', description: 'Description for Slide 2' },
-    { name: 'kroll', imgUrl: 'img-test-slider/kroll.jpg', alt: 'Slide 3', description: 'Description for Slide 3' },
-    { name: 'leo', imgUrl: 'img-test-slider/leo.jpg', alt: 'Slide 4', description: 'Description for Slide 4' },
-    { name: 'rabbit', imgUrl: 'img-test-slider/rabbit.jpg', alt: 'Slide 5', description: 'Description for Slide 5' },
-    { name: 'wolf', imgUrl: 'img-test-slider/wolf.jpeg', alt: 'Slide 6', description: 'Description for Slide 6' },
+    { id: 1, name: 'belka', imgUrl: 'img-test-slider/belka.jpg', alt: 'Slide 1', description: 'Description for Slide 1' },
+    { id: 2, name: 'fox', imgUrl: 'img-test-slider/fox.jpg', alt: 'Slide 2', description: 'Description for Slide 2' },
+    { id: 3, name: 'kroll', imgUrl: 'img-test-slider/kroll.jpg', alt: 'Slide 3', description: 'Description for Slide 3' },
+    { id: 4, name: 'leo', imgUrl: 'img-test-slider/leo.jpg', alt: 'Slide 4', description: 'Description for Slide 4' },
+    { id: 5, name: 'rabbit', imgUrl: 'img-test-slider/rabbit.jpg', alt: 'Slide 5', description: 'Description for Slide 5' },
+    { id: 6, name: 'wolf', imgUrl: 'img-test-slider/wolf.jpeg', alt: 'Slide 6', description: 'Description for Slide 6' },
 ];
 
 
@@ -20,19 +20,19 @@ const PokeList = () => {
     const refContainerPoke = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(([entry]) => {
-            setIsVisible(entry.isIntersecting);
-        }, { threshold: 0.3 }) // контент появится когда 30% блока будет видно
+    // useEffect(() => {
+    //     const observer = new IntersectionObserver(([entry]) => {
+    //         setIsVisible(entry.isIntersecting);
+    //     }, { threshold: 0.3 }) // контент появится когда 30% блока будет видно
 
-        if(refContainerPoke.current) {
-            observer.observe(refContainerPoke.current);
-        }
+    //     if(refContainerPoke.current) {
+    //         observer.observe(refContainerPoke.current);
+    //     }
 
-        return () => {
-            if(refContainerPoke.current) observer.unobserve(refContainerPoke.current);
-        }
-    }, []);
+    //     return () => {
+    //         if(refContainerPoke.current) observer.unobserve(refContainerPoke.current);
+    //     }
+    // }, []);
 
     const mouseEnterWrapper = (e: React.MouseEvent<HTMLSpanElement, MouseEvent> | any): void => {
         (theme === 'dark') ? e.currentTarget.style = pokeListWrapperDark : e.currentTarget.style = pokeListWrapperLight;
@@ -81,23 +81,32 @@ const PokeList = () => {
                 <div className={st.wrapImg}>
                     <Link to={obj.name}><img src={obj.imgUrl} alt={obj.alt} /></Link>
                 </div>
-
-                <p>{obj.description}</p>
-                <p>{obj.description}</p>
+                <p>{obj.id}</p>
+                <p>{obj.name}</p>
+                <p>{obj.alt}</p>
                 <p>{obj.description}</p>
             </div>
         </div>
     )); 
 
     return ( 
-        <div>
-            <div className={st.emptyVhDiv}></div>
+        <main>
+            {/* <div className={st.emptyVhDiv}></div> */}
+            <section>
+                <div>filtr</div>
+                <div>
+                    <div>cards</div>
+                    <div>choise</div>
+                </div>
+            </section>
             <section 
                 ref={refContainerPoke} 
-                className={`${st.containerPoke} , ${isVisible ? st.visible : ''}`}>
+                className={st.containerPoke}
+                //className={`${st.containerPoke} , ${isVisible ? st.visible : ''}`}
+            >
                 {content}
             </section>
-        </div>
+        </main>
      );
 };
  

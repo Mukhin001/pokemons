@@ -4,6 +4,7 @@ interface NavStyle {
     justifyContent?: string;
     left?: string;
     right?: string;
+    zIndex?: string;
 };
 
 export const navMob: NavStyle = {
@@ -12,6 +13,7 @@ export const navMob: NavStyle = {
     left: '0',
     right: '0',
     justifyContent: 'space-between',
+    zIndex: '5',
 };
 
 export const navWeb: NavStyle = {

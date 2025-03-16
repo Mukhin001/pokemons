@@ -1,0 +1,25 @@
+.wrapperComment {
+    border-bottom: 2px solid slateblue;
+    padding: 5px 20px;   
+}
+
+.wrapperEditLikeComment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapperIconLike {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.iconLike {
+    cursor: pointer;
+    width: 30px;
+}
+
+.iconLike:hover {
+    filter: brightness(0) saturate(100%) invert(55%) sepia(40%) saturate(803%) hue-rotate(259deg) brightness(98%) contrast(93%);
+}

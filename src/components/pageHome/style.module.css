@@ -1,0 +1,13 @@
+.imgWrapper {
+    margin: 0 auto;
+    max-width: 1540px;
+}
+
+.imgWrapper img {
+    max-width: 100%;
+}
+
+/* /home-fon/pokemon-7.jpg */
+.divH {
+    height: 100vh;
+}

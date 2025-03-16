@@ -1,8 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { items } from "../PokeList";
 import st from './style.module.css';
+import CommentsList from "../../comments/CommentsList";
 
 interface PokeObj {
+    id: number;
     name: string;
     imgUrl: string;
     alt: string;
@@ -24,6 +26,7 @@ const PokeCard = () => {
                         <img src={'/' + content.imgUrl} alt={content.alt} />
                     </div>
                     <h3>{content.name}</h3>
+                    <CommentsList id={content.id}/>
                 </div>
             }
         </section>

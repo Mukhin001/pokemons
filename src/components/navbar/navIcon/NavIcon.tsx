@@ -26,7 +26,10 @@ const NavIcon = () => {
                     <Auth />
                 </Modal>
             }
-            <ul style={widthSelector ? navWeb : navMob} className={st.wrapperLi}>
+            <ul 
+                style={widthSelector ? navWeb : navMob} 
+                className={`${st.wrapperLi} ${theme === 'light' ? st.wrapperLiLight : st.wrapperLiDark}`}
+            >
                 {iconMenu.map(obj => (
                     (obj.name === 'profile') ? 
                     <li onClick={() => dispatch(openCloseModal(true))} key={obj.name}>
