@@ -1,6 +1,6 @@
 import { jsonplaceholderApi } from "../jsonplaceholderApi";
 
-type Comment = {
+export type Comment = {
     postId: number;
     id: number;
     name: string;
@@ -8,12 +8,23 @@ type Comment = {
     body: string;
 };
 
+type NewComment = Pick<Comment, 'body' | 'email' | 'name' | 'postId'>;
+
 const commentsApi = jsonplaceholderApi.injectEndpoints({
     endpoints: (builder) => ({
         getComments: builder.query<Comment[], void>({
             query: () => '/comments',
+            providesTags: ['Comment'],
+        }),
+        addNewComment: builder.mutation<Comment, NewComment>({
+            query: intialComment => ({
+                url: '/comments',
+                method: 'POST',
+                body: intialComment,
+            }),
+            invalidatesTags: ['Comment'],
         }),
     }),
 });
 
-export const { useGetCommentsQuery } = commentsApi;
+export const { useGetCommentsQuery, useAddNewCommentMutation } = commentsApi;
