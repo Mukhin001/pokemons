@@ -1,9 +1,18 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useRef, useState } from "react";
 import st from './style.module.css';
 import { Link } from "react-router-dom";
 import Tooltip from "../tooltip/Tooltip";
 import { useAppSelector } from "../../app/hooks";
 import { pokeListWrapperDark, pokeListWrapperLight } from "./pokeListStyle";
+import Select from "../select/Select";
+
+export interface Pokemon {
+    id: number;
+    name: string;
+    imgUrl: string;
+    alt: string;
+    description: string;
+};
 
 export const items = [
     { id: 1, name: 'belka', imgUrl: 'img-test-slider/belka.jpg', alt: 'Slide 1', description: 'Description for Slide 1' },
@@ -18,34 +27,17 @@ export const items = [
 const PokeList = () => {
     const theme = useAppSelector(state => state.theme.value);
     const refContainerPoke = useRef(null);
-    const [isVisible, setIsVisible] = useState(false);
-
-    // useEffect(() => {
-    //     const observer = new IntersectionObserver(([entry]) => {
-    //         setIsVisible(entry.isIntersecting);
-    //     }, { threshold: 0.3 }) // контент появится когда 30% блока будет видно
-
-    //     if(refContainerPoke.current) {
-    //         observer.observe(refContainerPoke.current);
-    //     }
-
-    //     return () => {
-    //         if(refContainerPoke.current) observer.unobserve(refContainerPoke.current);
-    //     }
-    // }, []);
+    const [keySort, setKeySort] = useState('empty');
 
     const mouseEnterWrapper = (e: React.MouseEvent<HTMLSpanElement, MouseEvent> | any): void => {
         (theme === 'dark') ? e.currentTarget.style = pokeListWrapperDark : e.currentTarget.style = pokeListWrapperLight;
-    };
-
-    const mouseLeaveWrapper = (e: React.MouseEvent<HTMLSpanElement, MouseEvent> | any): void => {
-       // (theme === '') ? e.currentTarget.style = pokeListWrapperDark : e.currentTarget.style = pokeListWrapperLight;
     };
 
     const mouseEnter = (e: React.MouseEvent<HTMLSpanElement, MouseEvent> | any, name: string): void => {
         const tooltip = e.currentTarget.previousElementSibling;
         if(tooltip.dataset.name === name) {
             tooltip.style.opacity = '1';
+            tooltip.style.zIndex = '1';
         }
     };
 
@@ -53,15 +45,26 @@ const PokeList = () => {
         const tooltip = e.currentTarget.previousElementSibling;
         if(tooltip.dataset.name === name) {
             tooltip.style.opacity = '0';
+            tooltip.style.zIndex = '-1';
         }
     };
 
-    const content:ReactNode = (items.map(obj => 
+    const sortedPokeList = (key: string) => {
+        switch (key) {
+            case 'id-' :
+                return (a: Pokemon, b: Pokemon) => b.id - a.id;
+            case 'id+' :
+                return (a: Pokemon, b: Pokemon) => a.id - b.id;
+            case 'name' : 
+                return (a: Pokemon, b: Pokemon) => a.name.localeCompare(b.name);
+        }
+    };
+
+    const content:ReactNode = (items.sort(sortedPokeList(keySort)).map(obj => 
         <div 
             key={obj.alt} 
             className={st.pokeListWrapper}
             onMouseEnter={mouseEnterWrapper}
-            onMouseLeave={mouseLeaveWrapper}
             >
             <div className={st.wrapTooltip}>
                 <Tooltip name={obj.name}>
@@ -91,18 +94,12 @@ const PokeList = () => {
 
     return ( 
         <main>
-            {/* <div className={st.emptyVhDiv}></div> */}
             <section>
-                <div>filtr</div>
-                <div>
-                    <div>cards</div>
-                    <div>choise</div>
-                </div>
+                <Select name="pokeList" values={['Please choose sort', 'id+', 'id-', 'name']} keyState={setKeySort}/>
             </section>
             <section 
                 ref={refContainerPoke} 
                 className={st.containerPoke}
-                //className={`${st.containerPoke} , ${isVisible ? st.visible : ''}`}
             >
                 {content}
             </section>

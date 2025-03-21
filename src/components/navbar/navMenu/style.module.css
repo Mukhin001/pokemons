@@ -1,0 +1,37 @@
+.wrapperMenu {
+    display: inline-flex;
+    position: relative;
+}
+
+.navTitleWrap h3 {
+    cursor: pointer;
+    padding: 5px 20px;
+}
+
+.subMenuWrap {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgb(141, 97, 117);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    z-index: 3;
+    min-height: 400px;
+}
+
+.subMenu {
+    z-index: 4;
+}
+
+.subMenu li {
+    cursor: pointer;
+    padding: 10px;
+}
+
+.subMenu li:hover {
+    background-color: chocolate;
+}
+

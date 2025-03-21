@@ -11,7 +11,6 @@ interface AddPostFormElements extends HTMLFormElement {
 
 interface Props {
     postId: any;
-   
 };
 
 const AddNewComment = ({ postId }: Props) => {
