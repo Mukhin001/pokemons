@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { changeTheTheme } from "./themeSlice";
+import st from './style.module.css';
 
 const Theme = () => {
     const theme = useAppSelector(state => state.theme.value);
@@ -17,7 +18,9 @@ const Theme = () => {
     };
     
     return ( 
-        <button onClick={handleTheme}>{theme}</button>
+        <section className={st.wrapTheme}>
+            <button onClick={handleTheme}>{theme}</button>
+        </section>
      );
 };
  

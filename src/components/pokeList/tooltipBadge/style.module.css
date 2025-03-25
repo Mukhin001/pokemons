@@ -1,0 +1,78 @@
+.wrapTooltip {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    color: var(--color-light);
+}
+
+.wrapTooltip span {
+    background-color: var(--color-blue);
+    color: var( --color-light);
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.wrapLike {
+    position: relative;
+}
+
+.circle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #8d8d92;
+    border-radius: 50%;
+    animation: fadeOut .2s ease-out forwards;
+}
+
+.wrapLikeImgGrey {
+    width: 25px;
+    cursor: pointer;
+    padding: 3px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.wrapLikeImgGrey img {
+    width: 100%;
+}
+
+.wrapLikePink {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25px;
+    cursor: pointer;
+    padding: 3px;
+}
+
+.wrapLikeImgPink {
+    opacity: 0; 
+    transform: scale(0);
+    animation: appearHeart .5s ease-out .5s forwards;
+}
+
+.wrapLikeImgPink img {
+    width: 100%;
+}
+
+
+.wrapLikeImgGrey:hover {
+    filter: brightness(0) saturate(100%) invert(94%) sepia(6%) saturate(231%) hue-rotate(207deg) brightness(89%) contrast(92%);
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1;}
+    100% { opacity: 0; }
+}
+
+@keyframes appearHeart {
+    0% { opacity: 0; transform: scale(0);}
+    100% { opacity: 1; transform: scale(1);}
+}
+
+

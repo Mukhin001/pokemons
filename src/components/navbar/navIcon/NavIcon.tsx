@@ -22,7 +22,7 @@ const NavIcon = () => {
     return ( 
         <nav className={st.wrapperNav}>
             {modalSelector && 
-                <Modal header="Auth User" wrapperModalStyle={wrapperModalStyle}>
+                <Modal wrapperModalStyle={wrapperModalStyle}>
                     <Auth />
                 </Modal>
             }

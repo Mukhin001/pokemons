@@ -1,0 +1,17 @@
+.line {
+    height: 2px;
+    width: 100%;
+    background-color: var( --backGround-lightLight);
+    display: block;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.strip {
+    height: 2px;
+    position: absolute;
+    top: 0;
+    background-color: var(--color-pink);
+    transition: 0.5s all ease-in-out;
+}

@@ -1,8 +1,11 @@
-.app {
-    min-height: 100vh;
-    transition: 0.25s;
-    /* display: grid;
-    /* grid-template-rows: minmax(100px, auto) 1fr minmax(50px, auto); */
-    /* grid-template-rows: auto;
-    overflow-y:auto; */ 
+.themeLight {
+    background-color: var(--backGround-light);
+    color: var(--color-backGround-light);
+    transition: var(--transition-theme);
+}
+
+.themeDark {
+    background-color: var(--backGround-dark);
+    color: var(--color-backGround-dark);
+    transition: var(--transition-theme);
 }

@@ -1,10 +1,8 @@
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useState } from "react";
 import st from './style.module.css';
 import { Link } from "react-router-dom";
-import Tooltip from "../tooltip/Tooltip";
-import { useAppSelector } from "../../app/hooks";
-import { pokeListWrapperDark, pokeListWrapperLight } from "./pokeListStyle";
 import Select from "../select/Select";
+import TooltipBadge from "./tooltipBadge/TooltipBadge";
 
 export interface Pokemon {
     id: number;
@@ -25,29 +23,7 @@ export const items = [
 
 
 const PokeList = () => {
-    const theme = useAppSelector(state => state.theme.value);
-    const refContainerPoke = useRef(null);
     const [keySort, setKeySort] = useState('empty');
-
-    const mouseEnterWrapper = (e: React.MouseEvent<HTMLSpanElement, MouseEvent> | any): void => {
-        (theme === 'dark') ? e.currentTarget.style = pokeListWrapperDark : e.currentTarget.style = pokeListWrapperLight;
-    };
-
-    const mouseEnter = (e: React.MouseEvent<HTMLSpanElement, MouseEvent> | any, name: string): void => {
-        const tooltip = e.currentTarget.previousElementSibling;
-        if(tooltip.dataset.name === name) {
-            tooltip.style.opacity = '1';
-            tooltip.style.zIndex = '1';
-        }
-    };
-
-    const mouseLeave = (e: React.MouseEvent<HTMLSpanElement, MouseEvent> | any, name: string): void => {
-        const tooltip = e.currentTarget.previousElementSibling;
-        if(tooltip.dataset.name === name) {
-            tooltip.style.opacity = '0';
-            tooltip.style.zIndex = '-1';
-        }
-    };
 
     const sortedPokeList = (key: string) => {
         switch (key) {
@@ -64,21 +40,9 @@ const PokeList = () => {
         <div 
             key={obj.alt} 
             className={st.pokeListWrapper}
-            onMouseEnter={mouseEnterWrapper}
             >
-            <div className={st.wrapTooltip}>
-                <Tooltip name={obj.name}>
-                    <p>{obj.name}</p>
-                    <p>{obj.description}</p>
-                    <p>{obj.alt}</p>
-                </Tooltip>
-                <span 
-                    onMouseEnter={(e) => mouseEnter(e, obj.name)}
-                    onMouseLeave={(e) => mouseLeave(e, obj.name)}
-                    >tooltip
-                </span>
-                <button className={st.cardLikeBtn}>like</button>
-            </div>
+
+            <TooltipBadge name={obj.name} description={obj.description} alt={obj.alt} />
 
             <div>
                 <div className={st.wrapImg}>
@@ -98,7 +62,6 @@ const PokeList = () => {
                 <Select name="pokeList" values={['Please choose sort', 'id+', 'id-', 'name']} keyState={setKeySort}/>
             </section>
             <section 
-                ref={refContainerPoke} 
                 className={st.containerPoke}
             >
                 {content}

@@ -5,7 +5,7 @@
     grid-template-columns: repeat(4, 1fr);
     /* opacity: 0; */
     /* transform: translateY(50px); */
-    transition: all 1s ease-in-out;
+    /* transition: all 1s ease-in-out; */
 }
 
 .visible {
@@ -19,31 +19,7 @@
 
 .pokeListWrapper{
    padding: 18px 16px;
-   transition: all 0.5s ease-in-out;
-}
-
-.wrapTooltip {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-}
-
-.cardLikeBtn {
-    opacity: 0;
-    transition: all 0.5s ease-in-out;
-    background-color: blueviolet;
-    border-radius: 4px;
-    color: #ffffff;
-    padding: 3px 8px;
-    border: 2px solid transparent;
-    cursor: pointer;
-}
-
-.wrapTooltip span {
-    background-color: blueviolet;
-    padding: 3px 8px;
-    border-radius: 4px;
-    display: inline-block;
+   transition:  box-shadow 0.5s ease-in-out;
 }
 
 .wrapImg {
@@ -61,15 +37,10 @@
     box-shadow: -1px 1px 30px 0px rgba(0,0,0,0.86);
     -webkit-box-shadow: -1px 1px 30px 0px rgba(0,0,0,0.86);
     -moz-box-shadow: -1px 1px 30px 0px rgba(0,0,0,0.86);
-    
 }
 
-.pokeListWrapper:hover .cardLikeBtn {
+.pokeListWrapper:hover .wrapLikeImgGrey  {
     opacity: 1;
-}
-
-.cardLikeBtn:hover {
-    border: 2px solid #ffffff;
 }
 
 @media(max-width: 1210px) {

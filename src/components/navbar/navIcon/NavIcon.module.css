@@ -1,18 +1,21 @@
 .wrapperNav {
     position: relative;
+    max-width: 1540px;
+    margin: 0 auto;
 }
 
 .wrapperLi {
     display: flex;
     gap: 20px;
+    transition: var(--transition-theme-background);
 }
 
 .wrapperLiLight {
-    background-color: rgba(241, 234, 207);
+    background-color: var(--backGround-light);
 }
 
 .wrapperLiDark {
-    background-color: rgb(44, 29, 36);
+    background-color: var(--backGround-dark);  
 }
 
 .wrapperLi li {

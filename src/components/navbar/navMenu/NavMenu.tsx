@@ -1,33 +1,30 @@
 import { useState } from "react";
-import { navBarMenu } from "../navBar/navBarMenu";
 import st from './style.module.css';
 import SubContent from "./subContent/SubContent";
+import NavLine from "./navLine/NavLine";
+import NavTitle from "./navTitle/NavTitle";
 
-interface Props {
-    setStripLeft: React.Dispatch<React.SetStateAction<string>>;
-    setStripWidth: React.Dispatch<React.SetStateAction<string>>;
-    setStrip: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const NavMenu = ({ setStripLeft, setStripWidth, setStrip }: Props) => {
+const NavMenu = () => {
     const [subName, setSubName] = useState<string | null>('');
+    const [stripWidth, setStripWidth] = useState<string>('40px');
+    const [stripLeft, setStripLeft] = useState<string>('0');
+    const [strip, setStrip] = useState<boolean>(false);
+    const [timeoutId, setTimeoutid] = useState<number | null>(null);
     
     const handleMouseEnterMain = (e: React.MouseEvent<HTMLHeadingElement, MouseEvent>) => {
-        let offsetLeft = e.currentTarget.offsetLeft;
-        let offsetWidth = e.currentTarget.offsetWidth;
         let subMenuWrap = e.currentTarget.lastElementChild as HTMLElement;
-        
-        setStripLeft(offsetLeft + 'px');
-        setStripWidth(offsetWidth + 'px');
-        setStrip(true);
-       
-        if(subMenuWrap) {
-            subMenuWrap.style.transform = 'translateY(0)';
-            subMenuWrap.style.opacity = '1';
-            subMenuWrap.style.pointerEvents = 'auto';
-        }
 
+        const timeOut = setTimeout(() => {
+            if(subMenuWrap) {
+                subMenuWrap.style.transform = 'translateY(0)';
+                subMenuWrap.style.opacity = '1';
+                subMenuWrap.style.pointerEvents = 'auto';
+                setStrip(true);
+            }
+        }, 200);
+        setTimeoutid(timeOut);
     };
+
     const handleMouseLeaveMain = (e: React.MouseEvent<HTMLHeadingElement, MouseEvent>) => {
         let subMenuWrap = e.currentTarget.lastElementChild as HTMLElement;
     
@@ -39,31 +36,29 @@ const NavMenu = ({ setStripLeft, setStripWidth, setStrip }: Props) => {
             subMenuWrap.style.transform = 'translateY(-10px)';
             subMenuWrap.style.opacity = '0';
             subMenuWrap.style.pointerEvents = 'none';
-        }
+        }   
         setSubName('');
-    };
-
-    const handleMouseEnter = (e: React.MouseEvent<HTMLHeadingElement, MouseEvent>) => {
-        let subMenu = e.currentTarget.firstElementChild as HTMLElement;
-        setSubName(subMenu.textContent);   
+        if(timeoutId) clearTimeout(timeoutId);
     };
 
     return ( 
-        <div className={st.wrapperMenu}
-        onMouseEnter={handleMouseEnterMain}
-        onMouseLeave={handleMouseLeaveMain}
-        >
-            {navBarMenu.map(obj => 
-                <div key={obj.name} className={st.navTitleWrap}
-                onMouseEnter={handleMouseEnter}
-                >
-                    <h3>{obj.name}</h3>
+        <section>
+            <section className={st.wrapperMenu}
+                onMouseEnter={handleMouseEnterMain}
+                onMouseLeave={handleMouseLeaveMain} 
+            >
+
+                <NavTitle setSubName={setSubName} setStripLeft={setStripLeft} setStripWidth={setStripWidth} />
+
+                <NavLine stripWidth={stripWidth} stripLeft={stripLeft} strip={strip} />
+
+                <div className={`${st.subMenuWrap}`}>
+                    <SubContent subName={subName} />
                 </div>
-            )}
-                <div className={st.subMenuWrap}>
-                       <SubContent subName={subName}/>
-                </div>
-        </div>
+
+            </section>
+            {strip && <div className={st.subMenuBlur}></div>}
+        </section>
     );
 };
  

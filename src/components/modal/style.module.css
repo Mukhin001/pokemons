@@ -1,0 +1,33 @@
+.wrapperModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.714);
+    display: flex;
+    z-index: 100;
+}
+
+.wrapperContent {
+    background-color: rgb(249, 249, 249);
+    position: relative;
+    padding: 35px 45px;
+    border-radius: 10px;
+}
+
+.modalCloseBtn {
+    position: absolute;
+    left: 105%;
+    top: 0;
+    width: 40px;
+    cursor: pointer;
+}
+
+.modalCloseBtn img {
+    width: 100%;
+}
+
+.modalCloseBtn:hover img {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(96%) saturate(0%) hue-rotate(119deg) brightness(106%) contrast(103%);
+}

@@ -1,11 +1,5 @@
 .wrapperMenu {
-    display: inline-flex;
     position: relative;
-}
-
-.navTitleWrap h3 {
-    cursor: pointer;
-    padding: 5px 20px;
 }
 
 .subMenuWrap {
@@ -13,25 +7,17 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background: rgb(141, 97, 117);
     opacity: 0;
     transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
     pointer-events: none;
     z-index: 3;
-    min-height: 400px;
 }
 
-.subMenu {
-    z-index: 4;
+.subMenuBlur {
+    backdrop-filter: blur(6px);
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
 }
-
-.subMenu li {
-    cursor: pointer;
-    padding: 10px;
-}
-
-.subMenu li:hover {
-    background-color: chocolate;
-}
-
