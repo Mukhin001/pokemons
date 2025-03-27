@@ -12,7 +12,7 @@ interface Props {
 
 const CommentsList = ({ id }: Props) => {
     const theme = useAppSelector(state => state.theme.value);
-    const likes = useAppSelector(state => state.like);
+    const likes = useAppSelector(state => state.likeComment);
     const dispatch = useAppDispatch();
     const { data, isLoading, isError, refetch } = useGetCommentsQuery();
     const comments = data?.slice(0, 100).filter(obj => obj.postId === id);

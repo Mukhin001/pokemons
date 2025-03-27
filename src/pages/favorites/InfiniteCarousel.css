@@ -1,0 +1,15 @@
+.carousel-wrapper {
+    
+}
+
+.carouselContainer {
+    display: flex;
+    transition: transform 1s ease-out;
+}
+.wrapImg {
+    width: 300px;
+}
+
+.wrapImg img {
+    width: 100%;
+}

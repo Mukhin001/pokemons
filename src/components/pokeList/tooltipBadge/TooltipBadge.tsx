@@ -3,15 +3,18 @@ import st from './style.module.css';
 import style from '../style.module.css';
 import keyFrame from './keyframe.module.css';
 import { useState } from "react";
+import { useAppDispatch } from "../../../app/hooks";
+import { decrementLike, incrementLike } from "../likeCountSlice";
 
 interface Props {
     name: string;
-    description: string;
-    alt: string;
+    description?: string;
+    alt?: string;
 };
 
 const TooltipBadge = ({ name, description, alt }: Props) => {
     const [heart, setHeart] = useState<boolean>(false);
+    const dispatch = useAppDispatch();
     const mouseEnter = (e: React.MouseEvent<HTMLSpanElement, MouseEvent> | any, name: string): void => {
         const tooltip = e.currentTarget.previousElementSibling;
         if(tooltip.dataset.name === name) {
@@ -23,6 +26,19 @@ const TooltipBadge = ({ name, description, alt }: Props) => {
         const tooltip = e.currentTarget.previousElementSibling;
         if(tooltip.dataset.name === name) {
             tooltip.style.opacity = '0';
+        }
+    };
+
+    const handleClickHeart = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        setHeart(!heart);
+        
+        const firstDiv = e.currentTarget.firstChild as HTMLDivElement;
+        //console.log(e.currentTarget.parentNode?.parentNode);
+        
+        if(firstDiv.getAttribute('data-name') === 'wrapLikeImgGrey') {
+            dispatch(incrementLike());
+        } else {
+            dispatch(decrementLike());
         }
     };
 
@@ -38,9 +54,9 @@ const TooltipBadge = ({ name, description, alt }: Props) => {
                     onMouseLeave={(e) => mouseLeave(e, name)}
                     >tooltip
                 </span>
-                <div onClick={() => setHeart(!heart)} className={`${st.wrapLike} ${style.wrapLike}`}>
+                <div onClick={handleClickHeart} className={`${st.wrapLike} ${style.wrapLike}`}>
                     {!heart && 
-                        <div className={`${st.wrapLikeImgGrey} ${style.wrapLikeImgGrey}`}>
+                        <div data-name='wrapLikeImgGrey' className={`${st.wrapLikeImgGrey} ${style.wrapLikeImgGrey}`}>
                             <img src='/icon_btn/like_grey.svg' alt="" />
                         </div>
                     }

@@ -53,7 +53,7 @@
 .wrapLikeImgPink {
     opacity: 0; 
     transform: scale(0);
-    animation: appearHeart .5s ease-out .5s forwards;
+    animation: appearHeart .5s ease-out .3s forwards;
 }
 
 .wrapLikeImgPink img {

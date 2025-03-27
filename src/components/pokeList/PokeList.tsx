@@ -3,6 +3,7 @@ import st from './style.module.css';
 import { Link } from "react-router-dom";
 import Select from "../select/Select";
 import TooltipBadge from "./tooltipBadge/TooltipBadge";
+import { useGetAllPokemonsQuery  } from "../../api/pokemons/pokemonsAll/pokemonsAll";
 
 export interface Pokemon {
     id: number;
@@ -24,6 +25,11 @@ export const items = [
 
 const PokeList = () => {
     const [keySort, setKeySort] = useState('empty');
+    const { data, isError, isLoading } = useGetAllPokemonsQuery();
+    
+    const clcii = () => {
+        
+    };
 
     const sortedPokeList = (key: string) => {
         switch (key) {
@@ -36,22 +42,40 @@ const PokeList = () => {
         }
     };
 
-    const content:ReactNode = (items.sort(sortedPokeList(keySort)).map(obj => 
+    // const content:ReactNode = (items.sort(sortedPokeList(keySort)).map(obj => 
+    //     <div 
+    //         key={obj.alt} 
+    //         className={st.pokeListWrapper}
+    //         >
+
+    //         <TooltipBadge name={obj.name} description={obj.description} alt={obj.alt} />
+
+    //         <div>
+    //             <div className={st.wrapImg}>
+    //                 <Link to={obj.name}><img src={obj.imgUrl} alt={obj.alt} /></Link>
+    //             </div>
+    //             <p>{obj.id}</p>
+    //             <p>{obj.name}</p>
+    //             <p>{obj.alt}</p>
+    //             <p>{obj.description}</p>
+    //         </div>
+    //     </div>
+    // )); 
+    const content:ReactNode = (data?.results.map((obj, i) => 
         <div 
-            key={obj.alt} 
+            key={obj.name} 
             className={st.pokeListWrapper}
             >
 
-            <TooltipBadge name={obj.name} description={obj.description} alt={obj.alt} />
+            <TooltipBadge name={obj.name} />
 
             <div>
                 <div className={st.wrapImg}>
-                    <Link to={obj.name}><img src={obj.imgUrl} alt={obj.alt} /></Link>
+                    <Link to={obj.name}>{obj.name}</Link>
                 </div>
-                <p>{obj.id}</p>
+                <p>{i}</p>
                 <p>{obj.name}</p>
-                <p>{obj.alt}</p>
-                <p>{obj.description}</p>
+                <p>{obj.url}</p>
             </div>
         </div>
     )); 

@@ -33,6 +33,20 @@
     max-width: 30px;
 }
 
+.wrapCountLike {
+    position: relative;
+}
+
+.countLike {
+    position: absolute;
+    left: 60%;
+    bottom: 80%;
+    background-color: var(--color-pink);
+    border-radius: 50%;
+    font-size: 15px;
+    padding: 2px 6px;
+}
+
 .wrapperLi li:hover img {
     filter: brightness(0) saturate(100%) invert(55%) sepia(40%) saturate(803%) hue-rotate(259deg) brightness(98%) contrast(93%);
 }
