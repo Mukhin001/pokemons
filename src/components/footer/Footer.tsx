@@ -1,13 +1,18 @@
 import { useAppSelector } from "../../app/hooks";
+import Line from "../line/Line";
 import FooterInfo from "./footerInfo/FooterInfo";
-import './style.css';
+import FooterTop from "./footerTop/FooterTop";
+
+import st from './style.module.css';
 
 const Footer = () => {
     const widthSelector = useAppSelector(state => state.widthWindow.width);
 
     return ( 
-        <footer className="mainFooter">
-               <FooterInfo widthSelector={widthSelector} /> 
+        <footer className={st.mainFooter}>
+            <Line />
+            <FooterTop />
+            <FooterInfo widthSelector={widthSelector} /> 
         </footer>
     );
 };

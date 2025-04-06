@@ -1,0 +1,110 @@
+import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+import { iconMenu } from "./iconMenu";
+import Modal from "../../../modal/Modal";
+import { openCloseModal } from "../../../modal/modalSlice";
+import Auth from "../../../auth/Auth";
+import { WrapperModalStyle } from "../../../modal/modalStyle";
+import st from './NavIcon.module.css';
+import { ReactNode, useEffect, useState } from "react";
+import { PropsHeader } from "../../Header";
+import Drawer from "../../../drawer/Drawer";
+import ChildrerDraverMenu from "./childrerDraverMenu/ChildrerDraverMenu";
+
+const NavIcon = ({ theme, width }: PropsHeader) => {
+    const modalSelector = useAppSelector(state => state.modal.value);
+    const dispatch = useAppDispatch();
+    const likeCount = useAppSelector(state => state.likeCount.value);
+    const iconMenuWeb = iconMenu.filter(e => e.name !== 'menu');
+    const [showDrawer, setshowDrawer] = useState<boolean>(false);
+
+    useEffect(() => {
+        if(width) {
+            setshowDrawer(false);
+        }
+    }, [width]);
+  
+    const wrapperModalStyle: WrapperModalStyle = {
+        justifyContent: 'center',
+        alignItems: 'center', 
+    };
+
+    let content: ReactNode;
+
+    content = ((width ? iconMenuWeb : iconMenu).map((obj) => {
+        if(obj.name === 'profile') {
+            return (
+                <li key={obj.name} onClick={() => dispatch(openCloseModal(true))}>
+                    <img 
+                        src={obj.url.slice(0, -4) + theme + obj.url.slice(-4)} 
+                        alt={obj.name} 
+                        className={st.imgIcon}
+                    />
+                    <p>{obj.text}</p>
+                </li> 
+            )
+        } else if(obj.name === 'menu') {
+            return (
+                <li key={obj.name} onClick={() => setshowDrawer(!showDrawer)}>
+                    <img 
+                        src={obj.url.slice(0, -4) + theme + obj.url.slice(-4)} 
+                        alt={obj.name} 
+                        className={st.imgIcon}
+                    />
+                    <p>{obj.text}</p>
+                </li> 
+            )
+        } else if(obj.name === 'like') {
+            return (
+                <li key={obj.name} className={st.wrapCountLike}>
+                    <Link to={obj.path}>
+                        <img 
+                            src={obj.url.slice(0, -4) + theme + obj.url.slice(-4)} 
+                            alt={obj.name} 
+                            className={st.imgIcon}
+                        />
+                        {likeCount !== 0 && <div className={st.countLike}>{likeCount}</div>}
+                        <p>{obj.text}</p>
+                    </Link>
+                </li> 
+            )
+        } else {
+            return (
+                <li key={obj.name}>
+                    <Link to={obj.path}>
+                    <img 
+                        src={obj.url.slice(0, -4) + theme + obj.url.slice(-4)} 
+                        alt={obj.name} 
+                        className={st.imgIcon}
+                    />
+                    <p>{obj.text}</p>
+                    </Link>
+                </li>
+            )
+        }
+    }))
+
+    return ( 
+        <nav className={st.wrapperNav}>
+            {modalSelector && 
+                <Modal wrapperModalStyle={wrapperModalStyle}>
+                    <Auth />
+                </Modal>
+            }
+            <Drawer positionProps="left" theme={theme} showDrawer={showDrawer} setshowDrawer={setshowDrawer} >
+                <ChildrerDraverMenu setshowDrawer={setshowDrawer} />
+            </Drawer>
+            <ul 
+                className={`
+                    ${st.wrapperLi} 
+                    ${width ? st.wrapperLiWeb : st.wrapperLiMob}
+                    ${theme === 'light' ? st.wrapperLiLight : st.wrapperLiDark}`
+                }
+            >
+                {content}
+            </ul>
+        </nav>
+     );
+};
+ 
+export default NavIcon;

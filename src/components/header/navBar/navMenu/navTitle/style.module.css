@@ -1,0 +1,11 @@
+.wrapTitle {
+    display: flex;
+    gap: 30px;
+    max-width: 1540px;
+    margin: 0 auto;
+}
+
+.navTitleWrap h3 {
+    cursor: pointer;
+    padding: 12px 0;
+}

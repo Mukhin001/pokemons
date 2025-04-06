@@ -1,9 +1,9 @@
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { useAppDispatch } from "../../../app/hooks";
 import { changeTheTheme } from "./themeSlice";
 import st from './style.module.css';
+import { PropsHeader } from "../Header";
 
-const Theme = () => {
-    const theme = useAppSelector(state => state.theme.value);
+const Theme = ({ theme }: PropsHeader) => {
     const dispatch = useAppDispatch();
 
     const handleTheme = () => {

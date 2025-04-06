@@ -1,0 +1,11 @@
+.topConteiner {
+    height: 100px;
+}
+
+.topConteinerLight {    
+    background-color: var(--backGround-light);
+}
+
+.topConteinerDark {    
+    background-color: var(--backGround-dark);
+}

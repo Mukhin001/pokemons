@@ -15,7 +15,7 @@ export interface DataApi {
 export const pokemonsAll = pokemonsApi.injectEndpoints({
     endpoints: (builder) => ({
         getAllPokemons: builder.query<DataApi, void>({
-            query: () => '/api/v2/pokemon/?limit=6',
+            query: () => '/api/v2/pokemon/?limit=50',
         }),
         getPokemon: builder.query({
             query: (name) => `/api/v2/pokemon/${name}`,

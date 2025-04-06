@@ -29,9 +29,8 @@ const Modal = ( { children, wrapperModalStyle }: Props) => {
             style={wrapperModalStyle}
         >
             <div className={st.wrapperContent}>
-                {/* <button onClick={() => dispatch(openCloseModal(false))} className={st.modalCloseBtn}>X</button> */}
                 <div onClick={() => dispatch(openCloseModal(false))} className={st.modalCloseBtn}>
-                    <img src='/icon_btn/close_grey.svg' alt="" />
+                    <img src='/icon_btn/close_grey.svg' alt="close" />
                 </div>
                 {children}
             </div>

@@ -12,7 +12,7 @@ interface WrapperList {
 
 export const wrapperWeb: WrapperFooter = {
     display: 'flex',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
 };
 
 export const wrapperMob: WrapperFooter = {

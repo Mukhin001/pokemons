@@ -1,11 +1,8 @@
 .containerPoke {
-    max-width: 1440px;
-    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    /* opacity: 0; */
-    /* transform: translateY(50px); */
-    /* transition: all 1s ease-in-out; */
+    margin: 0 auto;
+    max-width: 1440px;
 }
 
 .visible {
@@ -18,13 +15,14 @@
 }
 
 .pokeListWrapper{
-   padding: 18px 16px;
+   /* padding: 18px 16px; */
+   padding: 2em;
+   max-width: 300px;
    transition:  box-shadow 0.5s ease-in-out;
 }
 
 .wrapImg {
     margin: 0 auto;
-    max-width: 278px;
     padding: 10px 0;
     cursor: pointer;
 }
@@ -43,20 +41,23 @@
     opacity: 1;
 }
 
-@media(max-width: 1210px) {
+@media (max-width: 1200px) {   /*для  сужения окна браузера*/
     .containerPoke {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 2fr);
     }
 }
 
-@media(max-width: 900px) {
+@media (max-width: 600px) {  /*для планшета*/
     .containerPoke {
         grid-template-columns: repeat(2, 1fr);
-    }
+    }  
 }
 
-@media(max-width: 500px) {
+@media (max-width: 400px) {  /*для телефона*/
     .containerPoke {
         grid-template-columns: repeat(1, 1fr);
     }
+    .pokeListWrapper {
+        padding-inline: 0;  /*отспуты боковые*/
+   }
 }

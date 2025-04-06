@@ -1,0 +1,37 @@
+.conteiner {
+    position: absolute;
+    top: 0;
+    left: 250px;
+    z-index: 10;
+    display: none;
+}
+.subLinkLight:hover {
+    background-color: var(--backGround-lightLight);
+}
+
+.subLinkDark:hover {
+    background-color: var(--color-grey);
+}
+
+.wrapLi {
+    width: 200px;
+}
+
+.wrapLi li a {
+    display: block; 
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    transition: background-color .8s ease;
+    cursor: pointer;
+}
+
+
+.subMenuWrapLight {
+    background-color: var(--backGround-light);
+}
+
+.subMenuWrapDark {
+    background-color: var(--backGround-dark);
+}

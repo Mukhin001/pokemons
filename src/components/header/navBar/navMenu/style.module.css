@@ -1,0 +1,23 @@
+.wrapperMenu {
+    position: relative;
+}
+
+.subMenuWrap {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.subMenuBlur {
+    backdrop-filter: blur(6px);
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    z-index: 2;
+}

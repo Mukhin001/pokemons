@@ -1,0 +1,15 @@
+.activeSlideMain {
+    display: block;
+}
+
+.hiddenSlideMain {
+    display: none;
+}
+
+.activeSlide {
+    border: 2px solid var(--color-pink);
+}
+
+.hiddenSlide {
+    border: 2px solid transparent;
+}

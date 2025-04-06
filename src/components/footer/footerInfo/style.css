@@ -1,3 +1,8 @@
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
 .wrapperH3Title {
     display: flex;
     justify-content: space-between;

@@ -8,7 +8,7 @@ const WidthWindow = () => {
     useEffect(() => {
         
     const handleResize = () => {
-        const width = window.innerWidth > 500;   
+        const width = window.innerWidth > 1100;   
             dispatch(setWidthWindow(width))
         };
 

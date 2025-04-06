@@ -1,0 +1,18 @@
+.headerLi {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    transition: background-color .8s ease;
+    max-width: 250px;
+}
+
+.wrapImgNext {
+    max-width: 15px;
+}
+
+.wrapImgNext img {
+    width: 100%;
+}

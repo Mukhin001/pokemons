@@ -10,7 +10,7 @@ function App() {
     const theme = useAppSelector(state => state.theme.value);
 
     return (
-        <div className={`${theme === 'light' ? 'themeLight' : 'themeDark'}`}>
+        <div className={`app ${theme === 'light' ? 'themeLight' : 'themeDark'}`}>
             <WidthWindow />
             <Router>
                 <Header />

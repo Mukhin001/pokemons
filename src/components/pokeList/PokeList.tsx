@@ -24,44 +24,23 @@ export const items = [
 
 
 const PokeList = () => {
-    const [keySort, setKeySort] = useState('empty');
+    const [keySort, setKeySort] = useState<string>('empty');
     const { data, isError, isLoading } = useGetAllPokemonsQuery();
-    
-    const clcii = () => {
-        
-    };
+    const dataSort = data?.results.slice();
 
-    const sortedPokeList = (key: string) => {
+
+    const sortedPokeList = (key: string): any => {
         switch (key) {
             case 'id-' :
-                return (a: Pokemon, b: Pokemon) => b.id - a.id;
+                return (a: any, b: any) => +b.url.slice(34, -1) - +a.url.slice(34, -1);
             case 'id+' :
-                return (a: Pokemon, b: Pokemon) => a.id - b.id;
+                return (a: any, b: any) => +a.url.slice(34, -1) - +b.url.slice(34, -1);
             case 'name' : 
-                return (a: Pokemon, b: Pokemon) => a.name.localeCompare(b.name);
+                return (a: any, b: any) => a.name.localeCompare(b.name);
         }
     };
-
-    // const content:ReactNode = (items.sort(sortedPokeList(keySort)).map(obj => 
-    //     <div 
-    //         key={obj.alt} 
-    //         className={st.pokeListWrapper}
-    //         >
-
-    //         <TooltipBadge name={obj.name} description={obj.description} alt={obj.alt} />
-
-    //         <div>
-    //             <div className={st.wrapImg}>
-    //                 <Link to={obj.name}><img src={obj.imgUrl} alt={obj.alt} /></Link>
-    //             </div>
-    //             <p>{obj.id}</p>
-    //             <p>{obj.name}</p>
-    //             <p>{obj.alt}</p>
-    //             <p>{obj.description}</p>
-    //         </div>
-    //     </div>
-    // )); 
-    const content:ReactNode = (data?.results.map((obj, i) => 
+    
+    const content:ReactNode = (dataSort?.sort(sortedPokeList(keySort)).map(obj => 
         <div 
             key={obj.name} 
             className={st.pokeListWrapper}
@@ -71,11 +50,12 @@ const PokeList = () => {
 
             <div>
                 <div className={st.wrapImg}>
-                    <Link to={obj.name}>{obj.name}</Link>
+                    <Link to={obj.name}>{obj.name}
+                        <img src="/pokeball.svg" alt="pokeball" />
+                    </Link>
                 </div>
-                <p>{i}</p>
+                <p>{obj.url.slice(34, -1)}</p>
                 <p>{obj.name}</p>
-                <p>{obj.url}</p>
             </div>
         </div>
     )); 
