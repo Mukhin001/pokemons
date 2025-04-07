@@ -5,8 +5,13 @@
     padding-top: 5px;
     padding-bottom: 5px;
     border-radius: 10px;
-    transition: background-color .8s ease;
+    transition: background-color .3s ease;
     max-width: 250px;
+    cursor: pointer;
+}
+
+.headerLi a {
+    width: 100%;
 }
 
 .wrapImgNext {
@@ -14,5 +19,19 @@
 }
 
 .wrapImgNext img {
+    width: 100%;
+}
+
+.wrapArrow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnBackClose {
+    max-width: 20px;
+    cursor: pointer;
+}
+
+.btnBackClose img {
     width: 100%;
 }

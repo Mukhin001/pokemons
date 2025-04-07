@@ -10,6 +10,8 @@ import { ReactNode, useEffect, useState } from "react";
 import { PropsHeader } from "../../Header";
 import Drawer from "../../../drawer/Drawer";
 import ChildrerDraverMenu from "./childrerDraverMenu/ChildrerDraverMenu";
+import Line from "../../../line/Line";
+import Theme from "../../theme/Theme";
 
 const NavIcon = ({ theme, width }: PropsHeader) => {
     const modalSelector = useAppSelector(state => state.modal.value);
@@ -68,6 +70,12 @@ const NavIcon = ({ theme, width }: PropsHeader) => {
                     </Link>
                 </li> 
             )
+        } else if(obj.name === 'theme') {
+            return (
+                <li key={obj.name} className={st.wrapCountLike}>
+                    <Theme theme={theme} />
+                </li> 
+            )
         } else {
             return (
                 <li key={obj.name}>
@@ -92,17 +100,20 @@ const NavIcon = ({ theme, width }: PropsHeader) => {
                 </Modal>
             }
             <Drawer positionProps="left" theme={theme} showDrawer={showDrawer} setshowDrawer={setshowDrawer} >
-                <ChildrerDraverMenu setshowDrawer={setshowDrawer} />
+                <ChildrerDraverMenu setshowDrawer={setshowDrawer} theme={theme} />
             </Drawer>
-            <ul 
-                className={`
-                    ${st.wrapperLi} 
-                    ${width ? st.wrapperLiWeb : st.wrapperLiMob}
-                    ${theme === 'light' ? st.wrapperLiLight : st.wrapperLiDark}`
-                }
-            >
-                {content}
-            </ul>
+            <section className={`${width ? null : st.bottomMenuMob}`}>
+                <Line />
+                <ul 
+                    className={`
+                        ${st.wrapperLi} 
+                        ${width ? st.wrapperLiWeb : st.wrapperLiMob}
+                        ${theme === 'light' ? st.wrapperLiLight : st.wrapperLiDark}`
+                    }
+                >
+                    {content}
+                </ul>
+            </section>
         </nav>
      );
 };

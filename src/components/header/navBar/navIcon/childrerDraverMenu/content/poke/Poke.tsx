@@ -3,13 +3,16 @@ import { PokemonsAll, useGetAllPokemonsQuery } from "../../../../../../../api/po
 import st from '../../style.module.css';
 import PokeList from "./pokeList/PokeList";
 import { PropsMobMenu } from "../Content";
+import { Link } from "react-router-dom";
+import { useAppSelector } from "../../../../../../../app/hooks";
+import Btns from "../btns/Btns";
 
 export interface Poke {
     name: string;
     array: PokemonsAll[];
 };
 
-const Poke = ({ setshowDrawer }: PropsMobMenu) => {
+const Poke = ({ nameMenu, setshowDrawer, setnameMenu }: PropsMobMenu) => {
     const [namePoke, setnamePoke] = useState<Poke | any>(null);
     const { data, isError, isLoading } = useGetAllPokemonsQuery();
     const pokemons: Poke[] = [];
@@ -41,18 +44,31 @@ const Poke = ({ setshowDrawer }: PropsMobMenu) => {
         <section>
             
             {!namePoke &&  
-                <ul >
-                    {pokemons.map(arr => 
-                        <li key={arr.name} className={st.headerLi} onClick={handleCkickPoke}>
-                            <div>{arr.name}</div>
-                            <div className={st.wrapImgNext}>
-                                <img src="/arrow/next-grey-fat.svg" alt="arrowNext" />
-                            </div>
-                        </li>
-                    )}
-                </ul>}
-            
-            {namePoke && <PokeList pokeProps={namePoke} setnamePoke={setnamePoke} setshowDrawer={setshowDrawer}/>}
+                <section>
+
+                    <Btns back='back' setName={setnameMenu} name={nameMenu} setshowDrawer={setshowDrawer}/>
+
+                    <ul>
+                        {pokemons.map(arr => 
+                            <li key={arr.name} className={st.headerLi} onClick={handleCkickPoke}>
+                                <div>{arr.name}</div>
+                                <div className={st.wrapImgNext}>
+                                    <img src="/arrow/next-grey-fat.svg" alt="arrowNext" />
+                                </div>
+                            </li>
+                        )}
+                    </ul>
+
+                    <div className={st.headerLi}>
+                        <Link to='/pokemons' onClick={() => setshowDrawer(false)}>show all pokemons</Link>
+                        <div className={st.wrapImgNext}>
+                            <img src="/arrow/next-grey-fat.svg" alt="arrowNext" />
+                        </div>
+                    </div>
+                </section>
+                }
+
+            {namePoke && <PokeList namePoke={namePoke} setnamePoke={setnamePoke} setshowDrawer={setshowDrawer} />}
         </section>
      );
 };

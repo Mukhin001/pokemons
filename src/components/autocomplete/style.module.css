@@ -1,0 +1,123 @@
+.autocompletewrapper {
+    max-width: 300px;
+    position: relative;
+}
+
+.inputAndBtnWrapper {
+    border: 2px solid wheat;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.inputWrapper {
+    display: block;
+    width: 100%;
+    position: relative;
+}
+
+.inputAutoComplete {
+    border: none;
+    width: 100%;
+    outline: none;
+    background-color: inherit;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.inputAutoCompleteDark {
+    color: white;
+}
+
+.inputAutoCompleteLight {
+    color: black;
+}
+
+.headerInputAutocomplete {
+    position: absolute;
+    transition: 1s;
+    left: 10px;
+}
+
+.headerInputAutocompleteDark {
+    background-color: var(--backGround-dark);
+    color: white;
+}
+
+.headerInputAutocompleteLight {
+    background-color: var(--backGround-light);
+    color: black;
+}
+
+.btnWrapperAutocomplete {
+    display: flex;
+}
+
+.btnWrapperAutocomplete button {
+    padding: 0;
+    margin: 0;
+    width: 30px;
+    border: none;
+}
+
+.ulWrapperAutocomplete {
+    max-height: 300px;
+    overflow: auto;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 3;
+    width: 99%;
+}
+
+.ulWrapperAutocompleteDark {
+    background-color: var(--backGround-dark);
+    color: white;
+}
+
+.ulWrapperAutocompleteLight {
+    background-color: var(--backGround-light);
+    color: black;
+}
+
+.btnAutocomplete {
+    padding: 0;
+    margin: 0;
+    width: 30px;
+    border: none;
+    background-color: inherit;
+}
+
+.btnAutocompleteDark {
+    color: white;
+}
+
+.btnAutocompleteLight {
+    color: black;
+}
+
+.ulWrapperAutocomplete li {
+    padding-left: 10px;
+}
+
+.ulWrapperAutocomplete li:hover {
+    background-color: rgb(107, 94, 94);
+}
+
+.ulWrapperAutocomplete::-webkit-scrollbar {
+    background-color: gray;
+}
+
+.ulWrapperAutocomplete::-webkit-scrollbar-thumb {
+    background-color: rgb(179, 172, 163);
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,8 @@
 import Poke from "./poke/Poke";
+import ToDoList from "./todolist/ToDoList";
 
 export interface PropsMobMenu {
-    nameMenu?: string | null;
+    nameMenu: string | null;
     setnameMenu: React.Dispatch<React.SetStateAction<string | null>>;
     setshowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -9,7 +10,9 @@ export interface PropsMobMenu {
 const Content = ({ nameMenu, setnameMenu, setshowDrawer }: PropsMobMenu) => {
     return ( 
         <section>
-            {nameMenu === 'pokemons' && <Poke setnameMenu={setnameMenu} setshowDrawer={setshowDrawer} />}
+            {nameMenu === 'pokemons' && <Poke nameMenu={nameMenu} setnameMenu={setnameMenu} setshowDrawer={setshowDrawer} />}
+            {nameMenu === 'todolist' && <ToDoList nameMenu={nameMenu} setnameMenu={setnameMenu} setshowDrawer={setshowDrawer}/> }
+            {nameMenu === 'words' && <ToDoList nameMenu={nameMenu} setnameMenu={setnameMenu} setshowDrawer={setshowDrawer}/> }
         </section>
      );
 };

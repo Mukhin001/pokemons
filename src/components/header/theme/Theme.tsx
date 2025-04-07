@@ -14,14 +14,20 @@ const Theme = ({ theme }: PropsHeader) => {
            dispatch(changeTheTheme('light'));
            localStorage.setItem('theme', 'light');
         }
-       
     };
+
     
     return ( 
-        <section className={st.wrapTheme}>
-            <button onClick={handleTheme}>{theme}</button>
+        <section 
+            className={`${st.backGroundTheme}
+                ${theme === 'light' ? `${st.backGroundThemeLight}` : `${st.backGroundThemeDark}`}`} onClick={handleTheme}>
+            <h4>{theme === 'light' ? 'sun' : 'moon'}</h4>
+            <div className={`${st.wrapImgTheme} 
+                    ${theme === 'light' ? `${st.wrapImgThemeLight}` : `${st.wrapImgThemeDark}`}`}>
+                <img src={theme === 'light' ? '/icons_menu/sun.svg' : '/icons_menu/moon.svg'} alt="theme" />
+            </div>
         </section>
-     );
+    );
 };
  
 export default Theme;

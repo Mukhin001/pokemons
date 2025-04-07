@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import CommentsList from "../../comments/CommentsList";
 import { useGetPokemonQuery } from "../../../api/pokemons/pokemonsAll/pokemonsAll";
 import CardSlider from "./cardSlider/CardSlider";
+import Loader from "../../loader/Loader";
 
 const PokeCard = () => {
  
@@ -17,6 +18,10 @@ const PokeCard = () => {
             const imgFif =  dataImg?.sprites.back_shiny;
             
             arrImg.push(imgO, imgT, imgF, imgFif);
+        }
+
+        if(isLoading) {
+            return <Loader />
         }
 
     return ( 

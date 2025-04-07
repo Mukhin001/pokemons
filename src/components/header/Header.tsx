@@ -1,5 +1,4 @@
 import st from './style.module.css';
-import Theme from "./theme/Theme";
 import { useAppSelector } from '../../app/hooks';
 import NavMenu from './navBar/navMenu/NavMenu';
 import NavIcon from './navBar/navIcon/NavIcon';
@@ -16,7 +15,6 @@ const Header = () => {
     
     return ( 
         <header className={st.header}>
-            <Theme theme={theme} />
             <NavIcon theme={theme} width={width} />
             {width && <NavMenu />}
         </header>

@@ -1,26 +1,24 @@
 import { Link } from "react-router-dom";
-import { PokemonsAll } from "../../../../../../../../api/pokemons/pokemonsAll/pokemonsAll";
-
-interface Poke {
-    name: string;
-    array: PokemonsAll[];
-};
+import st from '../../../style.module.css';
+import { Poke } from "../Poke";
+import Btns from "../../btns/Btns";
 
 interface Props {
-    pokeProps: Poke | undefined;
-    setnamePoke:  React.Dispatch<any>;
+    namePoke: Poke;
+    setnamePoke:  React.Dispatch<string | null>;
     setshowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const PokeList = ({ pokeProps, setnamePoke, setshowDrawer }: Props) => {
+const PokeList = ({ namePoke, setnamePoke, setshowDrawer }: Props) => {
     
     return ( 
         <section>
-            <button onClick={() => setnamePoke(null)}>back pokemons</button>
-            <div>{pokeProps?.name}</div>
+
+            <Btns back='back' setName={setnamePoke} name={namePoke.name} setshowDrawer={setshowDrawer} />
+            
             <ul>
-                {pokeProps?.array.map(el => 
-                    <li key={el.name}>
+                {namePoke?.array.map(el => 
+                    <li key={el.name} className={st.headerLi}>
                         <Link 
                             to={`pokemons/${el.name}`} 
                             onClick={() => setshowDrawer(false)}

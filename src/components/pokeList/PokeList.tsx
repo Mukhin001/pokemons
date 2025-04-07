@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Select from "../select/Select";
 import TooltipBadge from "./tooltipBadge/TooltipBadge";
 import { useGetAllPokemonsQuery  } from "../../api/pokemons/pokemonsAll/pokemonsAll";
+import Autocompletee from "../autocomplete/Autocomplete";
 
 export interface Pokemon {
     id: number;
@@ -27,7 +28,11 @@ const PokeList = () => {
     const [keySort, setKeySort] = useState<string>('empty');
     const { data, isError, isLoading } = useGetAllPokemonsQuery();
     const dataSort = data?.results.slice();
-
+    
+    const [headerStyle, setHeaderStyle] = useState<boolean>(false);
+    const [bool, setBool] = useState<boolean>(false);
+    const [inputValueLength, setInputValueLength] = useState<any>('');
+    const [inputValue, setInputValue] = useState<any>('');
 
     const sortedPokeList = (key: string): any => {
         switch (key) {
@@ -41,6 +46,7 @@ const PokeList = () => {
     };
     
     const content:ReactNode = (dataSort?.sort(sortedPokeList(keySort)).map(obj => 
+        obj.name.includes(inputValue) &&
         <div 
             key={obj.name} 
             className={st.pokeListWrapper}
@@ -60,10 +66,36 @@ const PokeList = () => {
         </div>
     )); 
 
+    const mainArticleClick = (e: any) => {
+        if(inputValueLength.length === 0 && e.target.dataset.name !== 'inputAutoComplete' &&
+            e.target.dataset.name !== 'liAutocomplete' && e.target.dataset.name !== 'btn^' &&
+            e.target.dataset.name !== 'headerH3AutoComplete'
+        ) {
+            setHeaderStyle(false);
+            setBool(false);
+        }
+    };
+
+     
+    const getInputValueLength = (length: string | null) => {
+        setInputValueLength(length);
+    };
+
     return ( 
-        <main>
+        <main onClick={mainArticleClick}>
             <section>
                 <Select name="pokeList" values={['Please choose sort', 'id+', 'id-', 'name']} keyState={setKeySort}/>
+                <h3>Seach Poke</h3>
+                <Autocompletee 
+                    dataSort={dataSort}
+                    headerStyle={headerStyle}
+                    setHeaderStyle={setHeaderStyle}
+                    bool={bool}
+                    setBool={setBool}
+                    getInputValueLength={getInputValueLength}
+                    inputValue={inputValue}
+                    setInputValue={setInputValue}
+                />
             </section>
             <section 
                 className={st.containerPoke}

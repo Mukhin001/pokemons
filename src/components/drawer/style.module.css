@@ -8,11 +8,17 @@
     z-index: 4;
 }
 
+.headerDrawer {
+    display: flex;
+    justify-content: space-between;
+}
+
 .wrapContent {
     position: fixed;
-    width: 270px;
+    width: 300px;
     z-index: 4;
     transition: left 1s ease;
+    padding: 10px;
 }
 
 .wrapContent li {

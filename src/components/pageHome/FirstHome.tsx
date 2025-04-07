@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import st from './style.module.css';
 import { useAppSelector } from "../../app/hooks";
+import Error from "../error/Error";
 
 const ScrollShrinkImage = () => {
     const imgWrapper = useRef<HTMLDivElement>(null);
@@ -41,7 +42,7 @@ const ScrollShrinkImage = () => {
 
     return (
         <section>
-
+            <Error />
             <div className={st.imgWrapper}
                 ref={imgWrapper}
             >
@@ -52,6 +53,7 @@ const ScrollShrinkImage = () => {
                 />
             </div>
             <div className={st.divH}></div>
+
         </section>
     );
 };

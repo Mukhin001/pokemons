@@ -1,0 +1,50 @@
+.container {
+    display: grid;
+    justify-content: center;
+}
+.wrapImg {
+    max-width: 100px;
+    margin-top: 30px;
+    animation: top 3s infinite ease-in-out;
+}
+
+.wrapImg img {
+    width: 100%;
+}
+
+.shadowWrap {
+    display: flex;
+    justify-content: center;
+}
+
+.shadow {
+    width: 80px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--color-grey);
+    animation: shadow 3s infinite ease-in-out;
+}
+
+@keyframes top {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes shadow {
+    0% {
+        width: 80px;
+    }
+    50% {
+        width: 60px;
+    }
+    100% {
+        width: 80px;
+    }
+}

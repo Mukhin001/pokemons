@@ -1,13 +1,14 @@
 .wrapperNav {
     position: relative;
     max-width: 1540px;
-    margin: 0 auto;
 }
 
 .wrapperLi {
     display: flex;
+    align-items: center;
     gap: 20px;
     transition: var(--transition-theme-background);
+    padding: 10px 10px 0 10px;
 }
 
 .wrapperLiLight {
@@ -59,13 +60,16 @@
     justify-content: flex-end;
 }
 
-.wrapperLiMob {
+.bottomMenuMob {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    justify-content: space-around;
     z-index: 5;
+}
+
+.wrapperLiMob {
+    justify-content: space-around;
     padding: 1em;
     font-size: 12px;
     font-weight: bold;
