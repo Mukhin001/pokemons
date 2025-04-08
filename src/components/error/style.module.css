@@ -5,7 +5,12 @@
 .wrapImg {
     max-width: 100px;
     margin-top: 30px;
-    animation: top 3s infinite ease-in-out;
+    animation: ghost 3s infinite ease-in-out;
+}
+
+.wrapImgLittle {
+    max-width: 50px;
+    animation: ghostLittle 5s infinite ease-in-out;
 }
 
 .wrapImg img {
@@ -17,6 +22,10 @@
     justify-content: center;
 }
 
+.shadowWrapLittle {
+    margin-left: 10px;
+}
+
 .shadow {
     width: 80px;
     height: 20px;
@@ -25,7 +34,15 @@
     animation: shadow 3s infinite ease-in-out;
 }
 
-@keyframes top {
+.shadowLittle {
+    width: 30px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--color-grey);
+    animation: shadowLittle 5s infinite ease-in-out;
+}
+
+@keyframes ghost {
     0% {
         transform: translateY(0);
     }
@@ -34,6 +51,18 @@
     }
     100% {
         transform: translateY(0);
+    }
+}
+
+@keyframes ghostLittle {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(50px);
+    }
+    100% {
+        transform: translateX(0);
     }
 }
 
@@ -46,5 +75,17 @@
     }
     100% {
         width: 80px;
+    }
+}
+
+@keyframes shadowLittle {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(50px);
+    }
+    100% {
+        transform: translateX(0);
     }
 }

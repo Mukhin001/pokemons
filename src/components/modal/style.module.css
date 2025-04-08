@@ -1,5 +1,7 @@
 .wrapperModal {
     position: fixed;
+    justify-content: center;
+    align-items: center;
     top: 0;
     left: 0;
     right: 0;
@@ -7,19 +9,21 @@
     background-color: rgba(0, 0, 0, 0.714);
     display: flex;
     z-index: 100;
+    color: black;
+}
+
+.headerWrap {
+    display: flex;
+    justify-content: space-between;
 }
 
 .wrapperContent {
     background-color: rgb(249, 249, 249);
-    position: relative;
     padding: 35px 45px;
     border-radius: 10px;
 }
 
 .modalCloseBtn {
-    position: absolute;
-    left: 105%;
-    top: 0;
     width: 40px;
     cursor: pointer;
 }
@@ -29,5 +33,5 @@
 }
 
 .modalCloseBtn:hover img {
-    filter: brightness(0) saturate(100%) invert(96%) sepia(96%) saturate(0%) hue-rotate(119deg) brightness(106%) contrast(103%);
+    filter: brightness(0) saturate(100%) invert(55%) sepia(40%) saturate(803%) hue-rotate(259deg) brightness(98%) contrast(93%);
 }

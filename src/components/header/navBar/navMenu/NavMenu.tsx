@@ -3,6 +3,9 @@ import st from './style.module.css';
 import NavTitle from "./navTitle/NavTitle";
 import NavLine from "./navLine/NavLine";
 import ContentPoke from "./contentPoke/ContentPoke";
+import ContentToDoList from "./contentToDoList/ContentToDoList";
+import { useAppSelector } from "../../../../app/hooks";
+import ContentWords from "./contentWords/ContentWords";
 import Line from "../../../line/Line";
 
 interface SubMenuWrapStyle {
@@ -18,6 +21,7 @@ const NavMenu = () => {
     const [nameTitle, setNameTitle] = useState<string | null>(null);
     const [strip, setStrip] = useState<boolean | undefined>(false);
     const [timeoutId, setTimeoutid] = useState<number | null>(null);
+    const theme = useAppSelector(state => state.theme.value);
 
     const subMenuWrapActive: SubMenuWrapStyle = {
         transform: 'translateY(0)',
@@ -51,9 +55,7 @@ const NavMenu = () => {
                 onMouseEnter={handleMouseEnterMain}
                 onMouseLeave={handleMouseLeaveMain} 
             >
-
                 <Line />
-
                 <NavTitle setNameTitle={setNameTitle} setStrip={setStrip} setStripLeft={setStripLeft} setStripWidth={setStripWidth} />
 
                 <NavLine stripWidth={stripWidth} stripLeft={stripLeft} strip={strip} />
@@ -62,7 +64,9 @@ const NavMenu = () => {
                     className={`${st.subMenuWrap}`}
                     style={strip ? subMenuWrapActive : subMenuWrapHidden} 
                 >
-                    {nameTitle === 'pokemons' && <ContentPoke setStrip={setStrip} />}
+                    {nameTitle === 'pokemons' && <ContentPoke setStrip={setStrip} theme={theme} />}
+                    {nameTitle === 'todolist' && <ContentToDoList theme={theme} />}
+                    {nameTitle === 'words' && <ContentWords theme={theme} />}
                 </div>
 
             </section>

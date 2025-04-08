@@ -3,6 +3,7 @@ import CommentsList from "../../comments/CommentsList";
 import { useGetPokemonQuery } from "../../../api/pokemons/pokemonsAll/pokemonsAll";
 import CardSlider from "./cardSlider/CardSlider";
 import Loader from "../../loader/Loader";
+import ErrorComponent from "../../error/ErrorComponent";
 
 const PokeCard = () => {
  
@@ -22,6 +23,10 @@ const PokeCard = () => {
 
         if(isLoading) {
             return <Loader />
+        }
+
+        if(isError) {
+            return <ErrorComponent shadowLittle={false} />
         }
 
     return ( 

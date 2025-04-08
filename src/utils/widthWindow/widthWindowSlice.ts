@@ -5,14 +5,14 @@ interface WidthWindowState {
 };
 
 const initialState: WidthWindowState = {
-    width: window.innerWidth > 500,
+    width: window.innerWidth > 1100,
 };
 
 export const widthWindowSlice = createSlice({
     name: 'widthWindow',
     initialState,
     reducers: {
-        setWidthWindow: (state, action: PayloadAction<boolean>) => {
+        setWidthWindow: (_, action: PayloadAction<boolean>) => {
             const widthBoolean = action.payload;
             return { width: widthBoolean };
         },

@@ -5,11 +5,10 @@ import st from './style.module.css';
 import Btns from "./content/btns/Btns";
 
 export interface Props {
-    theme: string | null;
     setshowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ChildrerDraverMenu = ({ theme, setshowDrawer }: Props) => {
+const ChildrerDraverMenu = ({ setshowDrawer }: Props) => {
     const [nameMenu, setnameMenu] = useState<string | null>('');
 
     const handleCkickTitle = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {

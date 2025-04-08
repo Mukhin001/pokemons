@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    cursor: pointer;
+}
+
+.container h3 {
+    color: white;
+    transition: color .2s ease-in-out;
+}
+
+.wrapImg {
+    max-width: 15px;
+    display: grid;
+    align-items: center;
+    margin-right: 10px;
+    
+}
+
+.wrapImg img {
+    width: 100%;
+}
+
+.container:hover h3 {
+    color: var(--color-pink);
+}
+
+.container:hover img {
+    filter: brightness(0) saturate(100%) invert(55%) sepia(40%) saturate(803%) hue-rotate(259deg) brightness(98%) contrast(93%);
+}

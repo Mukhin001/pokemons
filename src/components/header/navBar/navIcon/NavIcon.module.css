@@ -1,6 +1,7 @@
 .wrapperNav {
     position: relative;
     max-width: 1540px;
+    margin: 0 auto;
 }
 
 .wrapperLi {
@@ -40,8 +41,8 @@
  
 .countLike {
     position: absolute;
-    left: 60%;
-    bottom: 80%;
+    left: 55%;
+    bottom: 70%;
     background-color: var(--color-pink);
     border-radius: 50%;
     font-size: 15px;

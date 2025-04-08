@@ -1,24 +1,22 @@
 import { ReactNode } from 'react';
 import st from './style.module.css';
-import { useAppDispatch } from '../../app/hooks';
-import { openCloseModal } from './modalSlice';
-import { WrapperModalStyle } from './modalStyle';
 
 interface Props {
-    children?: ReactNode;
-    wrapperModalStyle: WrapperModalStyle;
+    header: string;
+    modal: boolean;
+    setModal: React.Dispatch<React.SetStateAction<boolean>>;
+    children: ReactNode;
 };
 
-const Modal = ( { children, wrapperModalStyle }: Props) => {
-    const dispatch = useAppDispatch();
+const Modal = ( { header, children, modal, setModal }: Props) => {
+    
     const handleClickWrapperModal = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
         const target = e.target as HTMLElement;
         const name = target.dataset.name;
         
         if(name ==='wrapperModalName') {
-            dispatch(openCloseModal(false));
+            setModal(false);
         }
-        
     };
     
     return ( 
@@ -26,12 +24,14 @@ const Modal = ( { children, wrapperModalStyle }: Props) => {
             data-name="wrapperModalName"
             className={st.wrapperModal} 
             onClick={handleClickWrapperModal}
-            style={wrapperModalStyle}
         >
             <div className={st.wrapperContent}>
-                <div onClick={() => dispatch(openCloseModal(false))} className={st.modalCloseBtn}>
-                    <img src='/icon_btn/close_grey.svg' alt="close" />
-                </div>
+                <section className={st.headerWrap}>
+                    <h2>{header}</h2>
+                    <div onClick={() => setModal(false)} className={st.modalCloseBtn}>
+                        <img src='/icon_btn/close-black.svg' alt="close" />
+                    </div>
+                </section>
                 {children}
             </div>
         </section>

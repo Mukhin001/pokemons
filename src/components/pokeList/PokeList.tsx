@@ -5,6 +5,8 @@ import Select from "../select/Select";
 import TooltipBadge from "./tooltipBadge/TooltipBadge";
 import { useGetAllPokemonsQuery  } from "../../api/pokemons/pokemonsAll/pokemonsAll";
 import Autocompletee from "../autocomplete/Autocomplete";
+import Loader from "../loader/Loader";
+import ErrorComponent from "../error/ErrorComponent";
 
 export interface Pokemon {
     id: number;
@@ -44,6 +46,14 @@ const PokeList = () => {
                 return (a: any, b: any) => a.name.localeCompare(b.name);
         }
     };
+
+    if(isLoading) {
+        return <Loader />
+    }
+
+    if(isError) {
+        return <ErrorComponent shadowLittle={false} />
+    }
     
     const content:ReactNode = (dataSort?.sort(sortedPokeList(keySort)).map(obj => 
         obj.name.includes(inputValue) &&

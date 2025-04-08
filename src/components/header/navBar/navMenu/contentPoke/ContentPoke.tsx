@@ -1,10 +1,12 @@
-import { useMemo, useState } from "react";
+import { ReactNode, useMemo, useState } from "react";
 import { PokemonsAll, useGetAllPokemonsQuery } from "../../../../../api/pokemons/pokemonsAll/pokemonsAll";
-import { useAppSelector } from "../../../../../app/hooks";
 import ListPoke from "./listPoke/ListPoke";
 import st from './style.module.css';
+import Loader from "../../../../loader/Loader";
+import ErrorComponent from "../../../../error/ErrorComponent";
 
 interface Props {
+    theme: string | null;
     setStrip: React.Dispatch<React.SetStateAction<boolean | undefined>>;
 };
 
@@ -13,8 +15,7 @@ interface Poke {
     array: PokemonsAll[];
 };
 
-const ContentPoke = ({ setStrip }: Props) => {
-    const theme = useAppSelector(state => state.theme.value);
+const ContentPoke = ({ setStrip, theme }: Props) => {
     const { data, isError, isLoading } = useGetAllPokemonsQuery();
     const pokemons: Poke[] = [];
     const [heightSub, setHeightSub] = useState<string>('auto');
@@ -53,6 +54,41 @@ const ContentPoke = ({ setStrip }: Props) => {
         setHeightSub('auto');
     };
 
+    let content:ReactNode;
+
+    if(isLoading) {
+        content = <Loader />
+    }
+
+    if(isError) {
+        content = 
+            <li className={st.headerLi}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
+                <ErrorComponent shadowLittle={true} />
+            </li>
+    }
+
+    if(data) {
+        content = (
+            pokemons.map(arr =>                 
+                <li key={arr.name}  className={`${st.headerLi} ${theme === 'light' ? `${st.contentLiLight}`: `${st.contentLiDark}`}`}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <div>{arr.name}</div>
+                    <div className={st.wrapImgNext}>
+                        <img    
+                            className={`${theme === 'light' ? `${st.nextImgLight}` : `${st.nextImgDark}`}`} 
+                            src="/arrow/next-grey-fat.svg" alt="arrowNext" 
+                        />
+                    </div>
+                    <ListPoke theme={theme} arr={arr.array} setStrip={setStrip} />
+                </li>
+            ))
+    }
+
     return ( 
         <section  className={theme === 'light' ? `${st.contentMenuWrapLight}`: `${st.contentMenuWrapDark}`}>
       
@@ -60,26 +96,9 @@ const ContentPoke = ({ setStrip }: Props) => {
                     style={{height: heightSub, paddingBottom: '30px'}}
                     onMouseLeave={handleMouseLeaveConteiner}
                 >
-                    
                     <div className={st.wrapContent}>
-                    
                         <ul >
-                            {pokemons.map(arr => 
-                            
-                                <li key={arr.name}  className={`${st.headerLi} ${theme === 'light' ? `${st.contentLiLight}`: `${st.contentLiDark}`}`}
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                >
-                                    <div>{arr.name}</div>
-                                    <div className={st.wrapImgNext}>
-                                        <img    
-                                            className={`${theme === 'light' ? `${st.nextImgLight}` : `${st.nextImgDark}`}`} 
-                                            src="/arrow/next-grey-fat.svg" alt="arrowNext" 
-                                        />
-                                    </div>
-                                    <ListPoke theme={theme} arr={arr.array} setStrip={setStrip} />
-                                </li>
-                            )}
+                            {content}
                         </ul>
                      </div>
                 </div>

@@ -1,11 +1,12 @@
-import { useMemo, useState } from "react";
+import { ReactNode, useMemo, useState } from "react";
 import { PokemonsAll, useGetAllPokemonsQuery } from "../../../../../../../api/pokemons/pokemonsAll/pokemonsAll";
 import st from '../../style.module.css';
 import PokeList from "./pokeList/PokeList";
 import { PropsMobMenu } from "../Content";
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../../../../../../app/hooks";
 import Btns from "../btns/Btns";
+import Loader from "../../../../../../loader/Loader";
+import ErrorComponent from "../../../../../../error/ErrorComponent";
 
 export interface Poke {
     name: string;
@@ -40,6 +41,26 @@ const Poke = ({ nameMenu, setshowDrawer, setnameMenu }: PropsMobMenu) => {
         setnamePoke(p);
     };
 
+    let content: ReactNode;
+
+    if(isLoading) {
+        content = <Loader />
+    }
+    if(isError) {
+        content = <ErrorComponent shadowLittle={true} />
+    }
+    if(data) {
+        content =  
+            (pokemons.map(arr => 
+                <li key={arr.name} className={st.headerLi} onClick={handleCkickPoke}>
+                    <div>{arr.name}</div>
+                    <div className={st.wrapImgNext}>
+                        <img src="/arrow/next-grey-fat.svg" alt="arrowNext" />
+                    </div>
+                </li>
+            ))
+    }
+
     return ( 
         <section>
             
@@ -49,14 +70,7 @@ const Poke = ({ nameMenu, setshowDrawer, setnameMenu }: PropsMobMenu) => {
                     <Btns back='back' setName={setnameMenu} name={nameMenu} setshowDrawer={setshowDrawer}/>
 
                     <ul>
-                        {pokemons.map(arr => 
-                            <li key={arr.name} className={st.headerLi} onClick={handleCkickPoke}>
-                                <div>{arr.name}</div>
-                                <div className={st.wrapImgNext}>
-                                    <img src="/arrow/next-grey-fat.svg" alt="arrowNext" />
-                                </div>
-                            </li>
-                        )}
+                       {content}
                     </ul>
 
                     <div className={st.headerLi}>

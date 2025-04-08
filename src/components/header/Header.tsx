@@ -2,6 +2,8 @@ import st from './style.module.css';
 import { useAppSelector } from '../../app/hooks';
 import NavMenu from './navBar/navMenu/NavMenu';
 import NavIcon from './navBar/navIcon/NavIcon';
+import LocationHead from './location/LocationHead';
+import Line from '../line/Line';
 
 export interface PropsHeader {
     theme: string | null;
@@ -12,9 +14,11 @@ export interface PropsHeader {
 const Header = () => {
     const width = useAppSelector(state => state.widthWindow.width);
     const theme = useAppSelector(state => state.theme.value);
-    
+
     return ( 
         <header className={st.header}>
+            <LocationHead />
+            <Line />
             <NavIcon theme={theme} width={width} />
             {width && <NavMenu />}
         </header>

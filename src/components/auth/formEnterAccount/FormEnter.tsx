@@ -23,8 +23,6 @@ const FormEnterAccount = () => {
         const { elements } = e.currentTarget;
         const name = elements.username.value;
         const password = elements.userPassword.value;
-        console.log(authUsers);
-        console.log(name, password);
         
         
     };

@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+import { useAppSelector } from "../../../../app/hooks";
 import { iconMenu } from "./iconMenu";
 import Modal from "../../../modal/Modal";
-import { openCloseModal } from "../../../modal/modalSlice";
 import Auth from "../../../auth/Auth";
-import { WrapperModalStyle } from "../../../modal/modalStyle";
 import st from './NavIcon.module.css';
 import { ReactNode, useEffect, useState } from "react";
 import { PropsHeader } from "../../Header";
@@ -14,8 +12,7 @@ import Line from "../../../line/Line";
 import Theme from "../../theme/Theme";
 
 const NavIcon = ({ theme, width }: PropsHeader) => {
-    const modalSelector = useAppSelector(state => state.modal.value);
-    const dispatch = useAppDispatch();
+    const [modal, setModal] = useState<boolean>(false);
     const likeCount = useAppSelector(state => state.likeCount.value);
     const iconMenuWeb = iconMenu.filter(e => e.name !== 'menu');
     const [showDrawer, setshowDrawer] = useState<boolean>(false);
@@ -25,18 +22,13 @@ const NavIcon = ({ theme, width }: PropsHeader) => {
             setshowDrawer(false);
         }
     }, [width]);
-  
-    const wrapperModalStyle: WrapperModalStyle = {
-        justifyContent: 'center',
-        alignItems: 'center', 
-    };
 
     let content: ReactNode;
-
+    
     content = ((width ? iconMenuWeb : iconMenu).map((obj) => {
         if(obj.name === 'profile') {
             return (
-                <li key={obj.name} onClick={() => dispatch(openCloseModal(true))}>
+                <li key={obj.name} onClick={() => setModal(true)}>
                     <img 
                         src={obj.url.slice(0, -4) + theme + obj.url.slice(-4)} 
                         alt={obj.name} 
@@ -94,16 +86,16 @@ const NavIcon = ({ theme, width }: PropsHeader) => {
 
     return ( 
         <nav className={st.wrapperNav}>
-            {modalSelector && 
-                <Modal wrapperModalStyle={wrapperModalStyle}>
+            {modal && 
+                <Modal header="Auth" modal={modal} setModal={setModal} >
                     <Auth />
                 </Modal>
             }
             <Drawer positionProps="left" theme={theme} showDrawer={showDrawer} setshowDrawer={setshowDrawer} >
-                <ChildrerDraverMenu setshowDrawer={setshowDrawer} theme={theme} />
+                <ChildrerDraverMenu setshowDrawer={setshowDrawer} />
             </Drawer>
             <section className={`${width ? null : st.bottomMenuMob}`}>
-                <Line />
+                {!width && <Line />}
                 <ul 
                     className={`
                         ${st.wrapperLi} 
