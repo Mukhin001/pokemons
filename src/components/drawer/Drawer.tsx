@@ -5,13 +5,14 @@ interface Props {
     positionProps: string;
     showDrawer: boolean;
     setshowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
-    theme?: string | null;
+    theme: string | null;
     children: ReactNode;
 };
 
 interface TranslateDrawer {
     bottom?: string,
     left?: string,
+    right?: string,
     display?: string,
     width?: string,
     height?: string,
@@ -30,6 +31,10 @@ const Drawer = ({ positionProps, theme, showDrawer, children, setshowDrawer }: P
             const positionY = showDrawer ? '0' : '-100%';
             transform = { bottom: positionY, display: 'flex', width: '100%' };
             break;
+            case 'right':
+                const positionXR = showDrawer ? '0' : '-100%';
+                transform = { top: '0', right: positionXR, display: 'block', height: '100vh'};
+                break;
     }
 
     const handleClickDrawer = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {

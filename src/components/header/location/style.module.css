@@ -1,11 +1,9 @@
 .container {
-    background-color: black;
     padding: 5px;
 }
 
 .wrapper {
     max-width: 1540px;
     margin: 0 auto;
-    display: flex;
     justify-content: space-between;
 }

@@ -8,7 +8,7 @@ interface Props {
     children: ReactNode;
 };
 
-const Modal = ( { header, children, modal, setModal }: Props) => {
+const Modal = ( { header, children, setModal }: Props) => {
     
     const handleClickWrapperModal = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
         const target = e.target as HTMLElement;

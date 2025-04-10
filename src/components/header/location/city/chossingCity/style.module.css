@@ -8,6 +8,19 @@
     gap: 20px;
 }
 
+.li {
+    cursor: pointer;
+    transition: color .3s ease;
+}
+
+.activeLi {
+    color: var(--color-pink);
+}
+
+.li:hover {
+    color: var(--color-pink);
+}
+
 @media(max-width: 800px) {
     .container div {
         grid-template-columns: repeat(3, 1fr);

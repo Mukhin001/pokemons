@@ -2,18 +2,17 @@ import Tooltip from "../../tooltip/Tooltip";
 import st from './style.module.css';
 import style from '../style.module.css';
 import keyFrame from './keyframe.module.css';
-import { useState } from "react";
 import { useAppDispatch } from "../../../app/hooks";
-import { decrementLike, incrementLike } from "../likeCountSlice";
+import { addPokeFav } from "../../../pages/favorites/favPokeSlice/favPokeSlice";
 
 interface Props {
     name: string;
     description?: string;
     alt?: string;
+    pokeFav: string | null;
 };
 
-const TooltipBadge = ({ name, description, alt }: Props) => {
-    const [heart, setHeart] = useState<boolean>(false);
+const TooltipBadge = ({ name, description, alt, pokeFav }: Props) => {
     const dispatch = useAppDispatch();
     const mouseEnter = (e: React.MouseEvent<HTMLSpanElement, MouseEvent> | any, name: string): void => {
         const tooltip = e.currentTarget.previousElementSibling;
@@ -30,16 +29,7 @@ const TooltipBadge = ({ name, description, alt }: Props) => {
     };
 
     const handleClickHeart = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        setHeart(!heart);
-        
-        const firstDiv = e.currentTarget.firstChild as HTMLDivElement;
-        //console.log(e.currentTarget.parentNode?.parentNode);
-        
-        if(firstDiv.getAttribute('data-name') === 'wrapLikeImgGrey') {
-            dispatch(incrementLike());
-        } else {
-            dispatch(decrementLike());
-        }
+        if(e.currentTarget.dataset.pokename) dispatch(addPokeFav(e.currentTarget.dataset.pokename));
     };
 
     return ( 
@@ -54,20 +44,18 @@ const TooltipBadge = ({ name, description, alt }: Props) => {
                     onMouseLeave={(e) => mouseLeave(e, name)}
                     >tooltip
                 </span>
-                <div onClick={handleClickHeart} className={`${st.wrapLike} ${style.wrapLike}`}>
-                    {!heart && 
+                <div onClick={handleClickHeart} data-pokename={name} className={`${st.wrapLike} ${style.wrapLike}`}>
+                    {!pokeFav && 
                         <div data-name='wrapLikeImgGrey' className={`${st.wrapLikeImgGrey} ${style.wrapLikeImgGrey}`}>
                             <img src='/icon_btn/like_grey.svg' alt="" />
                         </div>
                     }
-                    {heart && <div className={st.circle}></div>}
-                    {heart && 
+                    {pokeFav && <div className={st.circle}></div>}
+                    {pokeFav && 
                         <div className={st.wrapLikePink}>
                            <div className={st.wrapLikeImgPink}> <img src='/icon_btn/like_pink.svg' alt="" /></div>
                             {Array.from({ length: 12 }).map((_, i) => (
-                                <div className={keyFrame.ray} key={i}
-                                    
-                                ></div>
+                                <div className={keyFrame.ray} key={i}></div>
                             ))}
                         </div>
                     }

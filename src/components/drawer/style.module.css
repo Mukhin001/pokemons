@@ -17,7 +17,7 @@
     position: fixed;
     width: 300px;
     z-index: 4;
-    transition: left 1s ease;
+    transition: left 1s ease, right 1s ease, bottom 1s ease;
     padding: 10px;
 }
 

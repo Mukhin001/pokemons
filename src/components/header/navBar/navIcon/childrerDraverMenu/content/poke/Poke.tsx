@@ -47,7 +47,7 @@ const Poke = ({ nameMenu, setshowDrawer, setnameMenu }: PropsMobMenu) => {
         content = <Loader />
     }
     if(isError) {
-        content = <ErrorComponent shadowLittle={true} />
+        content = <ErrorComponent size="Medium" />
     }
     if(data) {
         content =  

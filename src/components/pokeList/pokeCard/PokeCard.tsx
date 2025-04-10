@@ -26,7 +26,7 @@ const PokeCard = () => {
         }
 
         if(isError) {
-            return <ErrorComponent shadowLittle={false} />
+            return <ErrorComponent size="Large" />
         }
 
     return ( 

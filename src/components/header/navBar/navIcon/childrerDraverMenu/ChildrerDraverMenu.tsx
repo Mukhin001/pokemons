@@ -20,7 +20,7 @@ const ChildrerDraverMenu = ({ setshowDrawer }: Props) => {
             {!nameMenu && 
                 <section>
 
-                    <Btns back={null} setName={setnameMenu} name='Moscow' setshowDrawer={setshowDrawer}/>
+                    <Btns back={null} setName={setnameMenu} name='Menu' setshowDrawer={setshowDrawer}/>
 
                     <ul>
                         {navBarMenu.map(el => 

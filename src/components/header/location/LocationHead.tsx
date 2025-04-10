@@ -1,20 +1,48 @@
-import { useState } from 'react';
 import City from './city/City';
 import st from './style.module.css';
 import Weather from './weather/Weather';
+import { useGetCityQuery } from '../../../api/city/cityApi';
+import ErrorComponent from '../../error/ErrorComponent';
+import { useAppSelector } from '../../../app/hooks';
+import { ReactNode } from 'react';
+import Loader from '../../loader/Loader';
+
 
 export interface PropsCity {
     city: string | null;
-}
+    dataCity: string | null;
+};
 
-const LocationHead = () => {
-    const [city, setCity] = useState<string | null>('Moscow');
+interface PropsLocation {
+    display: string;
+    backGround: string;
+};
+
+const LocationHead = ({ display, backGround }: PropsLocation) => {
+    const city = useAppSelector(state => state.location.city);
+    const latitude = useAppSelector(state => state.location.latitude);
+    const longitude = useAppSelector(state => state.location.longitude);
+    const { data, isLoading, isError } = useGetCityQuery({ lat: latitude, lon: longitude });
+
+    let contentCity: ReactNode;
+
+    if(isLoading) {
+        contentCity = <Loader />
+    }
+
+    if(isError) {
+        contentCity = <ErrorComponent size='Small' display='Flex'/>
+    }
+
+    if(data) {
+        contentCity = <City city={city} dataCity={latitude && data.city} />
+    }
 
     return ( 
-        <section className={st.container}>
-            <div className={st.wrapper}>
-                <City city={city} />
-                <Weather city={city} />
+        <section className={st.container} style={{ backgroundColor: backGround}}>
+            <div className={st.wrapper} style={{ display: display }}>
+                {contentCity}
+                <Weather city={city} dataCity={latitude && data.city} />
             </div>
         </section>
      );

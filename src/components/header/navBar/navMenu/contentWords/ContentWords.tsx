@@ -12,7 +12,7 @@ const ContentWords = ({ theme }: Props) => {
                 <div className={st.wrapContent}>
                     <ul>
                         <li className={st.headerLi}>
-                            <ErrorComponent shadowLittle={true} />
+                            <ErrorComponent size='Medium' />
                         </li>
                     </ul>
                 </div>

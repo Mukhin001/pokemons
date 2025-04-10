@@ -10,7 +10,6 @@ const Main = () => {
     
     return ( 
         <section style={{maxWidth: '1540px', margin: '0 auto'}}>
-            <h2>Main</h2>
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='pokemons' element={<Pokemons />} />

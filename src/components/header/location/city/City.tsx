@@ -4,7 +4,7 @@ import ChossingCity from './chossingCity/ChossingCity';
 import st from './style.module.css';
 import { useState } from 'react';
 
-const City = ({ city }:PropsCity) => {
+const City = ({ city, dataCity }: PropsCity) => {
     const [modal, setModal] = useState<boolean>(false);
 
     const handleGetCity = () => {
@@ -17,11 +17,11 @@ const City = ({ city }:PropsCity) => {
                 <div className={st.wrapImg}>
                     <img src="/arrow/location-white.svg" alt="location" />
                 </div>
-                <h3>{city}</h3>
+                {dataCity ? <h3>{dataCity}</h3> : <h3>{city}</h3>}
             </section>
             {modal && 
                 <Modal header='Cities' modal={modal} setModal={setModal}>
-                    <ChossingCity />
+                    <ChossingCity city={city} setModal={setModal} />
                 </Modal>}
         </section>
      );

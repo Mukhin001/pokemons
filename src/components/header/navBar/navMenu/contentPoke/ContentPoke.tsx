@@ -66,7 +66,7 @@ const ContentPoke = ({ setStrip, theme }: Props) => {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
-                <ErrorComponent shadowLittle={true} />
+                <ErrorComponent size="Medium" />
             </li>
     }
 

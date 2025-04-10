@@ -3,10 +3,11 @@ import st from './style.module.css';
 import { Link } from "react-router-dom";
 import Select from "../select/Select";
 import TooltipBadge from "./tooltipBadge/TooltipBadge";
-import { useGetAllPokemonsQuery  } from "../../api/pokemons/pokemonsAll/pokemonsAll";
+import { PokemonsAll  } from "../../api/pokemons/pokemonsAll/pokemonsAll";
 import Autocompletee from "../autocomplete/Autocomplete";
 import Loader from "../loader/Loader";
 import ErrorComponent from "../error/ErrorComponent";
+import { useAppSelector } from "../../app/hooks";
 
 export interface Pokemon {
     id: number;
@@ -14,6 +15,12 @@ export interface Pokemon {
     imgUrl: string;
     alt: string;
     description: string;
+};
+
+interface PropsDataPoke {
+    dataSort: PokemonsAll[] | undefined;
+    isLoading: boolean;
+    isError: boolean;
 };
 
 export const items = [
@@ -26,15 +33,13 @@ export const items = [
 ];
 
 
-const PokeList = () => {
+const PokeList = ({ dataSort, isLoading, isError }: PropsDataPoke) => {
     const [keySort, setKeySort] = useState<string>('empty');
-    const { data, isError, isLoading } = useGetAllPokemonsQuery();
-    const dataSort = data?.results.slice();
-    
     const [headerStyle, setHeaderStyle] = useState<boolean>(false);
     const [bool, setBool] = useState<boolean>(false);
     const [inputValueLength, setInputValueLength] = useState<any>('');
     const [inputValue, setInputValue] = useState<any>('');
+    const pokeFav = useAppSelector(state => state.favPoke);
 
     const sortedPokeList = (key: string): any => {
         switch (key) {
@@ -52,7 +57,7 @@ const PokeList = () => {
     }
 
     if(isError) {
-        return <ErrorComponent shadowLittle={false} />
+        return <ErrorComponent size="Large" />
     }
     
     const content:ReactNode = (dataSort?.sort(sortedPokeList(keySort)).map(obj => 
@@ -62,7 +67,7 @@ const PokeList = () => {
             className={st.pokeListWrapper}
             >
 
-            <TooltipBadge name={obj.name} />
+            <TooltipBadge name={obj.name} pokeFav={pokeFav.includes(obj.name) ? obj.name : null} />
 
             <div>
                 <div className={st.wrapImg}>

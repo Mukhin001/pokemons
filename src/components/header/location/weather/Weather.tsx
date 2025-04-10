@@ -1,11 +1,17 @@
-import { useGetWeatherQuery } from "../../../../api/weather/weatherApi";
+
+import { useGetWeatherCityQuery } from "../../../../api/weather/getWeather/getWeather";
 import ErrorComponent from "../../../error/ErrorComponent";
 import Loader from "../../../loader/Loader";
-import { PropsCity } from "../LocationHead";
 import st from './style.module.css';
 
-const Weather = ({ city }: PropsCity) => {
-    const { data, isLoading, isError } = useGetWeatherQuery(city);
+interface Props {
+    city: string | null;
+    dataCity: string | null;
+};
+
+const Weather = ({ city, dataCity }: Props) => {
+    const { data, isLoading, isError } = useGetWeatherCityQuery(dataCity ? dataCity : city);
+    
     const temp = Math.round(data?.main.temp - 273.15);
 
     if(isLoading) {
@@ -13,14 +19,14 @@ const Weather = ({ city }: PropsCity) => {
     }
 
     if(isError) {
-        return <ErrorComponent shadowLittle={true} />
+        return <ErrorComponent size="Small" display="flex" />
     }
 
     return ( 
         <section className={st.container}>
             weather
-            <h3>Moscow</h3>
-            <h3>{temp}</h3>
+            {dataCity ? <h3>{dataCity}</h3> : <h3>{city}</h3>}
+            <h3>{temp} &deg;C</h3>
         </section>
      );
 };

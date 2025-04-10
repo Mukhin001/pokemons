@@ -10,12 +10,15 @@ import Drawer from "../../../drawer/Drawer";
 import ChildrerDraverMenu from "./childrerDraverMenu/ChildrerDraverMenu";
 import Line from "../../../line/Line";
 import Theme from "../../theme/Theme";
+import SettingDrawer from "./settingDrawer/SettingDrawer";
 
 const NavIcon = ({ theme, width }: PropsHeader) => {
     const [modal, setModal] = useState<boolean>(false);
-    const likeCount = useAppSelector(state => state.likeCount.value);
-    const iconMenuWeb = iconMenu.filter(e => e.name !== 'menu');
+    const likeCount = useAppSelector(state => state.favPoke.length);
+    const iconMenuWeb = iconMenu.filter(e => e.name !== 'menu' && e.name !== 'setting');
+    const iconMenuMob = iconMenu.filter(e => e.name !== 'theme');
     const [showDrawer, setshowDrawer] = useState<boolean>(false);
+    const [showDrawerSetting, setshowDrawerSetting] = useState<boolean>(false);
 
     useEffect(() => {
         if(width) {
@@ -25,7 +28,7 @@ const NavIcon = ({ theme, width }: PropsHeader) => {
 
     let content: ReactNode;
     
-    content = ((width ? iconMenuWeb : iconMenu).map((obj) => {
+    content = ((width ? iconMenuWeb : iconMenuMob).map((obj) => {
         if(obj.name === 'profile') {
             return (
                 <li key={obj.name} onClick={() => setModal(true)}>
@@ -68,6 +71,17 @@ const NavIcon = ({ theme, width }: PropsHeader) => {
                     <Theme theme={theme} />
                 </li> 
             )
+        } else if(obj.name === 'setting') {
+            return (
+                <li key={obj.name} className={st.wrapCountLike} onClick={() => setshowDrawerSetting(!showDrawerSetting)}>
+                    <img 
+                        src={obj.url.slice(0, -4) + theme + obj.url.slice(-4)} 
+                        alt={obj.name} 
+                        className={st.imgIcon}
+                    />
+                    <p>{obj.text}</p>
+                </li> 
+            )
         } else {
             return (
                 <li key={obj.name}>
@@ -93,6 +107,9 @@ const NavIcon = ({ theme, width }: PropsHeader) => {
             }
             <Drawer positionProps="left" theme={theme} showDrawer={showDrawer} setshowDrawer={setshowDrawer} >
                 <ChildrerDraverMenu setshowDrawer={setshowDrawer} />
+            </Drawer>
+            <Drawer positionProps="right" theme={theme} showDrawer={showDrawerSetting} setshowDrawer={setshowDrawerSetting} >
+                <SettingDrawer theme={theme} setshowDrawerSetting={setshowDrawerSetting} />
             </Drawer>
             <section className={`${width ? null : st.bottomMenuMob}`}>
                 {!width && <Line />}

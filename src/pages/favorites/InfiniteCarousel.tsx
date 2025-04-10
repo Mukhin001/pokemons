@@ -33,21 +33,21 @@ const InfiniteCarousel: React.FC = () => {
             const lastEl = images[countR];
             images.push(lastEl);
             console.log(transform);
-            //setTransform(prev => prev - 50);
+            setTransform(prev => prev - 50);
         }
         if(direction === 'left') {
-            // setTransform(prev => prev + 50);
-            // const firstEl = images.shift();
-            // if(firstEl) {
-            //     images.push(firstEl)
-            // }
+            setTransform(prev => prev + 50);
+            const firstEl = images.shift();
+            if(firstEl) {
+                images.push(firstEl)
+            }
         }
     };
 
   return (
         <div className="carousel-wrapper">
 
-            <div
+            {/* <div
                 className="carouselContainer"
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
@@ -69,7 +69,7 @@ const InfiniteCarousel: React.FC = () => {
 
             <button className="carousel-btn right" onClick={(e) => handleScroll(e, "right")}>
                 ▶️
-            </button>
+            </button> */}
         </div>
     );
 };

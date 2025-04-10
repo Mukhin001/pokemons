@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { increment } from "./likeSlice";
 import AddNewComment from "./AddNewComment";
 import Select from "../select/Select";
+import Loader from "../loader/Loader";
+import ErrorComponent from "../error/ErrorComponent";
 
 interface Props {
     id: number;
@@ -20,8 +22,11 @@ const CommentsList = ({ id }: Props) => {
     let ii;
 
     if(isLoading) {
-        return <section>Loading...</section>
+        return <Loader />
     }     
+    if(isError) {
+        return <ErrorComponent size="Large" display="Grid" />
+    }
         
     const handleClickLike = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
         const wrapperIconLike = e.currentTarget;
@@ -31,7 +36,6 @@ const CommentsList = ({ id }: Props) => {
         if(id && value) {
             dispatch(increment({id: +id, value: +value, likeClick: true}));
         }
-        
     };
 
     const sortedComments = (key: string) => {
