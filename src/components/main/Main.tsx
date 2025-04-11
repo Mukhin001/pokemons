@@ -15,7 +15,8 @@ const Main = () => {
                 <Route path='pokemons' element={<Pokemons />} />
                 <Route path="pokemons/:name" element={<PokeCard />} />
                 <Route path='todolist' element={<ToDoList />} />
-                <Route path='favorites' element={<Favorites />} />
+                <Route path='favorites/' element={<Favorites />} />
+                <Route path="favorites/:name" element={<PokeCard />} />
                 <Route path='profile' element={<Profile />} />
             </Routes>
         </section>

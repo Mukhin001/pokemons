@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import themeReduser from '../components/header/theme/themeSlice';
 import widthWindowReduser from '../utils/widthWindow/widthWindowSlice';
-import locationReduser from "../components/header/location/locationSlice";
-import likeCommentReduser from '../components/comments/likeSlice';
+import locationReduser from "../components/header/getLocation/locationSlice";
+import userAgentReduser from "../components/header/getLocation/userAgentSlice";
 import authReduser from '../components/auth/authSlice';
-import likeCountReduser from '../components/pokeList/likeCountSlice';
+import likeCommentReduser from '../components/comments/likeSlice';
 import favPokeReduser from "../pages/favorites/favPokeSlice/favPokeSlice";
 import { jsonplaceholderApi } from '../api/jsonplaceholder/jsonplaceholderApi';
 import { pokemonsApi } from "../api/pokemons/pokemonsApi"; 
@@ -16,9 +16,9 @@ export const store = configureStore({
         theme: themeReduser,
         widthWindow: widthWindowReduser,
         location: locationReduser,
+        userAgent: userAgentReduser,
         auth: authReduser,
         likeComment: likeCommentReduser,
-        likeCount: likeCountReduser,
         favPoke: favPokeReduser,
         [pokemonsApi.reducerPath]: pokemonsApi.reducer,
         [jsonplaceholderApi.reducerPath]: jsonplaceholderApi.reducer,

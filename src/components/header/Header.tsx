@@ -4,7 +4,8 @@ import NavMenu from './navBar/navMenu/NavMenu';
 import NavIcon from './navBar/navIcon/NavIcon';
 import LocationHead from './location/LocationHead';
 import Line from '../line/Line';
-import GetLocation from './location/getLocation/GetLocation';
+import GetLocation from './getLocation/GetLocation';
+
 
 export interface PropsHeader {
     theme: string | null;
@@ -18,7 +19,7 @@ const Header = () => {
 
     return ( 
         <header className={st.header}>
-            {width && <LocationHead display='flex' backGround='black'/>}
+            {width && <LocationHead display='flex' backGround='black' />}
             <GetLocation />
             <Line />
             <NavIcon theme={theme} width={width} />

@@ -42,7 +42,7 @@ const LocationHead = ({ display, backGround }: PropsLocation) => {
         <section className={st.container} style={{ backgroundColor: backGround}}>
             <div className={st.wrapper} style={{ display: display }}>
                 {contentCity}
-                <Weather city={city} dataCity={latitude && data.city} />
+                {data && <Weather city={city} dataCity={latitude && data.city} />}
             </div>
         </section>
      );

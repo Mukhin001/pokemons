@@ -1,5 +1,5 @@
 import { useAppDispatch } from '../../../../../app/hooks';
-import { setCity, setCoords } from '../../locationSlice';
+import { setCity, setCoords } from '../../../getLocation/locationSlice';
 import st from './style.module.css';
 
 interface Props {

@@ -6,7 +6,7 @@ import st from './style.module.css';
 
 interface Props {
     city: string | null;
-    dataCity: string | null;
+    dataCity?: string | null;
 };
 
 const Weather = ({ city, dataCity }: Props) => {
@@ -24,7 +24,7 @@ const Weather = ({ city, dataCity }: Props) => {
 
     return ( 
         <section className={st.container}>
-            weather
+            <h3>weather</h3>
             {dataCity ? <h3>{dataCity}</h3> : <h3>{city}</h3>}
             <h3>{temp} &deg;C</h3>
         </section>
