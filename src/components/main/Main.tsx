@@ -9,7 +9,7 @@ import ToDoList from "../../pages/toDoList/ToDoList";
 const Main = () => {
     
     return ( 
-        <section style={{maxWidth: '1540px', margin: '0 auto'}}>
+        <section style={{maxWidth: '1440px', margin: '0 auto'}}>
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='pokemons' element={<Pokemons />} />

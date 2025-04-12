@@ -41,7 +41,8 @@ const Autocompletee = ({ dataSort, headerStyle, setHeaderStyle, bool, setBool, g
     const handleClickBtnX = () => {
         setInputValue('');
         setShowBtnX(false); 
-        if(inputRef.current) inputRef.current.focus();   
+        if(inputRef.current) inputRef.current.focus();
+
         getInputValueLength('');    
     };
 
@@ -96,6 +97,7 @@ const Autocompletee = ({ dataSort, headerStyle, setHeaderStyle, bool, setBool, g
                 </div>
                 <div className={st.btnWrapperAutocomplete} data-name='btnWrapperAutocomplete'>
                     <button
+                        data-name='btnAutocompleteClose'
                         className={`${st.btnAutocomplete}
                             ${theme === 'light' ? `${st.btnAutocompleteLight}` : `${st.btnAutocompleteDark}`}`}
                         style={showBtnX ? {display: 'block'} : {display: 'none'}} 

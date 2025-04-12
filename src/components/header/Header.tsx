@@ -16,10 +16,10 @@ export interface PropsHeader {
 const Header = () => {
     const width = useAppSelector(state => state.widthWindow.width);
     const theme = useAppSelector(state => state.theme.value);
-
+    
     return ( 
         <header className={st.header}>
-            {width && <LocationHead display='flex' backGround='black' />}
+            {width && <LocationHead display='flex' backGround={theme === 'light' ? 'white' : 'black'} />}
             <GetLocation />
             <Line />
             <NavIcon theme={theme} width={width} />

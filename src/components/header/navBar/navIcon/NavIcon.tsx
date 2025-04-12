@@ -23,6 +23,7 @@ const NavIcon = ({ theme, width }: PropsHeader) => {
     useEffect(() => {
         if(width) {
             setshowDrawer(false);
+            setshowDrawerSetting(false);
         }
     }, [width]);
 

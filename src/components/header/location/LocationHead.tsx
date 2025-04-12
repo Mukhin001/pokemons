@@ -6,6 +6,7 @@ import ErrorComponent from '../../error/ErrorComponent';
 import { useAppSelector } from '../../../app/hooks';
 import { ReactNode } from 'react';
 import Loader from '../../loader/Loader';
+import UserAgent from './userAgent/UserAgent';
 
 
 export interface PropsCity {
@@ -22,8 +23,9 @@ const LocationHead = ({ display, backGround }: PropsLocation) => {
     const city = useAppSelector(state => state.location.city);
     const latitude = useAppSelector(state => state.location.latitude);
     const longitude = useAppSelector(state => state.location.longitude);
+    const width = useAppSelector(state => state.widthWindow.width);
     const { data, isLoading, isError } = useGetCityQuery({ lat: latitude, lon: longitude });
-
+    
     let contentCity: ReactNode;
 
     if(isLoading) {
@@ -41,7 +43,10 @@ const LocationHead = ({ display, backGround }: PropsLocation) => {
     return ( 
         <section className={st.container} style={{ backgroundColor: backGround}}>
             <div className={st.wrapper} style={{ display: display }}>
-                {contentCity}
+                <div style={width ? {display: 'flex', gap: '20px'} : {display: 'block'}}>
+                    {contentCity}
+                    <UserAgent width={width} />
+                </div>
                 {data && <Weather city={city} dataCity={latitude && data.city} />}
             </div>
         </section>
