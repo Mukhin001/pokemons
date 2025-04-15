@@ -1,9 +1,9 @@
-.containerGrid {
+.containergrid {
     display: grid;
     justify-content: center;
 }
 
-.containerFlex {
+.containerflex {
     display: flex;
     align-items: center;
 }
@@ -22,6 +22,10 @@
 .wrapImgSmall {
     max-width: 20px;
     animation: ghostMedium 5s infinite ease-in-out;
+}
+
+.wrapGhost {
+    padding-right: 50px;
 }
 
 .imgGhost {

@@ -102,7 +102,7 @@ const NavIcon = ({ theme, width }: PropsHeader) => {
     return ( 
         <nav className={st.wrapperNav}>
             {modal && 
-                <Modal header="Auth" modal={modal} setModal={setModal} >
+                <Modal header="Auth" setModal={setModal} >
                     <Auth />
                 </Modal>
             }

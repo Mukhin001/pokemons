@@ -3,7 +3,6 @@ import st from './style.module.css';
 
 interface Props {
     header: string;
-    modal: boolean;
     setModal: React.Dispatch<React.SetStateAction<boolean>>;
     children: ReactNode;
 };
@@ -13,15 +12,14 @@ const Modal = ( { header, children, setModal }: Props) => {
     const handleClickWrapperModal = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
         const target = e.target as HTMLElement;
         const name = target.dataset.name;
-        
-        if(name ==='wrapperModalName') {
+        if(name === header) {
             setModal(false);
         }
     };
     
     return ( 
         <section 
-            data-name="wrapperModalName"
+            data-name={header}
             className={st.wrapperModal} 
             onClick={handleClickWrapperModal}
         >

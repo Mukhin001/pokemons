@@ -6,11 +6,11 @@ import st from './style.module.css';
 import { useState } from 'react';
 
 const City = ({ city, dataCity }: PropsCity) => {
-    const [modal, setModal] = useState<boolean>(false);
+    const [modalCityList, setModalCityList] = useState<boolean>(false);
     const theme = useAppSelector(state => state.theme.value);
-
+    
     const handleGetCity = () => {
-        setModal(true);
+        setModalCityList(true);
     };
 
     return ( 
@@ -19,11 +19,13 @@ const City = ({ city, dataCity }: PropsCity) => {
                 <div className={st.wrapImg}>
                     <img src={`/arrow/compass-${theme === 'light' ? 'white' : 'black'}.svg`} alt="location" />
                 </div>
-                <h3 style={{color: `${theme === 'light' ? 'black' : 'white'}`}}>{dataCity ? dataCity : city}</h3>
+                <h3 
+                    className={`${theme === 'light' ? `${st.cityLight}` : `${st.cityDark}`}`}
+                >{dataCity ? dataCity : city}</h3>
             </section>
-            {modal && 
-                <Modal header='Cities' modal={modal} setModal={setModal}>
-                    <ChossingCity city={city} setModal={setModal} />
+            {modalCityList && 
+                <Modal header='Cities' setModal={setModalCityList}>
+                    <ChossingCity city={city} setModalCityList={setModalCityList} />
                 </Modal>}
         </section>
      );

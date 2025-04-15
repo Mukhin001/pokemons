@@ -5,8 +5,8 @@ import NavLine from "./navLine/NavLine";
 import ContentPoke from "./contentPoke/ContentPoke";
 import ContentToDoList from "./contentToDoList/ContentToDoList";
 import { useAppSelector } from "../../../../app/hooks";
-import ContentWords from "./contentWords/ContentWords";
 import Line from "../../../line/Line";
+import ContentPosts from "./contentPosts/ContentPosts";
 
 interface SubMenuWrapStyle {
     transform: string;
@@ -66,7 +66,7 @@ const NavMenu = () => {
                 >
                     {nameTitle === 'pokemons' && <ContentPoke setStrip={setStrip} theme={theme} />}
                     {nameTitle === 'todolist' && <ContentToDoList theme={theme} />}
-                    {nameTitle === 'words' && <ContentWords theme={theme} />}
+                    {nameTitle === 'posts' && <ContentPosts setStrip={setStrip} theme={theme} />}
                 </div>
 
             </section>

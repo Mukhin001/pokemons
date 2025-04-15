@@ -28,7 +28,7 @@
     position: absolute;
     display: flex;
     bottom: 10%;
-    max-width: 30px;
+    width: 30px;
     padding: 2px;
     border-radius: 50%;
     background-color: aliceblue;

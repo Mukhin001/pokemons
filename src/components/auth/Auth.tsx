@@ -1,4 +1,4 @@
-import FormEnterAccount from "./formEnterAccount/FormEnter";
+import FormEnterAccount from "./formEnterAccount/FormEnterAccount";
 
 const Auth = () => {
     return ( 

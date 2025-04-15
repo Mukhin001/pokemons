@@ -75,9 +75,6 @@ const Poke = ({ nameMenu, setshowDrawer, setnameMenu }: PropsMobMenu) => {
 
                     <div className={st.headerLi}>
                         <Link to='/pokemons' onClick={() => setshowDrawer(false)}>show all pokemons</Link>
-                        <div className={st.wrapImgNext}>
-                            <img src="/arrow/next-grey-fat.svg" alt="arrowNext" />
-                        </div>
                     </div>
                 </section>
                 }

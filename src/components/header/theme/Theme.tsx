@@ -5,14 +5,18 @@ import { PropsHeader } from "../Header";
 
 const Theme = ({ theme }: PropsHeader) => {
     const dispatch = useAppDispatch();
-
+    
     const handleTheme = () => {
-        if(localStorage.getItem('theme') === 'light') {
-           dispatch(changeTheTheme('dark'));
-           localStorage.setItem('theme', 'dark');
-        } else {
-           dispatch(changeTheTheme('light'));
-           localStorage.setItem('theme', 'light');
+        try{
+            if(localStorage.getItem('theme') === 'light') {
+                dispatch(changeTheTheme('dark'));
+                localStorage.setItem('theme', 'dark');
+             } else {
+                dispatch(changeTheTheme('light'));
+                localStorage.setItem('theme', 'light');
+             }
+        } catch(err) {
+            alert("Uncaught SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.")
         }
     };
 

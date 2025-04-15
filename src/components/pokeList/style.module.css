@@ -60,4 +60,8 @@
     .pokeListWrapper {
         padding-inline: 0;  /*отспуты боковые*/
    }
+   .containerPokeMain {
+    display: grid;
+    justify-content: center;
+   }
 }

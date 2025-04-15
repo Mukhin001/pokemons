@@ -1,19 +1,22 @@
-.containerCity {
-   
-}
-
 .container {
     display: flex;
     cursor: pointer;
 }
 
-.container h3 {
+.cityLight {
+    color: black;
+}
+
+.cityDark {
     color: white;
+}
+
+.container h3 {
     transition: color .2s ease-in-out;
 }
 
 .wrapImg {
-    max-width: 15px;
+    width: 15px;
     display: grid;
     align-items: center;
     margin-right: 10px;

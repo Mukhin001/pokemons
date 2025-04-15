@@ -2,7 +2,6 @@ import st from './style.module.css';
 import './pokecard.css';
 import { useState } from 'react';
 import { useAppSelector } from '../../../../app/hooks';
-import { useNavigate } from 'react-router-dom';
 
 interface Props {
     name: string | undefined;
@@ -11,8 +10,7 @@ interface Props {
 };
 
 const CardSlider = ({ name, arrImg, id }: Props) => {
-    const navigate = useNavigate();
-    const goBack = (): void | Promise<void>  => navigate(-1);
+    
     const theme = useAppSelector(state => state.theme.value);
     const [currentSlide, setCurrentSlide] = useState<number>(0);
 
@@ -35,7 +33,6 @@ const CardSlider = ({ name, arrImg, id }: Props) => {
     return ( 
         <section className={st.conteinerSlider}>
             
-            <button onClick={goBack}>Go back!</button>
             <h2>{name}</h2>
             <h2>{id}</h2>
             <div className={st.wrapImgMain}>

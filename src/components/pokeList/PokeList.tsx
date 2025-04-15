@@ -102,7 +102,7 @@ const PokeList = ({ dataSort, isLoading, isError }: PropsDataPoke) => {
     };
 
     return ( 
-        <main>
+        <main className={st.containerPokeMain}>
             <section className={st.containerPoke}>
                 <div style={{maxWidth: '300px', padding: '2em'}}>
                     <Select name="pokeList" values={['Please choose sort', 'id+', 'id-', 'name']} keyState={setKeySort}/>
@@ -119,9 +119,7 @@ const PokeList = ({ dataSort, isLoading, isError }: PropsDataPoke) => {
                     />
                 </div>
             </section>
-            <section 
-                className={st.containerPoke}
-            >
+            <section className={st.containerPoke}>
                 {content}
             </section>
         </main>

@@ -13,8 +13,15 @@
     position: absolute;
     inset: 0px;
     border-radius: 50%;
-    border: 5px solid #FFF;
     animation: prixClipFix 2s linear infinite;
+  }
+
+  .loaderLight::before {
+    border: 5px solid #030303;
+  }
+
+  .loaderDark::before {
+    border: 5px solid #FFF;
   }
 
   @keyframes rotate {

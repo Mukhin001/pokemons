@@ -10,4 +10,4 @@ export const getWeather = weatherApi.injectEndpoints({
     }),
 });
 
-export const { useGetWeatherCityQuery } = getWeather;
+export const { useGetWeatherCityQuery, useLazyGetWeatherCityQuery } = getWeather;

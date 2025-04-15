@@ -1,0 +1,49 @@
+.seachCityWrap {
+    display: flex;
+    border-radius: 10px;
+    border: 1px solid white;
+    transition: background-color .4s ease;
+}
+
+
+.seachCityWrapBlur {
+    background-color: #e7e7e7;
+}
+
+.seachCityWrapFocus {
+    background-color: white;
+    border: 1px solid black;
+}
+
+.seachCityWrapOver {
+    background-color: #dcdcdc;
+}
+
+.seachCityWrapleave {
+    background-color: #e7e7e7;
+}
+
+.inputSeachCity {
+    border: none;
+    width: 100%;
+    outline: none;
+    background-color: inherit;
+    padding: 10px; 
+}
+
+.inputCityWrap {
+    display: flex;
+    position: relative;
+}
+
+.loupeBtn {
+    background-color: inherit;
+    border: none;
+    max-width: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.loupeBtn img {
+    width: 100%;
+}

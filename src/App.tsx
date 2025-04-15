@@ -8,7 +8,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
     const theme = useAppSelector(state => state.theme.value);
-
+    
     return (
         <div className={`app ${theme === 'light' ? 'themeLight' : 'themeDark'}`}>
             <WidthWindow />

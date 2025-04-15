@@ -33,7 +33,7 @@ const LocationHead = ({ display, backGround }: PropsLocation) => {
     }
 
     if(isError) {
-        contentCity = <ErrorComponent size='Small' display='Flex'/>
+        contentCity = <ErrorComponent size='Small' display='flex'/>
     }
 
     if(data) {

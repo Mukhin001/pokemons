@@ -6,6 +6,7 @@ import userAgentReduser from "../components/header/getLocation/userAgentSlice";
 import authReduser from '../components/auth/authSlice';
 import likeCommentReduser from '../components/comments/likeSlice';
 import favPokeReduser from "../pages/favorites/favPokeSlice/favPokeSlice";
+import postsReduser from '../pages/posts/postsSlice';
 import { jsonplaceholderApi } from '../api/jsonplaceholder/jsonplaceholderApi';
 import { pokemonsApi } from "../api/pokemons/pokemonsApi"; 
 import { weatherApi } from "../api/weather/weatherApi";
@@ -20,6 +21,7 @@ export const store = configureStore({
         auth: authReduser,
         likeComment: likeCommentReduser,
         favPoke: favPokeReduser,
+        posts: postsReduser,
         [pokemonsApi.reducerPath]: pokemonsApi.reducer,
         [jsonplaceholderApi.reducerPath]: jsonplaceholderApi.reducer,
         [weatherApi.reducerPath]: weatherApi.reducer,

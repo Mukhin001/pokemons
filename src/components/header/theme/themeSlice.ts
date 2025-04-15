@@ -4,13 +4,18 @@ interface ThemeState {
     value: string | null;
 };
 
-if(localStorage.getItem('theme') === null) {
-    localStorage.setItem('theme', 'light');
-}
-
 const initialState: ThemeState = {
-    value: localStorage.getItem('theme'),
+    value: '',
 };
+
+try {
+    if(localStorage.getItem('theme') === null) {
+        localStorage.setItem('theme', 'light');
+    }
+    initialState.value = localStorage.getItem('theme');
+} catch(err) {
+    initialState.value = 'dark';
+}
 
 export const themeSlice = createSlice({
     name: 'theme',

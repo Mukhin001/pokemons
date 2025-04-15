@@ -1,0 +1,30 @@
+.breadContainer {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    padding: 10px 0 10px 0;
+}
+
+.homeLink {
+    width: 20px;
+}
+
+.homeLink img {
+    width: 100%;
+}
+
+.breadContainer a {
+    cursor: pointer;
+}
+
+.liLink {
+    transition: color .4s ease;
+}
+
+.liLink:hover {
+    color: var(--color-pink);
+}
+
+.homeLink:hover img {
+    filter: brightness(0) saturate(100%) invert(55%) sepia(40%) saturate(803%) hue-rotate(259deg) brightness(98%) contrast(93%);
+}

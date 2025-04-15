@@ -16,6 +16,7 @@ const TooltipBadge = ({ name, description, alt, pokeFav }: Props) => {
     const dispatch = useAppDispatch();
     const mouseEnter = (e: React.MouseEvent<HTMLSpanElement, MouseEvent> | any, name: string): void => {
         const tooltip = e.currentTarget.previousElementSibling;
+        
         if(tooltip.dataset.name === name) {
             tooltip.style.opacity = '1';
         }
@@ -34,7 +35,7 @@ const TooltipBadge = ({ name, description, alt, pokeFav }: Props) => {
 
     return ( 
         <div className={st.wrapTooltip}>
-                <Tooltip name={name}>
+                <Tooltip name={name} nameStyle="PokeCard">
                     <p>{name}</p>
                     <p>{description}</p>
                     <p>{alt}</p>
