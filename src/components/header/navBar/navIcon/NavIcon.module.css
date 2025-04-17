@@ -20,13 +20,13 @@
     background-color: var(--backGround-dark);  
 }
 
-.wrapperLi li {
+.iconLi {
     display: grid;
     justify-items: center;
     cursor: pointer;
 }
 
-.wrapperLi a {
+.iconLink {
     display: grid;
     justify-items: center;
 }
@@ -49,11 +49,11 @@
     padding: 2px 6px;
 }
 
-.wrapperLi li:hover img {
+.iconLi:hover img {
     filter: brightness(0) saturate(100%) invert(55%) sepia(40%) saturate(803%) hue-rotate(259deg) brightness(98%) contrast(93%);
 }
 
-.wrapperLi li:hover p {
+.iconLi:hover .pText {
     color: #f26ee1;
 }
 

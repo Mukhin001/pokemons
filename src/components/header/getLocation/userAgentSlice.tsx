@@ -18,7 +18,7 @@ export const userAgentSlice = createSlice({
     name: 'userAgent',
     initialState,
     reducers: {
-        setUserAgent: ( state, actions: PayloadAction<UserAgent> ) => {
+        setUserAgent: ( _, actions: PayloadAction<UserAgent> ) => {
             const { device, oc, browser, language } = actions.payload;
 
             return {

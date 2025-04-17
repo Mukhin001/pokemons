@@ -3,7 +3,8 @@ import themeReduser from '../components/header/theme/themeSlice';
 import widthWindowReduser from '../utils/widthWindow/widthWindowSlice';
 import locationReduser from "../components/header/getLocation/locationSlice";
 import userAgentReduser from "../components/header/getLocation/userAgentSlice";
-import authReduser from '../components/auth/authSlice';
+import authUserReduser from '../components/auth/authUserSlice';
+import authUsersReduser from '../components/auth/authUsersSlice';
 import likeCommentReduser from '../components/comments/likeSlice';
 import favPokeReduser from "../pages/favorites/favPokeSlice/favPokeSlice";
 import postsReduser from '../pages/posts/postsSlice';
@@ -18,7 +19,8 @@ export const store = configureStore({
         widthWindow: widthWindowReduser,
         location: locationReduser,
         userAgent: userAgentReduser,
-        auth: authReduser,
+        authUser: authUserReduser,
+        authUsers: authUsersReduser,
         likeComment: likeCommentReduser,
         favPoke: favPokeReduser,
         posts: postsReduser,
