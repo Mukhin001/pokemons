@@ -66,7 +66,7 @@ const NavMenu = () => {
                     style={strip ? subMenuWrapActive : subMenuWrapHidden} 
                 >
                     {nameTitle === 'pokemons' && <ContentPoke setStrip={setStrip} theme={theme} />}
-                    {nameTitle === 'todolist' && <ContentToDoList theme={theme} />}
+                    {nameTitle === 'todolist' && <ContentToDoList />}
                     {nameTitle === 'posts' && <ContentPosts setStrip={setStrip} theme={theme} />}
                 </div>
 
