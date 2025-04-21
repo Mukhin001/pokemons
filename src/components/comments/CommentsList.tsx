@@ -7,13 +7,14 @@ import AddNewComment from "./AddNewComment";
 import Select from "../select/Select";
 import Loader from "../loader/Loader";
 import ErrorComponent from "../error/ErrorComponent";
+import { selectCurrentTheme } from "../../utils/themeSlice/themeSlice";
 
 interface Props {
     id: number;
 };
 
 const CommentsList = ({ id }: Props) => {
-    const theme = useAppSelector(state => state.theme.value);
+    const theme = useAppSelector(selectCurrentTheme);
     const likes = useAppSelector(state => state.likeComment);
     const dispatch = useAppDispatch();
     const { data, isLoading, isError } = useGetCommentsQuery();

@@ -1,9 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import st from './style.module.css';
 import { useAppSelector } from "../../../app/hooks";
+import { selectCurrentTheme } from "../../../utils/themeSlice/themeSlice";
 
 const BreadCrumds = () => {
-    const theme = useAppSelector(state => state.theme.value);
+    const theme = useAppSelector(selectCurrentTheme);
     const location = useLocation();
     let locationArr: string[] = [];
     
@@ -19,7 +20,7 @@ const BreadCrumds = () => {
             return (
                 <li key='home' className={st.homeLink}>
                     <Link to='/'>
-                        <img src={`/icons_menu/home_${theme === 'light' ? 'light' : 'dark'}.svg`} alt="home" />
+                        <img src={`/icons_menu/home_${theme}.svg`} alt="home" />
                     </Link>
                 </li>
             )

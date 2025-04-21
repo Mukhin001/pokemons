@@ -1,10 +1,10 @@
-.themeLight {
+.themelight {
     background-color: var(--backGround-light);
     color: var(--color-backGround-light);
     transition: var(--transition-theme);
 }
 
-.themeDark {
+.themedark {
     background-color: var(--backGround-dark);
     color: var(--color-backGround-dark);
     transition: var(--transition-theme);

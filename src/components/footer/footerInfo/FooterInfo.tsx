@@ -3,18 +3,17 @@ import { footerList } from "../footerList";
 import { wrapperListMob, wrapperListWeb, wrapperMob, wrapperUlInfoMob, wrapperUlInfoWeb, wrapperWeb } from "./footerInfoStyle";
 import './style.css';
 import Line from "../../line/Line";
+import { useAppSelector } from "../../../app/hooks";
+import { selectWidth } from "../../../utils/widthWindow/widthWindowSlice";
 
-interface Props {
-    widthSelector: boolean;
-};
+const FooterInfo = () => {
+    const width = useAppSelector(selectWidth);
 
-const FooterInfo = ({ widthSelector }: Props) => {
-    
     const handleClickTitle = (e: React.MouseEvent<HTMLHeadingElement, MouseEvent>): void => {
         let height: any  = e.currentTarget.lastChild;
         let btnH3: any = e.currentTarget.firstChild?.lastChild;
-
-        if(!widthSelector) {
+        
+        if(!width) {
             if(e.currentTarget.style.marginBottom === '') {
                 btnH3.textContent = 'x';
                 e.currentTarget.style.marginBottom = height.clientHeight + 'px';
@@ -27,21 +26,21 @@ const FooterInfo = ({ widthSelector }: Props) => {
 
     return ( 
         <section className="container">
-            <section style={widthSelector ? wrapperWeb : wrapperMob}>
+            <section style={width ? wrapperWeb : wrapperMob}>
                     {footerList.map(obj => 
                         <div 
                             className="wrapperList" 
-                            style={widthSelector ? wrapperListWeb : wrapperListMob} 
+                            style={width ? wrapperListWeb : wrapperListMob} 
                             key={obj.title} 
                             onClick={handleClickTitle}
                         >
                         
                             <div className='wrapperH3Title'>
                                 <h3>{obj.title}</h3>
-                                {!widthSelector && <h3>+</h3>}
+                                {!width && <h3>+</h3>}
                             </div>
-                            {!widthSelector && <hr />}
-                            <ul className="wrapperUlInfo" style={widthSelector ? wrapperUlInfoWeb : wrapperUlInfoMob}>
+                            {!width && <hr />}
+                            <ul className="wrapperUlInfo" style={width ? wrapperUlInfoWeb : wrapperUlInfoMob}>
                                 {obj.list.map(li => 
                                     <li key={li}>{li}</li>
                                 )}

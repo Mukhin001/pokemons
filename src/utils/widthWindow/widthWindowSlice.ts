@@ -1,18 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AppRootState } from "../../app/store";
+
+export type Width = true | false; 
 
 interface WidthWindowState {
-    width: boolean;
+    width: Width;
 };
 
 const initialState: WidthWindowState = {
-    width: window.innerWidth > 1100,
+    width: true,
 };
 
 export const widthWindowSlice = createSlice({
     name: 'widthWindow',
     initialState,
     reducers: {
-        setWidthWindow: (_, action: PayloadAction<boolean>) => {
+        setWidthWindow(_, action: PayloadAction<Width>) {
             const widthBoolean = action.payload;
             return { width: widthBoolean };
         },
@@ -20,4 +23,7 @@ export const widthWindowSlice = createSlice({
 });
 
 export const { setWidthWindow } = widthWindowSlice.actions;
+
+export const selectWidth = (state: AppRootState) => state.widthWindow.width;
+
 export default widthWindowSlice.reducer;

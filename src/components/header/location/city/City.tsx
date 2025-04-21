@@ -1,4 +1,5 @@
 import { useAppSelector } from '../../../../app/hooks';
+import { selectCurrentTheme } from '../../../../utils/themeSlice/themeSlice';
 import Modal from '../../../modal/Modal';
 import { PropsCity } from '../LocationHead';
 import ChossingCity from './chossingCity/ChossingCity';
@@ -7,7 +8,7 @@ import { useState } from 'react';
 
 const City = ({ city, dataCity }: PropsCity) => {
     const [modalCityList, setModalCityList] = useState<boolean>(false);
-    const theme = useAppSelector(state => state.theme.value);
+    const theme = useAppSelector(selectCurrentTheme);
     
     const handleGetCity = () => {
         setModalCityList(true);

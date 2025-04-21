@@ -2,6 +2,7 @@ import st from './style.module.css';
 import './pokecard.css';
 import { useState } from 'react';
 import { useAppSelector } from '../../../../app/hooks';
+import { selectCurrentTheme } from '../../../../utils/themeSlice/themeSlice';
 
 interface Props {
     name: string | undefined;
@@ -11,7 +12,7 @@ interface Props {
 
 const CardSlider = ({ name, arrImg, id }: Props) => {
     
-    const theme = useAppSelector(state => state.theme.value);
+    const theme = useAppSelector(selectCurrentTheme);
     const [currentSlide, setCurrentSlide] = useState<number>(0);
 
     const handleClickNext = () => {

@@ -1,13 +1,12 @@
 import { useAppSelector } from '../../../../app/hooks';
+import { selectCurrentTheme } from '../../../../utils/themeSlice/themeSlice';
+import { selectWidth } from '../../../../utils/widthWindow/widthWindowSlice';
 import st from './style.module.css';
 
-interface Props {
-    width: boolean;
-};
-
-const UserAgent = ({ width }: Props) => {
+const UserAgent = () => {
     const userAgent = useAppSelector(state => state.userAgent);
-    const theme = useAppSelector(state => state.theme.value);
+    const theme = useAppSelector(selectCurrentTheme);
+    const width = useAppSelector(selectWidth);
     
     return ( 
         <section style={width ? {display: 'flex', gap: '20px'} : {display: 'block'}}>

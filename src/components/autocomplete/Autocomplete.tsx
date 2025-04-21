@@ -2,6 +2,7 @@ import { ReactNode, useRef, useState } from "react";
 import { PokemonsAll } from "../../api/pokemons/pokemonsAll/pokemonsAll";
 import st from './style.module.css';
 import { useAppSelector } from "../../app/hooks";
+import { selectCurrentTheme } from "../../utils/themeSlice/themeSlice";
 
 interface Props {
     dataSort: PokemonsAll[] | undefined;
@@ -17,7 +18,7 @@ interface Props {
 const Autocompletee = ({ dataSort, headerStyle, setHeaderStyle, bool, setBool, getInputValueLength, inputValue, setInputValue }: Props) => {
     const [showBtnX, setShowBtnX] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement | null>(null);
-    const theme = useAppSelector(state => state.theme.value);
+    const theme = useAppSelector(selectCurrentTheme);
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);

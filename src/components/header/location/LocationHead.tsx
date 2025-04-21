@@ -45,7 +45,7 @@ const LocationHead = ({ display, backGround }: PropsLocation) => {
             <div className={st.wrapper} style={{ display: display }}>
                 <div style={width ? {display: 'flex', gap: '20px'} : {display: 'block'}}>
                     {contentCity}
-                    <UserAgent width={width} />
+                    <UserAgent />
                 </div>
                 {data && <Weather city={city} dataCity={latitude && data.city} />}
             </div>

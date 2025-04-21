@@ -16,7 +16,7 @@ const SettingDrawer = ({ theme, setshowDrawerSetting }: Props) => {
                     <img src={theme === 'light' ? '/arrow/close-black.svg' : '/arrow/close-white.svg'} alt="back" />
                 </div>
             </div>
-            <Theme theme={theme} />
+            <Theme />
             <LocationHead display="block" backGround="inherit"/>
         </section>
      );

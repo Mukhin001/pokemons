@@ -1,20 +1,15 @@
-import { useAppDispatch } from "../../../app/hooks";
-import { changeTheTheme } from "./themeSlice";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import st from './style.module.css';
-import { PropsHeader } from "../Header";
+import { selectCurrentTheme, toggleTheme } from "../../../utils/themeSlice/themeSlice";
 
-const Theme = ({ theme }: PropsHeader) => {
+const Theme = () => {
+    const theme = useAppSelector(selectCurrentTheme);
     const dispatch = useAppDispatch();
-    
+
     const handleTheme = () => {
+        dispatch(toggleTheme());
         try{
-            if(localStorage.getItem('theme') === 'light') {
-                dispatch(changeTheTheme('dark'));
-                localStorage.setItem('theme', 'dark');
-             } else {
-                dispatch(changeTheTheme('light'));
-                localStorage.setItem('theme', 'light');
-             }
+            localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light');
         } catch(err) {
             alert("Uncaught SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.")
         }

@@ -1,8 +1,9 @@
 import { useAppSelector } from '../../app/hooks';
+import { selectCurrentTheme } from '../../utils/themeSlice/themeSlice';
 import st from './style.module.css';
 
 const Loader = () => {
-    const theme = useAppSelector(state => state.theme.value);
+    const theme = useAppSelector(selectCurrentTheme);
 
     return ( 
         <section>

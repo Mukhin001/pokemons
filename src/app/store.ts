@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import themeReduser from '../components/header/theme/themeSlice';
+import themeReduser from '../utils/themeSlice/themeSlice';
 import widthWindowReduser from '../utils/widthWindow/widthWindowSlice';
 import locationReduser from "../components/header/getLocation/locationSlice";
-import userAgentReduser from "../components/header/getLocation/userAgentSlice";
+import userAgentReduser from '../components/header/getLocation/userAgentSlice';
 import authUserReduser from '../components/auth/authUserSlice';
 import authUsersReduser from '../components/auth/authUsersSlice';
 import likeCommentReduser from '../components/comments/likeSlice';
@@ -12,6 +12,8 @@ import { jsonplaceholderApi } from '../api/jsonplaceholder/jsonplaceholderApi';
 import { pokemonsApi } from "../api/pokemons/pokemonsApi"; 
 import { weatherApi } from "../api/weather/weatherApi";
 import { cityApi } from "../api/city/cityApi";
+import { loadTheme } from "../utils/themeSlice/localStorage";
+import { innerWidthWindow } from "../utils/widthWindow/innerWidth";
 
 export const store = configureStore({
     reducer: {
@@ -33,7 +35,16 @@ export const store = configureStore({
         getDefaultMiddleware().concat([pokemonsApi.middleware, 
             jsonplaceholderApi.middleware, weatherApi.middleware,
             cityApi.middleware,    
-        ]),
+        ])
+    ,
+    preloadedState: {
+        theme: {
+            currentTheme: loadTheme(),
+        },
+        widthWindow: {
+            width: innerWidthWindow(),
+        },
+    },
 });
 
 export type AppRootState = ReturnType<typeof store.getState>;

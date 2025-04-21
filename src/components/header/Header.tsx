@@ -5,6 +5,8 @@ import NavIcon from './navBar/navIcon/NavIcon';
 import LocationHead from './location/LocationHead';
 import Line from '../line/Line';
 import GetLocation from './getLocation/GetLocation';
+import { selectCurrentTheme } from '../../utils/themeSlice/themeSlice';
+import { selectWidth } from '../../utils/widthWindow/widthWindowSlice';
 
 
 export interface PropsHeader {
@@ -14,15 +16,15 @@ export interface PropsHeader {
 };
 
 const Header = () => {
-    const width = useAppSelector(state => state.widthWindow.width);
-    const theme = useAppSelector(state => state.theme.value);
+    const width = useAppSelector(selectWidth);
+    const theme = useAppSelector(selectCurrentTheme);
     
     return ( 
         <header className={st.header}>
             {width && <LocationHead display='flex' backGround={theme === 'light' ? 'white' : 'black'} />}
             <GetLocation />
             <Line />
-            <NavIcon theme={theme} width={width} />
+            <NavIcon />
             {width && <NavMenu />}
         </header>
      );

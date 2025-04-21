@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "../../../app/hooks";
 import { setCoords } from "./locationSlice";
-import { setUserAgent } from "./userAgentSlice";
+import { setUserAgent } from './userAgentSlice';
 
 const ocArr: string[] = ['windows', 'mac', 'linux', 'android'];
 const browserArr: string[] = ['Firefox', 'OPR', 'Edg', 'Samsung', 'YaBrowser']; // saf chome

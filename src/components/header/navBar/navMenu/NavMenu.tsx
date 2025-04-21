@@ -7,6 +7,7 @@ import ContentToDoList from "./contentToDoList/ContentToDoList";
 import { useAppSelector } from "../../../../app/hooks";
 import Line from "../../../line/Line";
 import ContentPosts from "./contentPosts/ContentPosts";
+import { selectCurrentTheme } from "../../../../utils/themeSlice/themeSlice";
 
 interface SubMenuWrapStyle {
     transform: string;
@@ -21,7 +22,7 @@ const NavMenu = () => {
     const [nameTitle, setNameTitle] = useState<string | null>(null);
     const [strip, setStrip] = useState<boolean | undefined>(false);
     const [timeoutId, setTimeoutid] = useState<number | null>(null);
-    const theme = useAppSelector(state => state.theme.value);
+    const theme = useAppSelector(selectCurrentTheme);
 
     const subMenuWrapActive: SubMenuWrapStyle = {
         transform: 'translateY(0)',

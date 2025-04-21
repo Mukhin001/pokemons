@@ -4,7 +4,6 @@ import { iconMenu } from "./iconMenu";
 import Modal from "../../../modal/Modal";
 import st from './NavIcon.module.css';
 import { ReactNode, useEffect, useState } from "react";
-import { PropsHeader } from "../../Header";
 import Drawer from "../../../drawer/Drawer";
 import ChildrerDraverMenu from "./childrerDraverMenu/ChildrerDraverMenu";
 import Line from "../../../line/Line";
@@ -15,8 +14,12 @@ import stTooltip from '../../../tooltip/style.module.css';
 import AuthUser from "../../../auth/authUser/AuthUser";
 import CreateAuth from "../../../auth/createAuth/CreateAuth";
 import { userExit } from "../../../auth/authUserSlice";
+import { selectCurrentTheme } from "../../../../utils/themeSlice/themeSlice";
+import { selectWidth } from "../../../../utils/widthWindow/widthWindowSlice";
 
-const NavIcon = ({ theme, width }: PropsHeader) => {
+const NavIcon = () => {
+    const theme = useAppSelector(selectCurrentTheme);
+    const width = useAppSelector(selectWidth);
     const [modal, setModal] = useState<boolean>(false);
     const [auth, setAuth] = useState<null | string>(null);
     const likeCount = useAppSelector(state => state.favPoke.length);
@@ -104,7 +107,7 @@ const NavIcon = ({ theme, width }: PropsHeader) => {
         } else if(obj.name === 'theme') {
             return (
                 <li key={obj.name} className={`${st.wrapCountLike} ${st.iconLi}`}>
-                    <Theme theme={theme} />
+                    <Theme />
                 </li> 
             )
         } else if(obj.name === 'setting') {

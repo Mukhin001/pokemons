@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../app/hooks";
+import { selectCurrentTheme } from "../../utils/themeSlice/themeSlice";
 import st from './style.module.css';
 
 interface PropsErr {
@@ -9,7 +10,7 @@ interface PropsErr {
 };
 
 const ErrorComponent = ({ size, display = 'grid', modal = false, text }: PropsErr) => {
-    const theme = useAppSelector(state => state.theme.value);
+    const theme = useAppSelector(selectCurrentTheme);
     // Large Medium Small
     return ( 
         <section className={st[`container${display}`]} >

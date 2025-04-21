@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import st from './style.module.css';
 import { useAppSelector } from "../../app/hooks";
-import Loader from "../../components/loader/Loader";
+import { selectWidth } from "../../utils/widthWindow/widthWindowSlice";
 
 const Home = () => {
     const imgWrapper = useRef<HTMLDivElement>(null);
     const [scale, setScale] = useState<number>(1);
     const [borderRadius, setBorderRadius] = useState<number>(0);
-    const windowWidth = useAppSelector(state => state.widthWindow.width);
+    const windowWidth = useAppSelector(selectWidth);
     
     useEffect(() => {
         const handleScroll = () => {
