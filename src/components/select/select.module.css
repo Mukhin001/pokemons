@@ -1,0 +1,86 @@
+.wrapSelect {
+    position: relative;
+    border-radius: 10px;
+    transition: var(--transition-theme);
+    margin: 20px 0;
+
+}
+
+.wrapSelectlight {
+    background-color: var(--backGround-light);
+    border: 1px solid var(--backGround-dark);
+}
+
+.wrapSelectdark {
+    background-color: var(--backGround-dark);
+    border: 1px solid var(--backGround-light);
+}
+
+.wrapHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 10px;
+}
+
+.header {
+    position: absolute;
+    transition: all 1s ease;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.headerlight {
+    background-color: var(--backGround-light);
+}
+
+.headerdark {
+    background-color: var(--backGround-dark);
+}
+
+.headerdown {
+    top: 10%;
+    left: 20%;
+}
+
+.headerup {
+    top: -25%;
+    left: 10%;
+    font-size: 15px;
+}
+
+
+.wrapImg {
+    width: 15px;
+}
+
+.wrapImg img {
+    width: 100%;
+}
+
+.wrapUl {
+    position: absolute;
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px 0;
+    transition: opacity 1s ease, top 1s ease;
+}
+
+.wrapUldark {
+    background-color: var(--backGround-dark);
+}
+
+.wrapUllight {
+    background-color: var(--backGround-light);
+}
+
+.selectLi {
+    padding: 5px 10px;
+}
+
+.selectLidark:hover {
+    background-color: var(--backGround-darkLight);
+}
+
+.selectLilight:hover {
+    background-color: var(--backGround-lightLight);
+}

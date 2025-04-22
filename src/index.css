@@ -2,9 +2,9 @@
     --backGround-light: #fff;
     --backGround-dark: #222222;
     --backGround-lightLight: #f0f0f5;
-    --backGround-darkLight: #222222;
-    --color-backGround-light: rgb(29,29,31);
-    --color-backGround-dark: #f9f9f9;
+    --backGround-darkLight: #312f2f;
+    --color-backGround-light: #000000;
+    --color-backGround-dark: #ffffff;
     --transition-theme: background-color  1s ease-in-out, color 1s ease-in-out;
     --transition-theme-background: background-color  1s ease-in-out;
     --btn-color-light: rgb(245, 245, 247);

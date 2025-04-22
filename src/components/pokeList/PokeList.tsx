@@ -1,13 +1,13 @@
 import { ReactNode, useEffect, useState } from "react";
 import st from './style.module.css';
 import { Link } from "react-router-dom";
-import Select from "../select/Select";
 import TooltipBadge from "./tooltipBadge/TooltipBadge";
 import { PokemonsAll  } from "../../api/pokemons/pokemonsAll/pokemonsAll";
 import Autocompletee from "../autocomplete/Autocomplete";
 import Loader from "../loader/Loader";
 import ErrorComponent from "../error/ErrorComponent";
 import { useAppSelector } from "../../app/hooks";
+import SelectC, { Triangle } from "../select/SelectC";
 
 export interface Pokemon {
     id: number;
@@ -34,12 +34,13 @@ export const items = [
 
 
 const PokeList = ({ dataSort, isLoading, isError }: PropsDataPoke) => {
-    const [keySort, setKeySort] = useState<string>('empty');
+    const [keySort, setKeySort] = useState<string>('');
     const [headerStyle, setHeaderStyle] = useState<boolean>(false);
     const [bool, setBool] = useState<boolean>(false);
     const [inputValueLength, setInputValueLength] = useState<any>('');
     const [inputValue, setInputValue] = useState<any>('');
     const pokeFav = useAppSelector(state => state.favPoke);
+    const [triangle, setTriangle] = useState<Triangle>('down');
 
     const mainArticleClick = (e: any) => {
         if(inputValueLength.length === 0 && e.target.dataset.name !== 'inputAutoComplete' &&
@@ -49,6 +50,7 @@ const PokeList = ({ dataSort, isLoading, isError }: PropsDataPoke) => {
             setHeaderStyle(false);
             setBool(false);
         }  
+        
     };
 
     useEffect(() => {
@@ -105,7 +107,7 @@ const PokeList = ({ dataSort, isLoading, isError }: PropsDataPoke) => {
         <main className={st.containerPokeMain}>
             <section className={st.containerPoke}>
                 <div style={{maxWidth: '300px', padding: '2em'}}>
-                    <Select name="pokeList" values={['Please choose sort', 'id+', 'id-', 'name']} keyState={setKeySort}/>
+                    <SelectC triangle={triangle} setTriangle={setTriangle} arrayProps={['Please choose sort', 'id+', 'id-', 'name']} keySort={keySort} setKeySort={setKeySort} />
                     <h3>Seach Poke</h3>
                     <Autocompletee 
                         dataSort={dataSort}
