@@ -1,13 +1,15 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useMemo, useState } from "react";
 import { Comment, useGetCommentsQuery } from "../../api/jsonplaceholder/comments/commentsApi";
 import st from './style.module.css';
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { increment } from "./likeSlice";
 import AddNewComment from "./AddNewComment";
-import Select from "../select/Select";
 import Loader from "../loader/Loader";
 import ErrorComponent from "../error/ErrorComponent";
 import { selectCurrentTheme } from "../../utils/themeSlice/themeSlice";
+import Select, { Triangle } from "../select/Select";
+import { getSortFn, SortKey } from "../../utils/sortUtils/sortUtils";
+
 
 interface Props {
     id: number;
@@ -19,8 +21,12 @@ const CommentsList = ({ id }: Props) => {
     const dispatch = useAppDispatch();
     const { data, isLoading, isError } = useGetCommentsQuery();
     const comments = data?.slice().filter(obj => obj.postId === id);
-    const [keySort, setKeySort] = useState('empty');
-    let ii;
+    const [keySort, setKeySort] = useState<SortKey>('');
+    const [triangle, setTriangle] = useState<Triangle>('down');
+
+    const sorted = useMemo(() => {
+        return comments?.sort(getSortFn(keySort));
+    }, [comments, keySort]);
 
     if(isLoading) {
         return <Loader />
@@ -39,24 +45,18 @@ const CommentsList = ({ id }: Props) => {
         }
     };
 
-    const sortedComments = (key: string) => {
-        switch (key) {
-            case 'id-' :
-                return (a: Comment, b: Comment) => b.id - a.id;
-            case 'id+' :
-                return (a: Comment, b: Comment) => a.id - b.id;
-        }
-    };
+    // const sortedComments = (key: string) => {
+    //     switch (key) {
+    //         case 'id-' :
+    //             return (a: Comment, b: Comment) => b.id - a.id;
+    //         case 'id+' :
+    //             return (a: Comment, b: Comment) => a.id - b.id;
+    //         case 'name' :
+    //             return (a: any, b: any) => a.name.localeCompare(b.name);
+    //     }
+    // };
 
-    comments?.map(obj => {
-        likes.forEach(o =>  {
-            if(o.id === obj.postId) {
-               ii = (obj.postId); 
-            }
-        })
-    });
-
-    const content: ReactNode = (comments?.sort(sortedComments(keySort)).map(obj => 
+    const content: ReactNode = (sorted?.map(obj => 
         <div key={obj.id} className={st.wrapperComment}>
             <h3>{obj.name}</h3>
             <p>{obj.body}</p>
@@ -89,7 +89,12 @@ const CommentsList = ({ id }: Props) => {
     return ( 
         <section>
             {/* <AddNewComment postId={ii} /> */}
-            <Select name='sortComments' values={['Please choose sort', 'id+', 'id-', 'name', 'email']} keyState={setKeySort}/>
+            {/* <Select triangle={triangle} setTriangle={setTriangle} arrayProps={['Please choose sort', 'id+', 'id-', 'name', 'email']} keySort={keySort} setKeySort={setKeySort}/> */}
+            <Select 
+                triangle={triangle} setTriangle={setTriangle} 
+                arrayProps={['Please choose sort', 'id+', 'id-', 'name', 'email']}
+                keySort={keySort} setKeySort={setKeySort}
+            />
             {content}
         </section>
      );

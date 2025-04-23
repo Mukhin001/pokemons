@@ -5,7 +5,7 @@ import { useAppSelector } from "../../app/hooks";
 import { selectCurrentTheme } from "../../utils/themeSlice/themeSlice";
 
 interface Props {
-    dataSort: PokemonsAll[] | undefined;
+    pokemons: PokemonsAll[] | undefined;
     headerStyle: boolean;
     setHeaderStyle: React.Dispatch<React.SetStateAction<boolean>>;
     bool: boolean;
@@ -15,7 +15,7 @@ interface Props {
     setInputValue: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-const Autocompletee = ({ dataSort, headerStyle, setHeaderStyle, bool, setBool, getInputValueLength, inputValue, setInputValue }: Props) => {
+const Autocompletee = ({ pokemons, headerStyle, setHeaderStyle, bool, setBool, getInputValueLength, inputValue, setInputValue }: Props) => {
     const [showBtnX, setShowBtnX] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const theme = useAppSelector(selectCurrentTheme);
@@ -65,8 +65,8 @@ const Autocompletee = ({ dataSort, headerStyle, setHeaderStyle, bool, setBool, g
 
     let content: ReactNode;
 
-    if(dataSort) {
-        content = dataSort?.map(poke => 
+    if(pokemons) {
+        content = pokemons?.map(poke => 
             poke.name.includes(inputValue) &&
             <li  data-name='liAutocomplete'
                 key={poke.name}

@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, Middleware } from "@reduxjs/toolkit";
 import themeReduser from '../utils/themeSlice/themeSlice';
 import widthWindowReduser from '../utils/widthWindow/widthWindowSlice';
 import locationReduser from "../components/header/getLocation/locationSlice";
@@ -15,6 +15,9 @@ import { cityApi } from "../api/city/cityApi";
 import { loadTheme } from "../utils/themeSlice/localStorage";
 import { innerWidthWindow } from "../utils/widthWindow/innerWidth";
 
+const allApis = [pokemonsApi, jsonplaceholderApi, weatherApi, cityApi];
+const middlewareList: Middleware[] = allApis.map(api => api.middleware);
+
 export const store = configureStore({
     reducer: {
         theme: themeReduser,
@@ -26,17 +29,25 @@ export const store = configureStore({
         likeComment: likeCommentReduser,
         favPoke: favPokeReduser,
         posts: postsReduser,
-        [pokemonsApi.reducerPath]: pokemonsApi.reducer,
-        [jsonplaceholderApi.reducerPath]: jsonplaceholderApi.reducer,
-        [weatherApi.reducerPath]: weatherApi.reducer,
-        [cityApi.reducerPath]: cityApi.reducer,
+        // [pokemonsApi.reducerPath]: pokemonsApi.reducer,
+        // [jsonplaceholderApi.reducerPath]: jsonplaceholderApi.reducer,
+        // [weatherApi.reducerPath]: weatherApi.reducer,
+        // [cityApi.reducerPath]: cityApi.reducer,
+        ...Object.fromEntries(
+            allApis.map(api => [api.reducerPath, api.reducer])
+        ),
     },
+    // middleware: (getDefaultMiddleware) => 
+    //     getDefaultMiddleware().concat(...[pokemonsApi.middleware, 
+    //         jsonplaceholderApi.middleware, weatherApi.middleware,
+    //         cityApi.middleware,    
+    //     ]),
+    // middleware: (getDefaultMiddleware) =>
+    //     getDefaultMiddleware().concat(
+    //         ...allApis.map(api => api.middleware)
+    //     ),
     middleware: (getDefaultMiddleware) => 
-        getDefaultMiddleware().concat([pokemonsApi.middleware, 
-            jsonplaceholderApi.middleware, weatherApi.middleware,
-            cityApi.middleware,    
-        ])
-    ,
+        getDefaultMiddleware().concat(...middlewareList),
     preloadedState: {
         theme: {
             currentTheme: loadTheme(),

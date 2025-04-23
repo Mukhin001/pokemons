@@ -1,27 +1,14 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useMemo, useState } from "react";
 import st from './style.module.css';
 import { Link } from "react-router-dom";
 import TooltipBadge from "./tooltipBadge/TooltipBadge";
-import { PokemonsAll  } from "../../api/pokemons/pokemonsAll/pokemonsAll";
+import { useGetAllPokemonsQuery  } from "../../api/pokemons/pokemonsAll/pokemonsAll";
 import Autocompletee from "../autocomplete/Autocomplete";
 import Loader from "../loader/Loader";
 import ErrorComponent from "../error/ErrorComponent";
 import { useAppSelector } from "../../app/hooks";
-import SelectC, { Triangle } from "../select/SelectC";
-
-export interface Pokemon {
-    id: number;
-    name: string;
-    imgUrl: string;
-    alt: string;
-    description: string;
-};
-
-interface PropsDataPoke {
-    dataSort: PokemonsAll[] | undefined;
-    isLoading: boolean;
-    isError: boolean;
-};
+import Select, { Triangle } from "../select/Select";
+import { getSortFn, SortKey } from "../../utils/sortUtils/sortUtils";
 
 export const items = [
     { id: 1, name: 'belka', imgUrl: 'img-test-slider/belka.jpg', alt: 'Slide 1', description: 'Description for Slide 1' },
@@ -32,9 +19,10 @@ export const items = [
     { id: 6, name: 'wolf', imgUrl: 'img-test-slider/wolf.jpeg', alt: 'Slide 6', description: 'Description for Slide 6' },
 ];
 
-
-const PokeList = ({ dataSort, isLoading, isError }: PropsDataPoke) => {
-    const [keySort, setKeySort] = useState<string>('');
+const PokeList = () => {
+    const { data, isError, isLoading } = useGetAllPokemonsQuery();
+    const pokemons = data?.results.slice();
+    const [keySort, setKeySort] = useState<SortKey>('');
     const [headerStyle, setHeaderStyle] = useState<boolean>(false);
     const [bool, setBool] = useState<boolean>(false);
     const [inputValueLength, setInputValueLength] = useState<any>('');
@@ -49,25 +37,17 @@ const PokeList = ({ dataSort, isLoading, isError }: PropsDataPoke) => {
         ) {
             setHeaderStyle(false);
             setBool(false);
-        }  
-        
+        }
     };
 
     useEffect(() => {
         document.body.addEventListener('click', mainArticleClick);
         return () => {document.body.removeEventListener('click', mainArticleClick)};
     }, [inputValueLength]);
-
-    const sortedPokeList = (key: string): any => {
-        switch (key) {
-            case 'id-' :
-                return (a: any, b: any) => +b.url.slice(34, -1) - +a.url.slice(34, -1);
-            case 'id+' :
-                return (a: any, b: any) => +a.url.slice(34, -1) - +b.url.slice(34, -1);
-            case 'name' : 
-                return (a: any, b: any) => a.name.localeCompare(b.name);
-        }
-    };
+    
+    const sorted = useMemo(() => {
+        return pokemons?.sort(getSortFn(keySort));
+    }, [pokemons, keySort]);
 
     if(isLoading) {
         return <Loader />
@@ -76,8 +56,8 @@ const PokeList = ({ dataSort, isLoading, isError }: PropsDataPoke) => {
     if(isError) {
         return <ErrorComponent size="Large" />
     }
-    
-    const content:ReactNode = (dataSort?.sort(sortedPokeList(keySort)).map(obj => 
+
+    const content:ReactNode = (sorted?.sort(getSortFn(keySort)).map(obj => 
         obj.name.includes(inputValue) &&
         <div 
             key={obj.name} 
@@ -96,9 +76,8 @@ const PokeList = ({ dataSort, isLoading, isError }: PropsDataPoke) => {
                 <p>{obj.name}</p>
             </div>
         </div>
-    )); 
+    ));
 
-     
     const getInputValueLength = (length: string | null) => {
         setInputValueLength(length);
     };
@@ -107,10 +86,10 @@ const PokeList = ({ dataSort, isLoading, isError }: PropsDataPoke) => {
         <main className={st.containerPokeMain}>
             <section className={st.containerPoke}>
                 <div style={{maxWidth: '300px', padding: '2em'}}>
-                    <SelectC triangle={triangle} setTriangle={setTriangle} arrayProps={['Please choose sort', 'id+', 'id-', 'name']} keySort={keySort} setKeySort={setKeySort} />
+                    <Select triangle={triangle} setTriangle={setTriangle} arrayProps={['Please choose sort', 'id+poke', 'id-poke', 'name']} keySort={keySort} setKeySort={setKeySort} />
                     <h3>Seach Poke</h3>
                     <Autocompletee 
-                        dataSort={dataSort}
+                        pokemons={pokemons}
                         headerStyle={headerStyle}
                         setHeaderStyle={setHeaderStyle}
                         bool={bool}

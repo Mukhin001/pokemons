@@ -3,7 +3,7 @@
     border-radius: 10px;
     transition: var(--transition-theme);
     margin: 20px 0;
-
+    max-width: 300px;
 }
 
 .wrapSelectlight {
@@ -19,7 +19,7 @@
 .wrapHeader {
     display: flex;
     justify-content: space-between;
-    padding: 15px 10px;
+    padding: 15px 20px;
 }
 
 .header {
@@ -62,7 +62,6 @@
     width: 100%;
     border-radius: 10px;
     padding: 10px 0;
-    transition: opacity 1s ease, top 1s ease;
 }
 
 .wrapUldark {

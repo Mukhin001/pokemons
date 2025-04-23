@@ -1,0 +1,14 @@
+.authPost {
+    cursor: pointer;
+    transition: color .3s ease-in-out;
+    display: inline;
+}
+
+.authPost:hover {
+    color: var(--color-pink);
+}
+
+.postWrap {
+    border-bottom: 2px solid slateblue;
+    padding: 5px 20px;
+}
