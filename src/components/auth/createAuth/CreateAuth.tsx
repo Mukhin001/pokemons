@@ -4,6 +4,7 @@ import Tooltip from '../../tooltip/Tooltip';
 import st from '../authUser/style.module.css';
 import { authCreate } from '../authUsersSlice';
 import { userEnter } from '../authUserSlice';
+import Input from '../../input/Input';
 
 interface AuthFormFields extends HTMLFormControlsCollection {
     username: HTMLInputElement;
@@ -56,26 +57,6 @@ const CreateAuth = ({ setModal }: Props) => {
         }
         
     };
-    
-    const handleFocusname = (e: React.FocusEvent<HTMLInputElement, Element>) => {
-        const input = e.currentTarget;
-        const parent = e.currentTarget.parentNode as HTMLDivElement;
-        if(parent) {
-            parent.classList.add(st.borderActivWrap);
-        }
-        input.style.background = 'rgb(255, 255, 255)';
-        setMistakeUserForm(null);
-    };
-
-    const handleBlursname = (e: React.FocusEvent<HTMLInputElement, Element>) => {
-        const input = e.currentTarget;
-        const parent = e.currentTarget.parentNode as HTMLDivElement;
-        if(parent) {
-            parent.classList.remove(st.borderActivWrap);
-        }
-        input.style.background = 'gainsboro';
-        setMistakeUserForm(null);
-    };
 
     return ( 
         <form onSubmit={handleSubmitForm} style={{position: 'relative'}}>
@@ -86,57 +67,10 @@ const CreateAuth = ({ setModal }: Props) => {
                         <h3>{mistakeUserForm}</h3>
                     </Tooltip>
                 }
-                <div className={`${st.inputWrap}`}>
-                    <label htmlFor="username"></label>
-                    <input 
-                        onFocus={handleFocusname}
-                        onBlur={handleBlursname} 
-                        type="text" 
-                        id="username" 
-                        name="username"
-                        placeholder='login'
-                        className={st.inputAuth}
-                    />
-                </div>
-
-                <div className={`${st.inputWrap}`}>
-                    <label htmlFor="email"></label>
-                    <input 
-                        onFocus={handleFocusname}
-                        onBlur={handleBlursname} 
-                        type="email" 
-                        id="email" 
-                        name="email"
-                        placeholder='email'
-                        className={st.inputAuth}
-                    />
-                </div>
-
-                <div className={`${st.inputWrap}`}>
-                    <label htmlFor="userPassword"></label>
-                    <input 
-                        onFocus={handleFocusname}
-                        onBlur={handleBlursname} 
-                        type="password" 
-                        id="userPassword" 
-                        name="userPassword"
-                        className={st.inputAuth}
-                        placeholder='password'
-                    />
-                </div>
-
-                <div className={`${st.inputWrap}`}>
-                    <label htmlFor="userPasswordrepeat"></label>
-                    <input 
-                        onFocus={handleFocusname} 
-                        onBlur={handleBlursname} 
-                        type="password" 
-                        id="userPasswordrepeat" 
-                        name="userPasswordrepeat"
-                        className={st.inputAuth}
-                        placeholder='passwordrepeat'
-                    />
-                </div>
+                <Input name='username' type='text' placeholder='login' setMistakeUserForm={setMistakeUserForm} />
+                <Input name='email' type='email' placeholder='email' setMistakeUserForm={setMistakeUserForm} />
+                <Input name='userPassword' type='password' placeholder='userPassword' setMistakeUserForm={setMistakeUserForm} />
+                <Input name='userPasswordrepeat' type='password' placeholder='userPasswordrepeat' setMistakeUserForm={setMistakeUserForm} />
                 
                 <button className={`${st.btnForm} ${st.lastBtnForm}`}>Create Accaunt</button>
                 
