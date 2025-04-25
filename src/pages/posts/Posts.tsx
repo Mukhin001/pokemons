@@ -11,7 +11,7 @@ import { getSortFn, SortKey } from "../../utils/sortUtils/sortUtils";
 
 const Posts = () => {
     const posts = useAppSelector(state => state.posts);
-    const user = useAppSelector(state => state.authUser.name);
+    const user = useAppSelector(state => state.authUser);
     const [modal, setModal] = useState<boolean>(false);
     const [auth, setAuth] = useState<null | string>(null);
     const [triangle, setTriangle] = useState<Triangle>('down');
@@ -29,13 +29,18 @@ const Posts = () => {
             </Link>
             <p>{post.content}</p>
             <h4>{post.userId}</h4>
-
+            {post.userId === user.id + '' && 
+                <div>
+                    <button>Delete</button>
+                    <button>Edit</button>
+                </div>
+            }
         </article>
     ));
 
     return ( 
         <section>
-            {user ? 
+            {user.name ? 
                 <PostForm /> 
                 : 
 

@@ -1,8 +1,9 @@
 import { useState } from "react"
-import { useAppDispatch } from "../../../app/hooks"
+import { useAppDispatch, useAppSelector } from "../../../app/hooks"
 import Input from "../../../components/input/Input"
 import Tooltip from "../../../components/tooltip/Tooltip"
 import st from '../../../components/auth/authUser/style.module.css';
+import { Post, postAdded } from "../postsSlice";
 
 interface AddPostFormFields extends HTMLFormControlsCollection {
     postTitle: HTMLInputElement
@@ -18,6 +19,7 @@ interface AddPostFormElements extends HTMLFormElement {
 const PostForm = () => {
     const dispatch = useAppDispatch();
     const [mistakeUserForm, setMistakeUserForm] = useState<string | null>(null);
+    const user = useAppSelector(state => state.authUser);
 
     const handleSubmit = (e: React.FormEvent<AddPostFormElements>) => {
         e.preventDefault();
@@ -26,10 +28,21 @@ const PostForm = () => {
         const title = elements.postTitle.value;
         const content = elements.postContent.value;
 
-        // dispatch(postAdded(title, content, userId!));
         if(title.length === 0 || content.length === 0) {
             setMistakeUserForm('fill in the form');
             return;
+        }
+
+        if(user.name && user.id) {
+            const post: Post = {
+                title,
+                content,
+                date: '2007ss',
+                userId: user.id + '',
+                name: user.name,
+            };
+    
+            dispatch(postAdded(post));
         }
 
         e.currentTarget.reset();

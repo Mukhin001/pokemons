@@ -36,6 +36,11 @@ const CreateAuth = ({ setModal }: Props) => {
         const password = elements.userPassword.value;
         const passwordRepeat = elements.userPasswordrepeat.value;
 
+        if(name.length === 0 || password.length === 0) {
+            setMistakeUserForm('fill in the form');
+            return;
+        }
+
         if(!lastId) {
             lastId = 0;
         }
