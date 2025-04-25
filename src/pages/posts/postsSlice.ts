@@ -41,9 +41,13 @@ const postSlice = createSlice({
                 post
             ];
         },
+        postDelete(state, action: PayloadAction<string>) {
+            const posts = state.filter(post => post.id !== action.payload);
+            return posts;
+        },
     },
 });
 
-export const { postAdded } = postSlice.actions;
+export const { postAdded, postDelete } = postSlice.actions;
 
 export default postSlice.reducer;

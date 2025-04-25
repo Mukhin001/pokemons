@@ -42,8 +42,6 @@ const AuthUser = ({ setAuth, setModal }: Props) => {
             dispatch(userEnter(user));
             setModal(false);
         } else {
-            console.log(1);
-            
             setMistakeUserForm('Incorrect Username or password');
         }
         

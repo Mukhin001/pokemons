@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import PostForm from "./postForm/PostForm";
 import Modal from "../../components/modal/Modal";
 import AuthUser from "../../components/auth/authUser/AuthUser";
@@ -8,10 +8,13 @@ import { useMemo, useState } from "react";
 import st from './posts.module.css';
 import Select, { Triangle } from "../../components/select/Select";
 import { getSortFn, SortKey } from "../../utils/sortUtils/sortUtils";
+import Btn from "../../components/button/Btn";
+import { postDelete } from "./postsSlice";
 
 const Posts = () => {
     const posts = useAppSelector(state => state.posts);
     const user = useAppSelector(state => state.authUser);
+    const dispatch = useAppDispatch();
     const [modal, setModal] = useState<boolean>(false);
     const [auth, setAuth] = useState<null | string>(null);
     const [triangle, setTriangle] = useState<Triangle>('down');
@@ -22,6 +25,12 @@ const Posts = () => {
         return [...posts].sort(getSortFn(keySort));
     }, [posts, keySort]);
 
+    const deletePostFn = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+        if(e.currentTarget.dataset.btnid){
+            dispatch(postDelete(e.currentTarget.dataset.btnid));
+        }        
+    };
+
     const renderedPosts = sorted.map(post => (
         <article key={post.id} className={st.postWrap}>
             <Link to={post.title.toLowerCase().replace(' ', '')} style={{cursor: 'pointer'}}>
@@ -30,9 +39,9 @@ const Posts = () => {
             <p>{post.content}</p>
             <h4>{post.userId}</h4>
             {post.userId === user.id + '' && 
-                <div>
-                    <button>Delete</button>
-                    <button>Edit</button>
+                <div style={{display: 'flex', gap: '20px'}}>
+                    <Btn id={post.id} content="Delete" onclickFn={deletePostFn}/>
+                    <Btn content="Edit" />
                 </div>
             }
         </article>
