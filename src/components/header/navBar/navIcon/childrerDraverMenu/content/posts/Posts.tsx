@@ -24,7 +24,7 @@ const Posts = ({ nameMenu, setshowDrawer, setnameMenu }: PropsMobMenu) => {
             </ul>
 
             <div className={st.headerLi}>
-                <Link to='/posts' onClick={() => setshowDrawer(false)}>show all pokemons</Link>
+                <Link to='/posts' onClick={() => setshowDrawer(false)}>Show all posts</Link>
             </div>
         </section>
     );

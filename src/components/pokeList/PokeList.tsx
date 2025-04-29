@@ -18,7 +18,7 @@ export const items = [
     { id: 5, name: 'rabbit', imgUrl: 'img-test-slider/rabbit.jpg', alt: 'Slide 5', description: 'Description for Slide 5' },
     { id: 6, name: 'wolf', imgUrl: 'img-test-slider/wolf.jpeg', alt: 'Slide 6', description: 'Description for Slide 6' },
 ];
-
+ 
 const PokeList = () => {
     const { data, isError, isLoading } = useGetAllPokemonsQuery();
     const pokemons = data?.results.slice();
