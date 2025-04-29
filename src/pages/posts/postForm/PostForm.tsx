@@ -35,6 +35,7 @@ const PostForm = () => {
 
         if(user.name && user.id) {
             const post: Post = {
+                id: '',
                 title,
                 content,
                 date: '2007ss',

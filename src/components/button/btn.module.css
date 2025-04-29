@@ -1,0 +1,19 @@
+.btn {
+    padding: 5px 15px;
+    color: white;
+    background-color: var(--color-pink);
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    /* width: 100%; */
+}
+
+.btn:hover {
+    background-color: var(--color-pink-light);
+}
+
+.btn:focus {
+    outline: none;
+    border: none;
+    background-color: var(--color-pink-light);
+}

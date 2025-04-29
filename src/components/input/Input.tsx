@@ -7,10 +7,11 @@ interface Props {
     name: string;
     type: TypeInput;
     placeholder: string;
+    value?: string;
     setMistakeUserForm:  React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-const Input = ({ name, type, placeholder, setMistakeUserForm }: Props) => {
+const Input = ({ name, type, placeholder, value, setMistakeUserForm }: Props) => {
 
     return ( 
         <div className={st.inputWrap}    >
@@ -23,6 +24,7 @@ const Input = ({ name, type, placeholder, setMistakeUserForm }: Props) => {
                 name={name}
                 placeholder={placeholder}
                 className={st.inputAuth}
+                defaultValue={value}
             />
         </div>
      );

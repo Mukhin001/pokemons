@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import PostForm from "./postForm/PostForm";
 import Modal from "../../components/modal/Modal";
@@ -8,11 +7,15 @@ import { useMemo, useState } from "react";
 import st from './posts.module.css';
 import Select, { Triangle } from "../../components/select/Select";
 import { getSortFn, SortKey } from "../../utils/sortUtils/sortUtils";
+import EditPost from "./editPost/EditPost";
+import PostsContent from "./postsContent/PostsContent";
 
 const Posts = () => {
     const posts = useAppSelector(state => state.posts);
     const user = useAppSelector(state => state.authUser);
+   
     const [modal, setModal] = useState<boolean>(false);
+    const [editPost, setEditPost] = useState<null | string>(null);
     const [auth, setAuth] = useState<null | string>(null);
     const [triangle, setTriangle] = useState<Triangle>('down');
     const [keySort, setKeySort] = useState<SortKey>('');
@@ -22,19 +25,15 @@ const Posts = () => {
         return [...posts].sort(getSortFn(keySort));
     }, [posts, keySort]);
 
+
+
     const renderedPosts = sorted.map(post => (
         <article key={post.id} className={st.postWrap}>
-            <Link to={post.title.toLowerCase().replace(' ', '')} style={{cursor: 'pointer'}}>
-                <h3>{post.title}</h3>
-            </Link>
-            <p>{post.content}</p>
-            <h4>{post.userId}</h4>
-            {post.userId === user.id + '' && 
-                <div>
-                    <button>Delete</button>
-                    <button>Edit</button>
-                </div>
-            }
+            {editPost === post.id ? 
+                <EditPost name={post.name} id={post.id} userId={post.userId} title={post.title} content={post.content} setEditPost={setEditPost} />
+                :
+                <PostsContent  user={user} name={post.name} id={post.id} userId={post.userId} title={post.title} content={post.content} setEditPost={setEditPost} />
+            }   
         </article>
     ));
 

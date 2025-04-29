@@ -13,4 +13,4 @@ const Pokemons = () => {
      );
 };
  
-export default Pokemons;
+export default Pokemons;    
