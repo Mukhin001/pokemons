@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useMemo, useState } from "react";
 import st from './style.module.css';
 import { Link } from "react-router-dom";
 import TooltipBadge from "./tooltipBadge/TooltipBadge";
-import { useGetAllPokemonsQuery  } from "../../api/pokemons/pokemonsAll/pokemonsAll";
+import { PokemonsAll  } from "../../api/pokemons/pokemonsAll/pokemonsAll";
 import Autocompletee from "../autocomplete/Autocomplete";
 import Loader from "../loader/Loader";
 import ErrorComponent from "../error/ErrorComponent";
@@ -19,9 +19,13 @@ export const items = [
     { id: 6, name: 'wolf', imgUrl: 'img-test-slider/wolf.jpeg', alt: 'Slide 6', description: 'Description for Slide 6' },
 ];
 
-const PokeList = () => {
-    const { data, isError, isLoading } = useGetAllPokemonsQuery();
-    const pokemons = data?.results.slice();
+interface Props {
+    pokemons: PokemonsAll[] | undefined;
+    isError: boolean;
+    isLoading: boolean;
+};
+
+const PokeList = ({ pokemons, isError, isLoading }: Props) => {
     const [keySort, setKeySort] = useState<SortKey>('');
     const [headerStyle, setHeaderStyle] = useState<boolean>(false);
     const [bool, setBool] = useState<boolean>(false);

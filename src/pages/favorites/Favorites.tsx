@@ -16,7 +16,7 @@ const Favorites = () => {
                 : 
                 <div>
                     <h3>Favorites {pokeFav.length}</h3>
-                    <PokeList dataSort={pokemons} isError={isError} isLoading={isLoading} />
+                    <PokeList pokemons={pokemons} isError={isError} isLoading={isLoading} />
                 </div>
             }
             <InfiniteCarousel />
