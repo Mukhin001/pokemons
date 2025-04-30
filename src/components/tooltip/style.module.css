@@ -1,48 +1,40 @@
-.containerPokeCard {
+.containerTooltip {
     position: absolute;
     opacity: 0;
+    border-radius: 5px;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.containerPokeCard {
     top: -250%;
     background-color: rgb(5, 5, 5);
     padding: 7px 20px;
-    border-radius: 5px;
     transition: opacity 0.5s ease-out;
-    pointer-events: none;
 }
 
 .containermodalCity {
-    position: absolute;
-    opacity: 1;
     bottom: 110%;
     left: 15%;
     background-color: rgb(5, 5, 5);
     color: white;
     padding: 7px 20px;
-    border-radius: 5px;
-    pointer-events: none;
-    z-index: 10;
 }
 
 .containerAuth {
-    position: absolute;
-    opacity: 0;
     top: 140%;
     background-color: white;
     color: rgb(1, 1, 1);
     padding: 20px;
-    border-radius: 5px;
-    pointer-events: none;
     transition: top .5s ease, opacity 1s ease;
 }
 
 .containerCraeteAuth {
-    position: absolute;
     opacity: 1;
     left: 120%;
     background-color: white;
     color: rgb(1, 1, 1);
     padding: 20px;
-    border-radius: 5px;
-    pointer-events: none;
     transition: top .5s ease, opacity 1s ease;
 }
 

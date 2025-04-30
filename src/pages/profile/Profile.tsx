@@ -5,6 +5,9 @@ import Tooltip from '../../components/tooltip/Tooltip';
 import Input from '../../components/input/Input';
 import Btn from '../../components/button/Btn';
 import { useNavigate } from 'react-router-dom';
+import { updateUser } from '../../components/auth/authUserSlice';
+import { updateUsers } from '../../components/auth/authUsersSlice';
+import Modal from '../../components/modal/Modal';
 
 interface AuthFormFields extends HTMLFormControlsCollection {
     username: HTMLInputElement;
@@ -22,52 +25,68 @@ const Profile = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [mistakeUserForm, setMistakeUserForm] = useState<string | null>(null);
+    const [modal, setModal] = useState<boolean>(false);
     
     const handleSubmitForm = ( e: React.FormEvent<AuthFormElements>) => {
         e.preventDefault();
 
         const { elements } = e.currentTarget;
-        const name = elements.username.defaultValue;
-        const email = elements.email.defaultValue;
-        const password = elements.userPassword.defaultValue;
-        const passwordRepeat = elements.userPasswordrepeat.defaultValue;
-            console.log(name);
-            
-        if(name.length === 0) {
+        const newname = elements.username.value;
+        const newemail = elements.email.value;
+        const newpassword = elements.userPassword.value;
+        const newpasswordRepeat = elements.userPasswordrepeat.value;
+           
+        if(newname.length === 0) {
             setMistakeUserForm('name empty');
             return;
         }
-        if(email.length === 0) {
+        if(newemail.length === 0) {
             setMistakeUserForm('email empty');
             return;
         }
-        if(password.length === 0 ) {
+        if(newpassword.length === 0 ) {
             setMistakeUserForm('password empty');
             return;
         }
-        if(passwordRepeat.length === 0 ) {
+        if(newpasswordRepeat.length === 0 ) {
             setMistakeUserForm('passwordRepeat empty');
             return;
         }
-        if(password !== passwordRepeat) {
+        if(newpassword !== newpasswordRepeat) {
             setMistakeUserForm("the password doesn't match");
             return;
         }
-        
+        if(name === newname && email === newemail && password === newpassword) {
+            setMistakeUserForm('the data has not changed');
+            return;
+        }
 
-        // if(name.trim().length !== 0 && email && password) {
-        //     dispatch(authCreate({ id: lastId + 1, name: name, email: email, password: password}));
-        //     dispatch(userEnter({ id: lastId + 1, name: name, email: email, password: password}));
-        //     setModal(false);
-        // }
+        setModal(true);
+        dispatch(updateUsers({ id, name: newname, email: newemail, password: newpassword, gender, birthdate } ));
+        dispatch(updateUser({ id, name: newname, email: newemail, password: newpassword, gender, birthdate } ));
     };
 
     const handleExitToHome = () => {
         navigate('/', {replace: true})
     };
 
+    const handleBackPage = () => {
+        navigate(-1);
+    };
+
+    const handleSaveNewDataUser = () => {
+        setModal(false);
+        navigate(-1);
+    };
+
     return ( 
         <main style={{display: 'grid', justifyContent: 'center'}}>
+            {modal && 
+                <Modal header='data changed' setModal={setModal}>
+                    <h3>new data changed and saved</h3>
+                    <Btn content='Ok' onclickFn={handleSaveNewDataUser} />
+                </Modal>
+            }
             <h3>About Me</h3>
             <form onSubmit={handleSubmitForm} style={{position: 'relative'}}>
                 <div className={st.wrapAccount}>
@@ -83,7 +102,7 @@ const Profile = () => {
                     <Btn content='Save'/>
                 </div>
             </form>
-            <Btn content='Next' />
+            <Btn content='Back' onclickFn={handleBackPage} />
             <Btn content='Exit to Home' onclickFn={handleExitToHome} />
         </main>
      );

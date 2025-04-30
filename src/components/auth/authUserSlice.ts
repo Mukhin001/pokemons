@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface AuthState {
-    id: number | null;
+    id: string | null;
     name: string | null;
     email: string | null;
     password: string | null;
@@ -20,9 +20,12 @@ const authUser = createSlice({
         },
         userExit() {
             return { id: null, name: null, email: null, password: null, gender: null, birthdate: null }
-        }
+        },
+        updateUser(_, action: PayloadAction<AuthState>) {
+            return action.payload;
+        },
     },
 });
 
-export const { userEnter, userExit } = authUser.actions;
+export const { userEnter, userExit, updateUser } = authUser.actions;
 export default authUser.reducer; 

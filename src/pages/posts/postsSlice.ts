@@ -56,7 +56,7 @@ const postSlice = createSlice({
         saveEditedPost(state, action: PayloadAction<Post>) {
             const { id, userId, date, title, content, name } = action.payload;
             
-            const newState: Post[] = state.map((post: Post) => {
+            const newState: Post[] = state.map(post => {
                 if(post.id === id) {
                    return { id, userId, date, title, content, name };
                 } else {

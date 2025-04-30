@@ -8,8 +8,11 @@ import ToDoList from "../../pages/toDoList/ToDoList";
 import BreadCrumds from "./breadCrumds/BreadCrumds";
 import Posts from "../../pages/posts/Posts";
 import PostCard from "../../pages/posts/postCard/PostCard";
+import { useAppSelector } from "../../app/hooks";
 
 const Main = () => {
+    const user = useAppSelector(state => state.authUser.name);
+    
     return ( 
         <div>
             <div style={{maxWidth: '1540px', margin: '0 auto'}}>
@@ -20,9 +23,9 @@ const Main = () => {
                         <Route path='pokemons' element={<Pokemons />} />
                         <Route path="pokemons/:name" element={<PokeCard />} />
                         <Route path='todolist' element={<ToDoList />} />
-                        <Route path='favorites/' element={<Favorites />} />
+                        <Route path='favorites/' element={ <Favorites /> } /> 
                         <Route path="favorites/:name" element={<PokeCard />} />
-                        <Route path='profile' element={<Profile />} />
+                        <Route path='profile' element={user ? <Profile /> : <Home />} />
                         <Route path='posts' element={<Posts />} />
                         <Route path='posts/:title' element={<PostCard />} />
                     </Routes>

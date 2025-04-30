@@ -11,7 +11,7 @@ const Tooltip = ({ name, children, nameStyle }: Props) => {
     
     return ( 
         <section data-name={name}
-            className={st[`container${nameStyle}`]}>
+            className={`${st[`container${nameStyle}`]} ${st.containerTooltip}`}>
             {children}
         </section>
      );

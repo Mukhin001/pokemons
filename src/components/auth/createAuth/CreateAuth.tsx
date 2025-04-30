@@ -25,7 +25,7 @@ interface Props {
 const CreateAuth = ({ setModal }: Props) => {
     const users = useAppSelector(state => state.authUsers);
     const dispatch = useAppDispatch();
-    let lastId = users.find(el => (el.id) && Math.max(el.id))?.id;
+    let lastId = users.find(el => (el.id) && Math.max(Number(el.id)))?.id;
     const [mistakeUserForm, setMistakeUserForm] = useState<string | null>(null);
     
     const handleSubmitForm = ( e: React.FormEvent<AuthFormElements>) => {
@@ -36,14 +36,28 @@ const CreateAuth = ({ setModal }: Props) => {
         const email = elements.email.value;
         const password = elements.userPassword.value;
         const passwordRepeat = elements.userPasswordrepeat.value;
-
-        if(name.length === 0 || password.length === 0) {
-            setMistakeUserForm('fill in the form');
+        console.log(mistakeUserForm);
+        
+        if(name.length === 0) {
+            setMistakeUserForm('name empty');
             return;
         }
-
+        if(email.length === 0) {
+            setMistakeUserForm('email empty');
+            return;
+        }
+        if(password.length === 0 ) {
+            setMistakeUserForm('password empty');
+            return;
+        }
+        if(passwordRepeat.length === 0 ) {
+            setMistakeUserForm('passwordRepeat empty');
+            return;
+        }
+        console.log(email);
+        
         if(!lastId) {
-            lastId = 0;
+            lastId = '0';
         }
         
         if(users.find(el => el.name === name)) {
@@ -57,8 +71,8 @@ const CreateAuth = ({ setModal }: Props) => {
         }
          
         if(name.trim().length !== 0 && email && password) {
-            dispatch(authCreate({ id: lastId + 1, name: name, email: email, password: password, gender: null, birthdate: null }));
-            dispatch(userEnter({ id: lastId + 1, name: name, email: email, password: password, gender: null, birthdate: null }));
+            dispatch(authCreate({ id: Number(lastId) + 1 + '', name: name, email: email, password: password, gender: null, birthdate: null }));
+            dispatch(userEnter({ id: Number(lastId) + 1 + '', name: name, email: email, password: password, gender: null, birthdate: null }));
             setModal(false);
         }
         
