@@ -5,6 +5,7 @@ import st from '../authUser/style.module.css';
 import { authCreate } from '../authUsersSlice';
 import { userEnter } from '../authUserSlice';
 import Input from '../../input/Input';
+import Btn from '../../button/Btn';
 
 interface AuthFormFields extends HTMLFormControlsCollection {
     username: HTMLInputElement;
@@ -72,13 +73,12 @@ const CreateAuth = ({ setModal }: Props) => {
                         <h3>{mistakeUserForm}</h3>
                     </Tooltip>
                 }
-                <Input name='username' type='text' placeholder='login' setMistakeUserForm={setMistakeUserForm} />
-                <Input name='email' type='email' placeholder='email' setMistakeUserForm={setMistakeUserForm} />
-                <Input name='userPassword' type='password' placeholder='userPassword' setMistakeUserForm={setMistakeUserForm} />
-                <Input name='userPasswordrepeat' type='password' placeholder='userPasswordrepeat' setMistakeUserForm={setMistakeUserForm} />
+                <Input name='username' type='text' placeholder='login' value='' setMistakeUserForm={setMistakeUserForm} />
+                <Input name='email' type='email' placeholder='email' value='' setMistakeUserForm={setMistakeUserForm} />
+                <Input name='userPassword' type='password' placeholder='userPassword' value='' setMistakeUserForm={setMistakeUserForm} />
+                <Input name='userPasswordrepeat' type='password' placeholder='userPasswordrepeat' value='' setMistakeUserForm={setMistakeUserForm} />
                 
-                <button className={`${st.btnForm} ${st.lastBtnForm}`}>Create Accaunt</button>
-                
+                <Btn content='Create Accaunt' />
             </div>
         </form>
      );

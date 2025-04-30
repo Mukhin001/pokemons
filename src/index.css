@@ -27,4 +27,9 @@ li {
 
 a {
     all: unset;
+    cursor: pointer;
+}
+
+a:hover {
+    color: var(--color-pink);
 }

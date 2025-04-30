@@ -1,4 +1,4 @@
-import { Link, replace, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { iconMenu } from "./iconMenu";
 import Modal from "../../../modal/Modal";
@@ -16,6 +16,7 @@ import CreateAuth from "../../../auth/createAuth/CreateAuth";
 import { userExit } from "../../../auth/authUserSlice";
 import { selectCurrentTheme } from "../../../../utils/themeSlice/themeSlice";
 import { selectWidth } from "../../../../utils/widthWindow/widthWindowSlice";
+import Btn from "../../../button/Btn";
 
 const NavIcon = () => {
     const theme = useAppSelector(selectCurrentTheme);
@@ -39,6 +40,24 @@ const NavIcon = () => {
         }
     }, [width]);
 
+    const handleEnterAuth = () => {
+        setModal(true); 
+        setAuth('authUser');
+    };
+
+    const handleExitAuth = () => {
+        setModal(false);
+        dispatch(userExit());
+        (location.pathname === '/profile') && navigate('/', {replace: true});
+    };
+
+    const handleMobClickProfileIcon = () => {
+        if(!width) {
+            setAuth('authUser');
+            setModal(true);  
+        }
+    };
+
     let content: ReactNode;
     
     content = ((width ? iconMenuWeb : iconMenuMob).map((obj) => {
@@ -47,7 +66,7 @@ const NavIcon = () => {
                 <li 
                     key={obj.name} 
                     className={`${width && stTooltip.liAuth} ${st.iconLi}`}
-                    onClick={() => !width && setModal(true)}
+                    onClick={handleMobClickProfileIcon}
                 >
                     <img 
                         src={obj.url.slice(0, -4) + theme + obj.url.slice(-4)} 
@@ -58,23 +77,16 @@ const NavIcon = () => {
                     {user ? 
                         <Tooltip nameStyle="Auth">
                             <ul>
-                                <li><Link to='profile'>profile</Link></li>
-                                <li><Link to='favorites'>favorites</Link></li>
+                                <li><Link to='profile' onClick={() => setModal(false)}>profile</Link></li>
+                                <li><Link to='favorites' onClick={() => setModal(false)}>favorites</Link></li>
                                 <li><Line></Line></li>
                             </ul>
-                            <button 
-                                style={{margin: '20px'}} 
-                                onClick={() => {
-                                    dispatch(userExit());
-                                    (location.pathname === '/profile') && navigate('/', {replace: true});
-                                }}
-
-                                >Exit</button>
+                            <Btn content="Exit" onclickFn={handleExitAuth} />
                         </Tooltip>
                         :
                         <Tooltip nameStyle="Auth">
                             <p>Войдите, чтобы получать скидки по бонусной карте и персональные предложения. После входа вы сможете создать аккаунт юрлица</p>
-                            <button className={stTooltip.btnAuth} onClick={() => {setModal(true); setAuth('authUser')}}>Вход или регистрация</button>
+                            <Btn content="Вход или регистрация" onclickFn={handleEnterAuth} />
                         </Tooltip>
                     }
                 </li> 
@@ -139,9 +151,22 @@ const NavIcon = () => {
 
     return ( 
         <nav className={st.wrapperNav}>
-            {modal && 
+            {modal &&
                 <Modal header="Auth" setModal={setModal} >
-                    {auth === 'authUser' ? <AuthUser setModal={setModal} setAuth={setAuth}/> : auth === 'createAuth' && <CreateAuth setModal={setModal} /> }
+                    {user ? 
+                        <div>
+                            <ul>
+                                <li><Link to='profile' onClick={() => setModal(false)}>profile</Link></li>
+                                <li><Link to='favorites' onClick={() => setModal(false)}>favorites</Link></li>
+                                <li><Line></Line></li>
+                            </ul>
+                            <Btn content="Exit" onclickFn={handleExitAuth} />
+                        </div>
+                        :
+                        <div>
+                            {auth === 'authUser' ? <AuthUser setModal={setModal} setAuth={setAuth}/> : auth === 'createAuth' && <CreateAuth setModal={setModal} /> }
+                        </div>
+                    }
                 </Modal>
             }
             <Drawer positionProps="left" theme={theme} showDrawer={showDrawer} setshowDrawer={setshowDrawer} >
