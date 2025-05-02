@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { updateUser } from '../../components/auth/authUserSlice';
 import { updateUsers } from '../../components/auth/authUsersSlice';
 import Modal from '../../components/modal/Modal';
+import pp from './profile.module.css';
 
 interface AuthFormFields extends HTMLFormControlsCollection {
     username: HTMLInputElement;
@@ -100,6 +101,22 @@ const Profile = () => {
                     <Input name='email' type='email' placeholder='email' value={`${email && email}`} setMistakeUserForm={setMistakeUserForm} />
                     <Input name='userPassword' type='password' placeholder='password' value={`${password && password}`} setMistakeUserForm={setMistakeUserForm} />
                     <Input name='userPasswordrepeat' type='password' placeholder='passwordrepeat' value={`${password && password}`} setMistakeUserForm={setMistakeUserForm} />
+                    
+                    <fieldset style={{border: 'none', display: 'grid', gap: '20px'}}>
+                        {/* <legend>Gender</legend> */}
+
+                        <input type="radio" id='male' name='gender' defaultChecked
+                            />
+                        <label htmlFor='male' 
+                            className={pp.btnRadio}
+                            >Male</label>
+
+                        <input type="radio" id='female' name='gender' 
+                            />
+                        <label htmlFor='female' 
+                             className={pp.btnRadio}>Female</label>
+                    </fieldset>
+                    
                     <Btn content='Save'/>
                 </div>
             </form>

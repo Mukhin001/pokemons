@@ -1,0 +1,7 @@
+.btnRadio {
+    border: 2px solid rgb(252, 252, 252);
+}
+
+.btnRadio:checked {
+    border: 2px solid rgb(196, 18, 48);
+}
