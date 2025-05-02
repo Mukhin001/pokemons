@@ -1,4 +1,6 @@
+import { useAppSelector } from '../../app/hooks';
 import { handleBlurInput, handleFocusInput } from '../../utils/inputForm/inputForm';
+import { selectWidth } from '../../utils/widthWindow/widthWindowSlice';
 import st from './input.module.css';
 
 type TypeInput = 'password' | 'email' | 'text';
@@ -12,21 +14,25 @@ interface Props {
 };
 
 const Input = ({ name, type, placeholder, value, setMistakeUserForm }: Props) => {
+    const width = useAppSelector(selectWidth);
 
     return ( 
-        <div className={st.inputWrap}    >
-            <label htmlFor={name}></label>
-            <input 
-                onFocus={(e) => handleFocusInput(e, setMistakeUserForm)}
-                onBlur={(e) => handleBlurInput(e, setMistakeUserForm)} 
-                type={type}
-                id={name} 
-                name={name}
-                placeholder={placeholder}
-                className={st.inputAuth}
-                defaultValue={value}
-            />
-        </div>
+        <section style={width ? {display: 'flex', justifyContent: 'space-between', gap: '40px'} : {display: 'block'}}>
+            <h3>{name}</h3>
+            <div className={st.inputWrap}>
+                <label htmlFor={name}></label>
+                <input 
+                    onFocus={(e) => handleFocusInput(e, setMistakeUserForm)}
+                    onBlur={(e) => handleBlurInput(e, setMistakeUserForm)} 
+                    type={type}
+                    id={name} 
+                    name={name}
+                    placeholder={placeholder}
+                    className={st.input}
+                    defaultValue={value}
+                />
+            </div>
+        </section>
      );
 };
  

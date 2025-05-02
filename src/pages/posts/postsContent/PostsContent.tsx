@@ -31,15 +31,15 @@ const PostsContent = ({ user, name, id, title, content, userId, setEditPost }: P
 
     return ( 
         <article>
-            <Link to={title.toLowerCase().replace(' ', '')} style={{cursor: 'pointer'}}>
-                <h3>{title}</h3>
+            <Link to={title.toLowerCase().replace(' ', '')} >
+                <h3 style={{cursor: 'pointer', display: 'inline-block'}}>{title}</h3>
             </Link>
             <p>{content}</p>
             <h4>userName: {name}</h4>
             <h4>userId: {userId}</h4>
             <h4>postId: {id}</h4>
             {userId === user.id + '' && 
-                <div style={{display: 'flex', gap: '20px'}}>
+                <div style={{display: 'flex', gap: '20px', maxWidth: '300px'}}>
                     <Btn id={id} content="Delete" onclickFn={deletePostFn} />
                     <Btn id={id} content="Edit" onclickFn={openEditPost} />
                 </div>

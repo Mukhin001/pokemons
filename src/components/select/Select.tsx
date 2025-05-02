@@ -44,7 +44,7 @@ const Select = ({ triangle, setTriangle, arrayProps, keySort, setKeySort }: Prop
                 </div>
 
                 <ul 
-                    style={triangle === 'down' ? {opacity: '0', zIndex: '0'} : {opacity: '1', zIndex: '3', top: '103%'}}
+                    style={triangle === 'down' ? {opacity: '0', zIndex: '0', pointerEvents: 'none'} : {opacity: '1', zIndex: '3', top: '103%', pointerEvents: 'auto'}}
                     className={`${st.wrapUl} ${st['wrapUl' + theme]}`}>
                     {arrayProps.map(el => 
                         <li 

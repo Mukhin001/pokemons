@@ -4,6 +4,7 @@ import { userEnter } from '../authUserSlice';
 import Input from '../../input/Input';
 import Tooltip from '../../tooltip/Tooltip';
 import { useState } from 'react';
+import Btn from '../../button/Btn';
 
 interface AuthFormFields extends HTMLFormControlsCollection {
     username: HTMLInputElement
@@ -46,6 +47,10 @@ const AuthUser = ({ setAuth, setModal }: Props) => {
         }
         
     };
+
+    const handleCreateAcc = () => {
+        setAuth('createAuth');
+    };
     
     return ( 
         <section>
@@ -61,11 +66,10 @@ const AuthUser = ({ setAuth, setModal }: Props) => {
                     <Input name='username' type='text' placeholder='login' setMistakeUserForm={setMistakeUserForm} />
                     <Input name='userPassword' type='password' placeholder='password' setMistakeUserForm={setMistakeUserForm} />
 
-                    <button className={st.btnForm}>Log In</button>
-                    
+                    <Btn content='Log In'/>
                 </div>
             </form>
-            <button className={`${st.btnForm} ${st.lastBtnForm}`} onClick={() => setAuth('createAuth')}>Create Accaunt</button>
+            <Btn content='Create Accaunt' onclickFn={handleCreateAcc} />
         </section>
     );
 };

@@ -4,6 +4,7 @@ import Input from "../../../components/input/Input"
 import Tooltip from "../../../components/tooltip/Tooltip"
 import st from '../../../components/auth/authUser/style.module.css';
 import { Post, postAdded } from "../postsSlice";
+import Btn from "../../../components/button/Btn";
 
 interface AddPostFormFields extends HTMLFormControlsCollection {
     postTitle: HTMLInputElement
@@ -61,7 +62,8 @@ const PostForm = () => {
                     }
                     <Input name='postTitle' type='text' placeholder='postTitle' setMistakeUserForm={setMistakeUserForm} />
                     <Input name='postContent' type='text' placeholder='postContent' setMistakeUserForm={setMistakeUserForm} />
-                    <button className={st.btnForm}>Save Post</button>
+                    
+                    <Btn content="Save Post"/>
                 </div>
             </form>
         </section>

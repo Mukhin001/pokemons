@@ -87,6 +87,7 @@ const Profile = () => {
                     <Btn content='Ok' onclickFn={handleSaveNewDataUser} />
                 </Modal>
             }
+            <h2>Profile</h2>
             <h3>About Me</h3>
             <form onSubmit={handleSubmitForm} style={{position: 'relative'}}>
                 <div className={st.wrapAccount}>
