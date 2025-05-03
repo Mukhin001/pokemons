@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import st from '../../components/auth/authUser/style.module.css';
 import Tooltip from '../../components/tooltip/Tooltip';
 import Input from '../../components/input/Input';
 import Btn from '../../components/button/Btn';
@@ -8,7 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import { updateUser } from '../../components/auth/authUserSlice';
 import { updateUsers } from '../../components/auth/authUsersSlice';
 import Modal from '../../components/modal/Modal';
-import pp from './profile.module.css';
+import st from './profile.module.css';
+import Gender from './gender/Gender';
+import Birthday from './birthday/Birthday';
 
 interface AuthFormFields extends HTMLFormControlsCollection {
     username: HTMLInputElement;
@@ -101,22 +102,8 @@ const Profile = () => {
                     <Input name='email' type='email' placeholder='email' value={`${email && email}`} setMistakeUserForm={setMistakeUserForm} />
                     <Input name='userPassword' type='password' placeholder='password' value={`${password && password}`} setMistakeUserForm={setMistakeUserForm} />
                     <Input name='userPasswordrepeat' type='password' placeholder='passwordrepeat' value={`${password && password}`} setMistakeUserForm={setMistakeUserForm} />
-                    
-                    <fieldset style={{border: 'none', display: 'grid', gap: '20px'}}>
-                        {/* <legend>Gender</legend> */}
-
-                        <input type="radio" id='male' name='gender' defaultChecked
-                            />
-                        <label htmlFor='male' 
-                            className={pp.btnRadio}
-                            >Male</label>
-
-                        <input type="radio" id='female' name='gender' 
-                            />
-                        <label htmlFor='female' 
-                             className={pp.btnRadio}>Female</label>
-                    </fieldset>
-                    
+                    <Gender />
+                    <Birthday />
                     <Btn content='Save'/>
                 </div>
             </form>

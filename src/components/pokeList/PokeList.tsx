@@ -90,7 +90,7 @@ const PokeList = ({ pokemons, isError, isLoading }: Props) => {
         <main className={st.containerPokeMain}>
             <section className={st.containerPoke}>
                 <div style={{maxWidth: '300px', padding: '2em'}}>
-                    <Select triangle={triangle} setTriangle={setTriangle} arrayProps={['Please choose sort', 'id+poke', 'id-poke', 'name']} keySort={keySort} setKeySort={setKeySort} />
+                    <Select name="Sort Pokemons" triangle={triangle} setTriangle={setTriangle} arrayProps={['Please choose sort', 'id+poke', 'id-poke', 'name']} keySort={keySort} setKeySort={setKeySort} />
                     <h3>Seach Poke</h3>
                     <Autocompletee 
                         pokemons={pokemons}

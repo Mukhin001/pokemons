@@ -57,7 +57,7 @@ const Posts = () => {
                 </Modal>
             }
             <h3>Posts</h3>
-            <Select triangle={triangle} setTriangle={setTriangle} arrayProps={['Please choose sort', 'id+', 'id-', 'name', 'date']} keySort={keySort} setKeySort={setKeySort}/>
+            <Select name="Sort Post" triangle={triangle} setTriangle={setTriangle} arrayProps={['Please choose sort', 'id+', 'id-', 'name', 'date']} keySort={keySort} setKeySort={setKeySort}/>
             {renderedPosts}
         </section>
      );

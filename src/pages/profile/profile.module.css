@@ -1,7 +1,12 @@
-.btnRadio {
-    border: 2px solid rgb(252, 252, 252);
+.wrapAccount {
+    display: grid;
+    gap: 20px;
 }
 
-.btnRadio:checked {
-    border: 2px solid rgb(196, 18, 48);
+.wrapAccount input {
+    outline: none;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 10px;
+    width: 100%;
 }

@@ -1,0 +1,20 @@
+.profileFieldset {
+    border: none;
+    gap: 10px;
+}
+
+.wrapGenderInput {
+    display: flex;
+    gap: 20px;
+}
+
+.btnRadioLabel {
+    padding: 5px 10px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.profileBtnRadio {
+    position: absolute;
+    opacity: 0;
+}

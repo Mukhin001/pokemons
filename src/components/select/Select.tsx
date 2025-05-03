@@ -6,14 +6,15 @@ import st from './select.module.css';
 export type Triangle = 'up' | 'down';
 
 interface Props {
+    name: string;
     triangle: Triangle;
     setTriangle: React.Dispatch<React.SetStateAction<Triangle>>;
     arrayProps: string[];
     keySort: SortKey;
     setKeySort: React.Dispatch<React.SetStateAction<SortKey>>;
-}
+};
 
-const Select = ({ triangle, setTriangle, arrayProps, keySort, setKeySort }: Props) => {
+const Select = ({ name, triangle, setTriangle, arrayProps, keySort, setKeySort }: Props) => {
     const theme = useAppSelector(selectCurrentTheme);
     
     const handleSection = () => {
@@ -36,7 +37,7 @@ const Select = ({ triangle, setTriangle, arrayProps, keySort, setKeySort }: Prop
                 <div className={st.wrapHeader} onClick={handleSection}>
                     <h3 
                         className={`${st.header} ${keySort && `${st.headerup}`} ${st['header' + triangle]} ${st['header' + theme]}`}
-                        >Select</h3>
+                        >{name}</h3>
                     <h3>{keySort}</h3>
                     <div className={st.wrapImg}>
                         <img src={`/arrow/triangle-${triangle}-${theme}.svg`} alt="" />
@@ -45,7 +46,7 @@ const Select = ({ triangle, setTriangle, arrayProps, keySort, setKeySort }: Prop
 
                 <ul 
                     style={triangle === 'down' ? {opacity: '0', zIndex: '0', pointerEvents: 'none'} : {opacity: '1', zIndex: '3', top: '103%', pointerEvents: 'auto'}}
-                    className={`${st.wrapUl} ${st['wrapUl' + theme]}`}>
+                    className={`${st.wrapUl} ${st['wrapUl' + theme]} ${arrayProps.length > 10 && st.scrollUl}`}>
                     {arrayProps.map(el => 
                         <li 
                             onClick={handleSetValueLi}
