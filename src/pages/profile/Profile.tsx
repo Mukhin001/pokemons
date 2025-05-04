@@ -10,6 +10,7 @@ import Modal from '../../components/modal/Modal';
 import st from './profile.module.css';
 import Gender from './gender/Gender';
 import Birthday from './birthday/Birthday';
+import Communications from './communications/Communications';
 
 interface AuthFormFields extends HTMLFormControlsCollection {
     username: HTMLInputElement;
@@ -104,6 +105,7 @@ const Profile = () => {
                     <Input name='userPasswordrepeat' type='password' placeholder='passwordrepeat' value={`${password && password}`} setMistakeUserForm={setMistakeUserForm} />
                     <Gender />
                     <Birthday />
+                    <Communications />
                     <Btn content='Save'/>
                 </div>
             </form>

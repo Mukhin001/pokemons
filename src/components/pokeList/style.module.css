@@ -5,6 +5,13 @@
     /* max-width: 1440px; */
 }
 
+.wrapSelect {
+    display: grid;
+    gap: 10px;
+    max-width: 300px;
+    padding: 2em;
+}
+
 .visible {
     opacity: 1;
     transform: translateY(0);

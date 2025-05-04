@@ -1,0 +1,61 @@
+.containerCommunications {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrappLabelCommunications {
+    display: flex;
+}
+
+.inputCommunications {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    margin: 0;
+    cursor: pointer;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.inputCommunicationslight {
+    border: 1px solid black;
+}
+
+.inputCommunicationsdark {
+    border: 1px solid white;
+}
+
+.inputCommunications:checked {
+    background-color: var(--color-pink);
+    border-color: var(--color-pink);
+}
+
+/* Эффект нажатия */
+.inputCommunications:active {
+    filter: brightness(90%);
+}
+
+/* Смена цвета границы при наведении */
+.inputCommunications:hover:not(:disabled) {
+    border-color: #0d6efd;
+}
+
+/* Стили для чекбокса при фокусе */
+.inputCommunications:focus {
+    border-color: #0d6efd;
+    outline: none;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Отключенный чекбокс */
+.inputCommunications:disabled {
+    filter: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.inputCommunications:disabled ~ .checkbox-label {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

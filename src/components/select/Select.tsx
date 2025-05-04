@@ -38,7 +38,8 @@ const Select = ({ name, triangle, setTriangle, arrayProps, keySort, setKeySort }
                     <h3 
                         className={`${st.header} ${keySort && `${st.headerup}`} ${st['header' + triangle]} ${st['header' + theme]}`}
                         >{name}</h3>
-                    <h3>{keySort}</h3>
+                    <h3 style={{visibility: 'hidden'}}>{name}</h3>
+                    <h3 className={st.header}>{keySort}</h3>
                     <div className={st.wrapImg}>
                         <img src={`/arrow/triangle-${triangle}-${theme}.svg`} alt="" />
                     </div>
@@ -50,7 +51,7 @@ const Select = ({ name, triangle, setTriangle, arrayProps, keySort, setKeySort }
                     {arrayProps.map(el => 
                         <li 
                             onClick={handleSetValueLi}
-                            key={el} className={`${st.selectLi} ${st['selectLi' + theme]}`}
+                            key={el} className={st.selectLi}
                         >{el}</li>
                     )}
                 </ul>

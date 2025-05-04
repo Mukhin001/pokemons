@@ -14,6 +14,14 @@
     position: relative;
 }
 
+.btnRadioLabellight {
+    border: 1px solid black;
+}
+
+.btnRadioLabeldark {
+    border: 1px solid white;
+}
+
 .profileBtnRadio {
     position: absolute;
     opacity: 0;

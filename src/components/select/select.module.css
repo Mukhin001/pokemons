@@ -2,9 +2,8 @@
     position: relative;
     border-radius: 10px;
     transition: var(--transition-theme);
-    margin: 20px 0;
-    max-width: 300px;
-    min-width: 100px;
+    max-width: 250px;
+    min-width: 50px;
 }
 
 .wrapSelectlight {
@@ -20,13 +19,14 @@
 .wrapHeader {
     display: flex;
     justify-content: space-between;
-    padding: 15px 20px;
+    padding: 7px 10px 5px 10px;
+   gap: 10px;
 }
 
 .header {
     position: absolute;
     transition: all 1s ease;
-    padding: 5px;
+    
     border-radius: 10px;
 }
 
@@ -61,7 +61,6 @@
 .wrapUl {
     position: absolute;
     width: 100%;
-    border-radius: 10px;
     padding: 10px 0;
 }
 
@@ -82,10 +81,6 @@
     padding: 5px 10px;
 }
 
-.selectLidark:hover {
-    background-color: var(--backGround-darkLight);
-}
-
-.selectLilight:hover {
-    background-color: var(--backGround-lightLight);
+.selectLi:hover {
+    background-color: var(--color-pink);
 }
