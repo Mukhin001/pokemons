@@ -12,6 +12,7 @@
     padding: 5px 10px;
     border-radius: 10px;
     position: relative;
+    cursor: pointer;
 }
 
 .btnRadioLabellight {
@@ -25,4 +26,13 @@
 .profileBtnRadio {
     position: absolute;
     opacity: 0;
+}
+
+.profileBtnRadio:focus + .btnRadioLabel {
+    border-color: var(--color-pink);    
+    box-shadow: 0 0 0 0.25rem rgba(235, 71, 164, 0.358);
+}
+
+.profileBtnRadio:checked + .btnRadioLabel {
+    border-color: var(--color-pink);
 }

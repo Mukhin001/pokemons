@@ -10,7 +10,7 @@ const Communications = () => {
             <h3>Communications</h3>
             <div>
                 <div className={st.wrappLabelCommunications}>
-                    <input id='checkboxemail' type='checkbox' defaultChecked 
+                    <input id='checkboxemail' type='checkbox' disabled 
                         className={`${st.inputCommunications} ${st['inputCommunications' + theme]}`}/>
                     <label htmlFor='checkboxemail'>Согласие на e-mail рассылки</label>
                 </div>

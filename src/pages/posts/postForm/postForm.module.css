@@ -1,0 +1,6 @@
+.containerPostForm {
+    position: relative;
+    display: grid;
+    gap: 20px;
+    justify-content: flex-start;
+}

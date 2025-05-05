@@ -33,7 +33,10 @@ const Select = ({ name, triangle, setTriangle, arrayProps, keySort, setKeySort }
 
     return ( 
         <section>
-            <div className={`${st.wrapSelect} ${st['wrapSelect' + theme]}`}>
+            <div className={`${st.wrapSelect} ${st['wrapSelect' + theme]}`}
+                onFocus={(e) => e.currentTarget.classList.add(st.wrapSelectfocus)}
+                onBlur={(e) => e.currentTarget.classList.remove(st.wrapSelectfocus)}
+            >
                 <div className={st.wrapHeader} onClick={handleSection}>
                     <h3 
                         className={`${st.header} ${keySort && `${st.headerup}`} ${st['header' + triangle]} ${st['header' + theme]}`}

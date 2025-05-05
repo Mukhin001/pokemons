@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../../app/hooks"
 import Input from "../../../components/input/Input"
 import Tooltip from "../../../components/tooltip/Tooltip"
-import st from '../../../components/auth/authUser/style.module.css';
+import st from './postForm.module.css';
 import { Post, postAdded } from "../postsSlice";
 import Btn from "../../../components/button/Btn";
 
@@ -53,7 +53,7 @@ const PostForm = () => {
     return ( 
         <section>
             <form onSubmit={handleSubmit}>
-                <div className={st.wrapAccount} style={{position: 'relative'}}>
+                <div className={st.containerPostForm}>
                     <h3>Add a New Post</h3>
                     {mistakeUserForm &&
                         <Tooltip nameStyle='CraeteAuth'>
