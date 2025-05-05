@@ -1,9 +1,8 @@
 import { ReactNode, useMemo, useState } from "react";
-import { Comment, useGetCommentsQuery } from "../../api/jsonplaceholder/comments/commentsApi";
+import { useGetCommentsQuery } from "../../api/jsonplaceholder/comments/commentsApi";
 import st from './style.module.css';
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { increment } from "./likeSlice";
-import AddNewComment from "./AddNewComment";
 import Loader from "../loader/Loader";
 import ErrorComponent from "../error/ErrorComponent";
 import { selectCurrentTheme } from "../../utils/themeSlice/themeSlice";
@@ -90,9 +89,9 @@ const CommentsList = ({ id }: Props) => {
         <section>
             {/* <AddNewComment postId={ii} /> */}
             {/* <Select triangle={triangle} setTriangle={setTriangle} arrayProps={['Please choose sort', 'id+', 'id-', 'name', 'email']} keySort={keySort} setKeySort={setKeySort}/> */}
-            <Select 
+            <Select name="comment sort"
                 triangle={triangle} setTriangle={setTriangle} 
-                arrayProps={['Please choose sort', 'id+', 'id-', 'name', 'email']}
+                arrayProps={[ 'id+', 'id-', 'name', 'email']}
                 keySort={keySort} setKeySort={setKeySort}
             />
             {content}

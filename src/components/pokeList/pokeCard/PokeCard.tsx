@@ -10,7 +10,8 @@ const PokeCard = () => {
     const { name } = useParams();
     const { data: dataImg, isError, isLoading } = useGetPokemonQuery(name);
     const arrImg: string[] = [];
-
+    console.log(dataImg);
+    
     if(dataImg) {
         const imgO =  dataImg?.sprites.front_default;
         const imgT =  dataImg?.sprites.back_default;
