@@ -1,13 +1,22 @@
 import { useGetAllPokemonsQuery } from "../../api/pokemons/pokemonsAll/pokemonsAll";
-import InfiniteCarousel from "./InfiniteCarousel";
 import { useAppSelector } from "../../app/hooks";
+import ErrorComponent from "../../components/error/ErrorComponent";
+import Loader from "../../components/loader/Loader";
 import PokeList from "../../components/pokeList/PokeList";
 
 const Favorites = () => {
     const pokeFav = useAppSelector(state => state.favPoke);
 
     const { data, isLoading, isError } = useGetAllPokemonsQuery();
-    let pokemons = data?.results.filter(el => pokeFav.includes(el.name))
+    let pokemons = data?.results.filter(el => pokeFav.includes(el.name));
+ 
+    if(isLoading) {
+        return <Loader />
+    }
+
+    if(isError) {
+        return <ErrorComponent size="Large" />
+    }
 
     return ( 
         <main>
@@ -19,7 +28,6 @@ const Favorites = () => {
                     <PokeList pokemons={pokemons} isError={isError} isLoading={isLoading} />
                 </div>
             }
-            <InfiniteCarousel />
         </main>
      );
 };

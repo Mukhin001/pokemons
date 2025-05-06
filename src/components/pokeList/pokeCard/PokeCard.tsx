@@ -4,6 +4,7 @@ import CardSlider from "./cardSlider/CardSlider";
 import Loader from "../../loader/Loader";
 import ErrorComponent from "../../error/ErrorComponent";
 import PokeNav from "./pokeNav/PokeNav";
+import PokeDetail from "./pokeDetail/PokeDetail";
 
 const PokeCard = () => {
  
@@ -30,7 +31,10 @@ const PokeCard = () => {
 
     return ( 
         <section>
-            <CardSlider arrImg={arrImg} name={name} id={dataImg?.id} />
+            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                <CardSlider arrImg={arrImg} name={name} id={dataImg?.id} />
+                <PokeDetail name={name} />
+            </div>
             <PokeNav  id={dataImg?.id} />
         </section>
      );

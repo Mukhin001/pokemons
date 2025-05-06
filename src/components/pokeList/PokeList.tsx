@@ -6,7 +6,6 @@ import { PokemonsAll  } from "../../api/pokemons/pokemonsAll/pokemonsAll";
 import Autocompletee from "../autocomplete/Autocomplete";
 import Loader from "../loader/Loader";
 import ErrorComponent from "../error/ErrorComponent";
-import { useAppSelector } from "../../app/hooks";
 import Select, { Triangle } from "../select/Select";
 import { getSortFn, SortKey } from "../../utils/sortUtils/sortUtils";
 
@@ -31,7 +30,6 @@ const PokeList = ({ pokemons, isError, isLoading }: Props) => {
     const [bool, setBool] = useState<boolean>(false);
     const [inputValueLength, setInputValueLength] = useState<any>('');
     const [inputValue, setInputValue] = useState<any>('');
-    const pokeFav = useAppSelector(state => state.favPoke);
     const [triangle, setTriangle] = useState<Triangle>('down');
 
     const mainArticleClick = (e: any) => {
@@ -68,7 +66,7 @@ const PokeList = ({ pokemons, isError, isLoading }: Props) => {
             className={st.pokeListWrapper}
             >
 
-            <TooltipBadge name={obj.name} pokeFav={pokeFav.includes(obj.name) ? obj.name : null} />
+            <TooltipBadge name={obj.name} classNameProps='wrapLikeImgGreyhidden' />
 
             <div>
                 <div className={st.wrapImg}>

@@ -33,15 +33,8 @@
     width: 25px;
     cursor: pointer;
     padding: 3px;
+    
     transition: opacity 0.5s ease-in-out;
-}
-
-.wrapLikeImgGreyhidden {
-    opacity: 0;
-}
-
-.wrapLikeImgGreyVisible {
-    opacity: 1;
 }
 
 .wrapLikeImgGrey img {

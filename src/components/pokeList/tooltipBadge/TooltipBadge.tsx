@@ -2,18 +2,21 @@ import Tooltip from "../../tooltip/Tooltip";
 import st from './style.module.css';
 import style from '../style.module.css';
 import keyFrame from './keyframe.module.css';
-import { useAppDispatch } from "../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { addPokeFav } from "../../../pages/favorites/favPokeSlice/favPokeSlice";
 
 interface Props {
-    name: string;
+    name: string | undefined;
     description?: string;
     alt?: string;
-    pokeFav: string | null;
+    classNameProps: 'wrapLikeImgGreyhidden' | 'wrapLikeImgGreyVisible';
 };
 
-const TooltipBadge = ({ name, description, alt, pokeFav }: Props) => {
+const TooltipBadge = ({ name, description, alt, classNameProps }: Props) => {
     const dispatch = useAppDispatch();
+    const pokeFavState = useAppSelector(state => state.favPoke);
+    let pokeFav: boolean = false;
+    if(name) pokeFav = pokeFavState.includes(name);
     
     const mouseEnter = (e: React.MouseEvent<HTMLSpanElement, MouseEvent> | any, name: string): void => {
         const tooltip = e.currentTarget.previousElementSibling;
@@ -42,13 +45,14 @@ const TooltipBadge = ({ name, description, alt, pokeFav }: Props) => {
                     <p>{alt}</p>
                 </Tooltip>
                 <span 
-                    onMouseEnter={(e) => mouseEnter(e, name)}
-                    onMouseLeave={(e) => mouseLeave(e, name)}
+                    onMouseEnter={(e) => mouseEnter(e, name ? name : 'empty')}
+                    onMouseLeave={(e) => mouseLeave(e, name ? name : 'empty')}
                     >tooltip
                 </span>
                 <div onClick={handleClickHeart} data-pokename={name} className={`${st.wrapLike} ${style.wrapLike}`}>
                     {!pokeFav && 
-                        <div data-name='wrapLikeImgGrey' className={`${st.wrapLikeImgGrey} ${style.wrapLikeImgGrey}`}>
+                        <div data-name='wrapLikeImgGrey' 
+                            className={`${st.wrapLikeImgGrey} ${style.wrapLikeImgGrey} ${st[classNameProps]}`}>
                             <img src='/icon_btn/like_grey.svg' alt="" />
                         </div>
                     }

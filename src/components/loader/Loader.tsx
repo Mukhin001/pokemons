@@ -6,7 +6,7 @@ const Loader = () => {
     const theme = useAppSelector(selectCurrentTheme);
 
     return ( 
-        <section>
+        <section className={st.loaderContainer}>
             <span className={`${st.loader} ${theme === 'light' ? `${st.loaderLight}` : `${st.loaderDark}`}`}></span>
         </section>
      );
