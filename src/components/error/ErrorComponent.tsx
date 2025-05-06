@@ -3,7 +3,7 @@ import { selectCurrentTheme } from "../../utils/themeSlice/themeSlice";
 import st from './style.module.css';
 
 interface PropsErr {
-    size: string;
+    size: 'Small'| 'Medium' | 'Large' ;
     display?: string;
     modal?: boolean;
     text?: string;

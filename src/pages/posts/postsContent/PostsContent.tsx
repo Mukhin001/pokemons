@@ -3,6 +3,7 @@ import Btn from "../../../components/button/Btn";
 import { useAppDispatch } from "../../../app/hooks";
 import { postDelete } from "../postsSlice";
 import { AuthState } from "../../../components/auth/authUserSlice";
+import st from '../posts.module.css';
 
 interface Props {
     user: AuthState;
@@ -31,7 +32,7 @@ const PostsContent = ({ user, name, id, title, content, userId, setEditPost }: P
 
     return ( 
         <article>
-            <Link to={title.toLowerCase().replace(' ', '')} >
+            <Link to={'post-' +id} className={st.postLink}>
                 <h3 style={{cursor: 'pointer', display: 'inline-block'}}>{title}</h3>
             </Link>
             <p>{content}</p>
@@ -43,7 +44,7 @@ const PostsContent = ({ user, name, id, title, content, userId, setEditPost }: P
                     <Btn id={id} content="Delete" onclickFn={deletePostFn} />
                     <Btn id={id} content="Edit" onclickFn={openEditPost} />
                 </div>
-            }
+            } 
         </article>
     );
 };

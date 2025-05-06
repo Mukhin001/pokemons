@@ -9,3 +9,7 @@
     cursor: pointer;
     padding: 12px 0;
 }
+
+.navTitleWrap a:hover {
+    color: var(--color-pink);
+}

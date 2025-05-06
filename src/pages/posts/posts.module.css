@@ -12,3 +12,7 @@
     border-bottom: 2px solid slateblue;
     padding: 5px 20px;
 }
+
+.postLink:hover {
+    color: var(--color-pink);
+}
