@@ -26,6 +26,8 @@
 
 .wrapGhost {
     padding-right: 50px;
+    display: grid;
+    justify-content: center;
 }
 
 .imgGhost {

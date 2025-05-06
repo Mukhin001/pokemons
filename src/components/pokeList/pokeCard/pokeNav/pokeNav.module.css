@@ -1,0 +1,13 @@
+.wrapLi {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f5f5fa;
+    color: black;
+   
+}
+
+.pokeNavLi {
+    padding: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}

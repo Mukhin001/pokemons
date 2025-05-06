@@ -1,16 +1,15 @@
 import { useParams } from "react-router-dom";
-import CommentsList from "../../comments/CommentsList";
 import { useGetPokemonQuery } from "../../../api/pokemons/pokemonsAll/pokemonsAll";
 import CardSlider from "./cardSlider/CardSlider";
 import Loader from "../../loader/Loader";
 import ErrorComponent from "../../error/ErrorComponent";
+import PokeNav from "./pokeNav/PokeNav";
 
 const PokeCard = () => {
  
     const { name } = useParams();
     const { data: dataImg, isError, isLoading } = useGetPokemonQuery(name);
     const arrImg: string[] = [];
-    console.log(dataImg);
     
     if(dataImg) {
         const imgO =  dataImg?.sprites.front_default;
@@ -32,7 +31,7 @@ const PokeCard = () => {
     return ( 
         <section>
             <CardSlider arrImg={arrImg} name={name} id={dataImg?.id} />
-            <CommentsList id={dataImg?.id} />
+            <PokeNav  id={dataImg?.id} />
         </section>
      );
 };

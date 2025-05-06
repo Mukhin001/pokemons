@@ -14,7 +14,6 @@ interface Props {
 
 const TooltipBadge = ({ name, description, alt, pokeFav }: Props) => {
     const dispatch = useAppDispatch();
-    console.log(description);
     
     const mouseEnter = (e: React.MouseEvent<HTMLSpanElement, MouseEvent> | any, name: string): void => {
         const tooltip = e.currentTarget.previousElementSibling;

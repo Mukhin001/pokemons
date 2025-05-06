@@ -20,7 +20,10 @@ export const pokemonsAll = pokemonsApi.injectEndpoints({
         getPokemon: builder.query({
             query: (name) => `/api/v2/pokemon/${name}`,
         }),
+        getPokeSpecies: builder.query({
+            query: (id) => `/api/v2/pokemon-species/${id}`,
+        }),
     }),
 });
 
-export const { useGetAllPokemonsQuery, useGetPokemonQuery } = pokemonsAll;
+export const { useGetAllPokemonsQuery, useGetPokemonQuery, useGetPokeSpeciesQuery } = pokemonsAll; 
