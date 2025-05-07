@@ -1,0 +1,30 @@
+.wrapUl {
+    max-width: 880px; /* или ширина контейнера слайдера */
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  
+  .wrapLi {
+    display: flex;
+    gap: 20px; /* отступы между слайдами */
+    transition: transform 0.5s ease; /* плавный сдвиг */
+    width: max-content;
+  }
+  
+  .wrapImg {
+    width: 200px; /* ширина каждого слайда */
+    flex-shrink: 0; /* предотвращает сжатие слайда */
+  }
+  
+  .wrapImg img {
+    width: 100%; /* картинка растягивается по ширине слайда */
+    display: block; /* убираем отступы под изображение */
+  }
+  
+  .wrapBtns {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  

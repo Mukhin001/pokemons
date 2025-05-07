@@ -43,8 +43,8 @@ const Home = () => {
 
     return (
         <section>
-            <Slide />
-            {/* <div className={st.imgWrapper}
+            {/* <Slide /> */}
+            <div className={st.imgWrapper}
                 ref={imgWrapper}
             >
                 <img
@@ -53,7 +53,7 @@ const Home = () => {
                     style={{transform: `scale(${scale})`, borderRadius: `${borderRadius}px`,}}
                 />
             </div>
-            <div className={st.divH}></div> */}
+            <div className={st.divH}></div>
         </section>
     );
 };

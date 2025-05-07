@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { useGetAllPokemonsQuery } from "../../api/pokemons/pokemonsAll/pokemonsAll";
 import { useAppSelector } from "../../app/hooks";
 import Btn from "../../components/button/Btn";
-import ErrorComponent from "../../components/error/ErrorComponent";
-import Loader from "../../components/loader/Loader";
 import PokeList from "../../components/pokeList/PokeList";
 import st from './favorites.module.css';
 
@@ -12,14 +10,7 @@ const Favorites = () => {
 
     const { data, isLoading, isError } = useGetAllPokemonsQuery();
     let pokemons = data?.results.filter(el => pokeFav.includes(el.name));
- 
-    if(isLoading) {
-        return <Loader />
-    }
 
-    if(isError) {
-        return <ErrorComponent size="Large" />
-    }
 
     return ( 
         <main>
