@@ -21,10 +21,10 @@ const InputCity = ({ setModalCityList }: Props) => {
     const [ trigger, { data, isLoading, isError }] = useLazyGetWeatherCityQuery();
     let content: ReactNode;
 
-    const hadnleInputCity = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const hadnleInputCity = () => {
         
         if(!inputCity || inputCity.trim().length === 0) {
-            setTooltip(true)
+            setTooltip(true);
         } else {      
             trigger(inputCity);
             setModal(true);
@@ -42,10 +42,12 @@ const InputCity = ({ setModalCityList }: Props) => {
             </Modal>
         )
     }
+
     if(data) {
         dispatch(setCity(data.name));
         setModalCityList(false);
     }
+
     return ( 
         <section className={st.inputCityWrap}>
             <div 

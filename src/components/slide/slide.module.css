@@ -1,30 +1,55 @@
-.wrapUl {
-    max-width: 880px; /* или ширина контейнера слайдера */
+.containerSlide {
+    display: grid;
+    gap: 20px;
+}
+
+.wrapUlMain {
+    max-width: 400px; 
     overflow: hidden;
+    margin: 0 auto;
+}
+
+.wrapLiMain {
+    display: flex;
+    transition: transform 0.5s ease; 
+    width: max-content;
+}
+
+.wrapImgMain {
+    width: 400px; 
+    flex-shrink: 0;
+}
+
+.wrapImgMain img {
+    width: 100%; 
+    display: block;
+}
+
+.wrapUl {
+    max-width: 880px; 
     margin: 0 auto;
   }
   
   .wrapLi {
     display: flex;
-    gap: 20px; /* отступы между слайдами */
-    transition: transform 0.5s ease; /* плавный сдвиг */
-    width: max-content;
+    gap: 20px; 
   }
   
   .wrapImg {
-    width: 200px; /* ширина каждого слайда */
-    flex-shrink: 0; /* предотвращает сжатие слайда */
+    width: 200px; 
+    cursor: pointer;
   }
   
   .wrapImg img {
-    width: 100%; /* картинка растягивается по ширине слайда */
-    display: block; /* убираем отступы под изображение */
+    width: 100%; 
   }
   
   .wrapBtns {
     display: flex;
     gap: 20px;
     justify-content: center;
-    margin-top: 20px;
   }
   
+  .activeSlide {
+    border: 2px solid var(--color-pink);
+  }
