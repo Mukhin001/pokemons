@@ -1,59 +1,67 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import st from '../style.module.css'; // Подключаем стили
 
-const slides = [
-       "/img-test-slider/belka.jpg",
-        "/img-test-slider/fox.jpg",
-        "/img-test-slider/kroll.jpg",
-        "/img-test-slider/leo.jpg",
-        "/img-test-slider/rabbit.jpg",
-        "/img-test-slider/wolf.jpeg",
-]; // Массив изображений
-
-const slides2 = [
-     "/img-test-slider/belka.jpg",
-      "/img-test-slider/fox.jpg",
-      "/img-test-slider/kroll.jpg",
-      // "/img-test-slider/leo.jpg",
-      // "/img-test-slider/rabbit.jpg",
-      // "/img-test-slider/wolf.jpeg",
-]; // Массив изображений
+const slidesArr = [
+    "/img-test-slider/belka.jpg",
+    "/img-test-slider/fox.jpg",
+    "/img-test-slider/kroll.jpg",
+    // "/img-test-slider/leo.jpg",
+    // "/img-test-slider/rabbit.jpg",
+    // "/img-test-slider/wolf.jpeg",
+]; 
 
 export default function Slider() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const [extendedSlides, setextendedSlides] = useState(slides);
-  //const extendedSlides = [...slides, ...slides];
-  const slideCount = extendedSlides.length - 1;
+    const copiSlide = slidesArr.slice();
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [indexSlide, setIndexSlide] = useState(0 );
+    const sliderRef = useRef<HTMLDivElement>(null);
+    const [slides, setSlides] = useState(copiSlide);
 
+    const handleClickLeft = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        setCurrentIndex(prev => prev + 1);
+        setIndexSlide(prev => prev <= 0 ? copiSlide.length -1 : prev - 1);
+        
+        setSlides(prev => {
+            
+            const newSlides = [...prev];
+            const lastEl = prev[indexSlide];
+            newSlides.unshift(lastEl);
+            return newSlides;
+        }); 
+        console.log(slides);
+        
+    }
+    const handleClickRight = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        setCurrentIndex(prev => prev - 1);
+        setIndexSlide(prev => prev >= copiSlide.length -1 ? 0 : prev + 1);
+        setSlides(prev => {
+            
+            const newSlides = [...prev];
+            const lastEl = prev[indexSlide];
+            newSlides.push(lastEl);
+            return newSlides;
+        }); 
+    };
 
-  useEffect(() => {
-    console.log(currentIndex);
-    if(currentIndex <= -slideCount) {
-      setextendedSlides(prev => [...prev, ...slides2])
-    } 
-    console.log(extendedSlides);
-    
-  }, [currentIndex,]);
+    return (
+        <div className="slider-container">
+            <section className={st.slider}>
+                    <div ref={sliderRef} className={st.slides} 
+                        // style={{transform: `translateX(${currentIndex * 100}%)`}}
+                    >
+                        {slides.map((obj, i) => <div className={st.slide} key={i}>
+                                <img src={obj} alt={obj} />
+                            </div> 
+                        )}
+                    </div>
+                </section>
 
-  return (
-    <div className="slider-container">
-         <section className={st.slider}>
-                <div ref={sliderRef} className={st.slides} 
-                  style={{transform: `translateX(${currentIndex * 100}%)`}}>
-                    {extendedSlides.map((obj, i) => <div className={st.slide} key={i}>
-                            <img src={obj} alt={obj} />
-                        </div> 
-                    )}
-                </div>
-            </section>
-      {/* // prev === 0 ? slideCount : prev - 1 */}
-      <button onClick={() => setCurrentIndex(prev =>  prev + 1)} className="slider-btn left">
-        ❮
-      </button>
-      <button onClick={() => setCurrentIndex(prev =>  prev - 1)} className="slider-btn right">
-        ❯
-      </button>
-    </div>
-  );
-}
+        <button onClick={handleClickLeft} className="slider-btn left">
+            ❮
+        </button>
+        <button onClick={handleClickRight} className="slider-btn right">
+            ❯
+        </button>
+        </div>
+    );
+};

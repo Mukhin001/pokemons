@@ -3,6 +3,8 @@ import st from './style.module.css';
 import { useAppSelector } from "../../app/hooks";
 import { selectWidth } from "../../utils/widthWindow/widthWindowSlice";
 import Slide from "../../components/slide/Slide";
+import DragDropSimple from "../../components/dragAndDrop/dragDropSimple/DragDropSimple";
+import Slider from "../../components/test/slider/Slider";
 
 const Home = () => {
     const imgWrapper = useRef<HTMLDivElement>(null);
@@ -43,7 +45,9 @@ const Home = () => {
 
     return (
         <section>
-            <Slide />
+            <DragDropSimple />
+            {/* <Slider /> */}
+            {/* <Slide /> */}
             {/* <div className={st.imgWrapper}
                 ref={imgWrapper}
             >
