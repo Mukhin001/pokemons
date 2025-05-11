@@ -12,7 +12,7 @@ interface Props {
     setBool: React.Dispatch<React.SetStateAction<boolean>>;
     getInputValueLength: any;
     inputValue: any;
-    setInputValue: React.Dispatch<React.SetStateAction<string | null>>;
+    setInputValue: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const Autocompletee = ({ pokemons, headerStyle, setHeaderStyle, bool, setBool, getInputValueLength, inputValue, setInputValue }: Props) => {
@@ -21,11 +21,14 @@ const Autocompletee = ({ pokemons, headerStyle, setHeaderStyle, bool, setBool, g
     const theme = useAppSelector(selectCurrentTheme);
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+
         setInputValue(e.target.value);
         getInputValueLength(e.target.value);
     };
 
     const handleClickInput = () => {
+        console.log(inputValue);
+        
         setBool(!bool);
         setHeaderStyle(true);
         if(inputRef.current) inputRef.current.focus();  
@@ -35,7 +38,7 @@ const Autocompletee = ({ pokemons, headerStyle, setHeaderStyle, bool, setBool, g
         const handleLi = e.currentTarget as HTMLElement;
         setBool(false);
         setShowBtnX(true);
-        setInputValue(e.currentTarget.textContent);
+        if(e.currentTarget.textContent) setInputValue(e.currentTarget.textContent);
         getInputValueLength(handleLi.textContent);
     };
 

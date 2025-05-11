@@ -9,6 +9,7 @@ import Select, { Triangle } from "../../components/select/Select";
 import { getSortFn, SortKey } from "../../utils/sortUtils/sortUtils";
 import EditPost from "./editPost/EditPost";
 import PostsContent from "./postsContent/PostsContent";
+import Line from "../../components/line/Line";
 
 const Posts = () => {
     const posts = useAppSelector(state => state.posts);
@@ -34,6 +35,7 @@ const Posts = () => {
                 :
                 <PostsContent  user={user} name={post.name} id={post.id} userId={post.userId} title={post.title} content={post.content} setEditPost={setEditPost} />
             }   
+            <Line />
         </article>
     ));
 

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "../../pages/home/Home";
 import Favorites from "../../pages/favorites/Favorites";
 import Profile from "../../pages/profile/Profile";
@@ -9,6 +9,7 @@ import BreadCrumds from "./breadCrumds/BreadCrumds";
 import Posts from "../../pages/posts/Posts";
 import PostCard from "../../pages/posts/postCard/PostCard";
 import { useAppSelector } from "../../app/hooks";
+import NotFound from "../../pages/notFound/NotFound";
 
 const Main = () => {
     const user = useAppSelector(state => state.authUser.name);
@@ -23,11 +24,13 @@ const Main = () => {
                         <Route path='pokemons' element={<Pokemons />} />
                         <Route path="pokemons/:name" element={<PokeCard />} />
                         <Route path='todolist' element={<ToDoList />} />
-                        <Route path='favorites/' element={ <Favorites /> } /> 
+                        <Route path='favorites' element={ <Favorites /> } /> 
                         <Route path="favorites/:name" element={<PokeCard />} />
-                        <Route path='profile' element={user ? <Profile /> : <Home />} />
+                        <Route path='profile' element={user ? <Profile /> : <Navigate to='/' replace /> } />
                         <Route path='posts' element={<Posts />} />
                         <Route path='posts/:title' element={<PostCard />} />
+                        
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </section>
             </div>

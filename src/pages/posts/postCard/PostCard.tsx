@@ -4,6 +4,7 @@ import Btn from "../../../components/button/Btn";
 import { postDelete } from "../postsSlice";
 import { useState } from "react";
 import EditPost from "../editPost/EditPost";
+import NotFound from "../../notFound/NotFound";
 
 const PostCard = () => {
     const user = useAppSelector(state => state.authUser);
@@ -14,6 +15,10 @@ const PostCard = () => {
     // const postId = posts.find(post => post.title.toLowerCase().replace(' ', '') === params.title);
     const [editPost, setEditPost] = useState<null | string>(null);
     
+    if(!postId) {
+        return <NotFound content='Post' />
+    }
+
     const deletePostFn = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
         if(e.currentTarget.dataset.btnid){
             dispatch(postDelete(e.currentTarget.dataset.btnid));
@@ -27,7 +32,7 @@ const PostCard = () => {
     };
 
     const editForm = posts.find(post => post.id === editPost);
-    console.log(params.title?.slice(params.title.indexOf('-') + 1));
+    //console.log(params.title?.slice(params.title.indexOf('-') + 1));
     
     return ( 
         <article>
