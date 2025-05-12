@@ -36,17 +36,6 @@
     background-color: white;
     color: rgb(1, 1, 1);
     padding: 20px;
-    transition: top .5s ease, opacity 1s ease;
-}
-
-.containerPageEnd {
-    opacity: 0;
-    left: 90%;
-    bottom: 90%;
-    background-color: white;
-    color: rgb(1, 1, 1);
-    padding: 2px 15px;
-    transition: top .5s ease, opacity 1s ease; 
 }
 
 .liAuth:hover .containerAuth {
@@ -60,6 +49,19 @@
     position: relative;
 }
 
+.containerPageEnd {
+    width: max-content;
+    opacity: 0;
+    left: 50%;
+    bottom: 90%;
+    background-color: white;
+    color: rgb(1, 1, 1);
+    padding: 2px 15px;
+    transform: translate(0, 30px);
+    transition: opacity 1s ease, transform 0.5s ease;
+}
+
 .wrapPageBtns:hover .containerPageEnd {
-     opacity: 1;
+    opacity: 1;
+    transform: translate(0, 0);
 }
