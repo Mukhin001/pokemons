@@ -63,7 +63,7 @@ const PostForm = () => {
                     <Input name='postTitle' type='text' placeholder='postTitle' setMistakeUserForm={setMistakeUserForm} />
                     <Input name='postContent' type='text' placeholder='postContent' setMistakeUserForm={setMistakeUserForm} />
                     
-                    <Btn content="Save Post"/>
+                    <Btn content="Save Post" />
                 </div>
             </form>
         </section>

@@ -39,9 +39,27 @@
     transition: top .5s ease, opacity 1s ease;
 }
 
+.containerPageEnd {
+    opacity: 0;
+    left: 90%;
+    bottom: 90%;
+    background-color: white;
+    color: rgb(1, 1, 1);
+    padding: 2px 15px;
+    transition: top .5s ease, opacity 1s ease; 
+}
+
 .liAuth:hover .containerAuth {
     pointer-events: auto;
     top: 99%;
     opacity: 1;
     z-index: 20;
+}
+
+.wrapPageBtns {
+    position: relative;
+}
+
+.wrapPageBtns:hover .containerPageEnd {
+     opacity: 1;
 }

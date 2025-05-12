@@ -66,10 +66,10 @@ const AuthUser = ({ setAuth, setModal }: Props) => {
                     <Input name='username' type='text' placeholder='login' setMistakeUserForm={setMistakeUserForm} />
                     <Input name='userPassword' type='password' placeholder='password' setMistakeUserForm={setMistakeUserForm} />
 
-                    <Btn content='Log In'/>
+                    <Btn content='Log In' width='100%' />
                 </div>
             </form>
-            <Btn content='Create Accaunt' onclickFn={handleCreateAcc} />
+            <Btn content='Create Accaunt' onclickFn={handleCreateAcc} width='100%' />
         </section>
     );
 };

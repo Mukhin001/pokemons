@@ -41,8 +41,8 @@ const PostsContent = ({ user, name, id, title, content, userId, setEditPost }: P
             <h4>postId: {id}</h4>
             {userId === user.id + '' && 
                 <div style={{display: 'flex', gap: '20px', maxWidth: '300px'}}>
-                    <Btn id={id} content="Delete" onclickFn={deletePostFn} />
-                    <Btn id={id} content="Edit" onclickFn={openEditPost} />
+                    <Btn id={id} content="Delete" onclickFn={deletePostFn}  />
+                    <Btn id={id} content="Edit" onclickFn={openEditPost}  />
                 </div>
             } 
         </article>

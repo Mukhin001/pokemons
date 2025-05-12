@@ -5,6 +5,13 @@
     /* max-width: 1440px; */
 }
 
+.paginationSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
 .wrapSelect {
     display: grid;
     gap: 10px;

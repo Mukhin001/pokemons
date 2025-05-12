@@ -9,6 +9,10 @@
     max-width: 250px;
 }
 
+.pagePokemons {
+    width: 100%;
+}
+
 .contentLiLight:hover {
     background-color: var(--backGround-lightLight);
 }

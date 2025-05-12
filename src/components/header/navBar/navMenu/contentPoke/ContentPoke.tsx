@@ -4,6 +4,7 @@ import ListPoke from "./listPoke/ListPoke";
 import st from './style.module.css';
 import Loader from "../../../../loader/Loader";
 import ErrorComponent from "../../../../error/ErrorComponent";
+import { Link } from "react-router-dom";
 
 interface Props {
     theme: string | null;
@@ -72,12 +73,12 @@ const ContentPoke = ({ setStrip, theme }: Props) => {
 
     if(data) {
         content = (
-            pokemons.map(arr =>                 
+            pokemons.map((arr, i) =>                 
                 <li key={arr.name}  className={`${st.headerLi} ${theme === 'light' ? `${st.contentLiLight}`: `${st.contentLiDark}`}`}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
-                    <div>{arr.name}</div>
+                    <Link onClick={handleMouseLeave} className={st.pagePokemons} to={`pokemons?pagePokemons=${i + 1}`}>{arr.name}</Link>
                     <div className={st.wrapImgNext}>
                         <img    
                             className={`${theme === 'light' ? `${st.nextImgLight}` : `${st.nextImgDark}`}`} 
