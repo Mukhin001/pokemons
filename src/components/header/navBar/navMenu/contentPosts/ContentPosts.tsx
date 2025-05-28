@@ -27,7 +27,7 @@ const ContentPosts = ({ theme, setStrip }: Props) => {
                     className={`${st.headerLi} ${theme === 'light' ? `${st.contentLiLight}`: `${st.contentLiDark}`}`}
                 >
                     <Link 
-                        to={`posts/${post.title.toLowerCase().replace(' ', '')}`} 
+                        to={`posts/post-${post.id}`} 
                         style={{cursor: 'pointer', width: '100%'}}
                         onClick={() => setStrip(false)}
                     >{post.title}</Link>

@@ -6,7 +6,7 @@ import Btns from "../btns/Btns";
 
 const Posts = ({ nameMenu, setshowDrawer, setnameMenu }: PropsMobMenu) => {
     const posts = useAppSelector(state => state.posts);
-
+   
     return ( 
         <section>
             <Btns back='back' setName={setnameMenu} name={nameMenu} setshowDrawer={setshowDrawer}/>
@@ -14,7 +14,7 @@ const Posts = ({ nameMenu, setshowDrawer, setnameMenu }: PropsMobMenu) => {
                 {posts.map(post => 
                     <li key={post.id} className={st.headerLi}>
                         <Link 
-                            to={`posts/${post.title.toLowerCase().replace(' ', '')}`} 
+                            to={`posts/post-${post.id}`} 
                             onClick={() => setshowDrawer(false)}
                         >
                             {post.title}

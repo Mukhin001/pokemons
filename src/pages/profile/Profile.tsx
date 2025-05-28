@@ -17,6 +17,7 @@ interface AuthFormFields extends HTMLFormControlsCollection {
     email: HTMLInputElement;
     userPassword: HTMLInputElement;
     userPasswordrepeat: HTMLInputElement;
+    gender: HTMLInputElement;
 };
 
 interface AuthFormElements extends HTMLFormElement {
@@ -38,7 +39,8 @@ const Profile = () => {
         const newemail = elements.email.value;
         const newpassword = elements.userPassword.value;
         const newpasswordRepeat = elements.userPasswordrepeat.value;
-           
+        const newgender = elements.gender.value; 
+                 
         if(newname.length === 0) {
             setMistakeUserForm('name empty');
             return;
@@ -59,14 +61,15 @@ const Profile = () => {
             setMistakeUserForm("the password doesn't match");
             return;
         }
-        if(name === newname && email === newemail && password === newpassword) {
+        if(name === newname && email === newemail && password === newpassword && (newgender === '' || newgender === gender)) {
             setMistakeUserForm('the data has not changed');
             return;
         }
 
+        
         setModal(true);
-        dispatch(updateUsers({ id, name: newname, email: newemail, password: newpassword, gender, birthdate } ));
-        dispatch(updateUser({ id, name: newname, email: newemail, password: newpassword, gender, birthdate } ));
+        dispatch(updateUsers({ id, name: newname, email: newemail, password: newpassword, gender: newgender ? newgender : null , birthdate } ));
+        dispatch(updateUser({ id, name: newname, email: newemail, password: newpassword, gender: newgender ? newgender : null , birthdate } ));
     };
 
     const handleExitToHome = () => {
@@ -85,7 +88,7 @@ const Profile = () => {
     return ( 
         <main style={{display: 'grid', justifyContent: 'center'}}>
             {modal && 
-                <Modal header='data changed' setModal={setModal}>
+                <Modal close={false} header='data changed' setModal={setModal}>
                     <h3>new data changed and saved</h3>
                     <Btn content='Ok' onclickFn={handleSaveNewDataUser} />
                 </Modal>
@@ -103,7 +106,7 @@ const Profile = () => {
                     <Input name='email' type='email' placeholder='email' value={`${email && email}`} setMistakeUserForm={setMistakeUserForm} />
                     <Input name='userPassword' type='password' placeholder='password' value={`${password && password}`} setMistakeUserForm={setMistakeUserForm} />
                     <Input name='userPasswordrepeat' type='password' placeholder='passwordrepeat' value={`${password && password}`} setMistakeUserForm={setMistakeUserForm} />
-                    <Gender />
+                    <Gender gender={gender} />
                     <Birthday />
                     <Communications />
                     <Btn content='Save'/>

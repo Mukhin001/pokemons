@@ -42,7 +42,9 @@ const PostCard = () => {
                     <div>
                         <h3>{postId?.title}</h3>
                         <p>{postId?.content}</p>
-                        <h4>{postId?.userId}</h4>
+                        <h4>userName: {postId?.name}</h4>
+                        <h4>userId: {postId?.userId}</h4>
+                        <h4>postId: {postId?.id}</h4>
                         {postId?.userId === user.id + '' && 
                             <div style={{display: 'flex', gap: '20px', maxWidth: '300px'}}>
                                 <Btn id={postId?.id} content="Delete" onclickFn={deletePostFn} />
