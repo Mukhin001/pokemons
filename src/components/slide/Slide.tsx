@@ -44,12 +44,12 @@ const Slide = () => {
         
     };
 
-    const handleMouseUp = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    const handleMouseUp = () => {
         //console.log(e.currentTarget);
         
     };
 
-    const handleMouseMove = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    const handleMouseMove = () => {
         //console.log(e);
         
     };

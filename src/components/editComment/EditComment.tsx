@@ -26,13 +26,13 @@ const EditComment = ({ id, name, email, body, setEditId }: Props) => {
         const { elements }  = e.currentTarget;
         const newId = e.currentTarget.dataset.id;
         const newName = elements.username.value
-        const newBody = elements.body.value
-        const newEmail = elements.email.value
+        // const newBody = elements.body.value
+        // const newEmail = elements.email.value
         
        return { id: newId, name: newName,  }
     };
 
-    const handleCloseComment = ( e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleCloseComment = () => {
         setEditId(-1);
     };
 

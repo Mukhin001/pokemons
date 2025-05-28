@@ -1,10 +1,10 @@
 export type SortKey = 'name' | 'id-' | 'id+' | '' | 'id-poke' | 'id+poke';
 
-type SortableItem = {
-    name: string;
-    'id-': string;
-    'id+': string;
-};
+// type SortableItem = {
+//     name: string;
+//     'id-': string;
+//     'id+': string;
+// };
 
 export const getSortFn = (key: SortKey) => {
     switch (key) {
