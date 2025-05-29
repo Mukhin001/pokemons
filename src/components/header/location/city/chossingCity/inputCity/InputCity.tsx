@@ -32,7 +32,7 @@ const InputCity = ({ setModalCityList }: Props) => {
     };   
 
     if(isLoading) {
-        content = <Loader />
+        content = <Loader size='small' />
     }
     
     if(isError) {

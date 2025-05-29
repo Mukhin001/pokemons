@@ -44,7 +44,7 @@ const Poke = ({ nameMenu, setshowDrawer, setnameMenu }: PropsMobMenu) => {
     let content: ReactNode;
 
     if(isLoading) {
-        content = <Loader />
+        content = <Loader size='small' />
     }
     if(isError) {
         content = <ErrorComponent size="Medium" />

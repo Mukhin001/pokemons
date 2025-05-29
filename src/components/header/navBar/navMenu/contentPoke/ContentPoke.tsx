@@ -58,7 +58,7 @@ const ContentPoke = ({ setStrip, theme }: Props) => {
     let content:ReactNode;
 
     if(isLoading) {
-        content = <Loader />
+        content = <Loader size='small' />
     }
 
     if(isError) {
