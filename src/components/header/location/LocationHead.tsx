@@ -25,7 +25,7 @@ const LocationHead = ({ display, backGround }: PropsLocation) => {
     const longitude = useAppSelector(state => state.location.longitude);
     const width = useAppSelector(state => state.widthWindow.width);
     const { data, isLoading, isError } = useGetCityQuery({ lat: latitude, lon: longitude });
-    
+        
     let contentCity: ReactNode;
 
     if(isLoading) {
