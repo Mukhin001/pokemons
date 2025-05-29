@@ -28,7 +28,7 @@ const CommentsList = ({ id }: Props) => {
     }, [comments, keySort]);
 
     if(isLoading) {
-        return <Loader />
+        return <Loader size='small' />
     }     
     if(isError) {
         return <ErrorComponent size="Large" display="Grid" />

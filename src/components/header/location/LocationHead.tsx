@@ -29,7 +29,7 @@ const LocationHead = ({ display, backGround }: PropsLocation) => {
     let contentCity: ReactNode;
 
     if(isLoading) {
-        contentCity = <Loader />
+        contentCity = <Loader size='small'/>
     }
 
     if(isError) {

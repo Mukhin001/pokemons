@@ -22,7 +22,7 @@ const PokeCard = () => {
     }
 
     if(isLoading) {
-        return <Loader />
+        return <Loader size='medium' />
     }
 
     if(isError) {
