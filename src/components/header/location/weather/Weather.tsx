@@ -15,7 +15,7 @@ const Weather = ({ city, dataCity }: Props) => {
     const temp = Math.round(data?.main.temp - 273.15);
 
     if(isLoading) {
-        return <Loader />
+        return <Loader size='small'/>
     }
 
     if(isError) {

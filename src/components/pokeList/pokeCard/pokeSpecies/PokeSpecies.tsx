@@ -10,7 +10,7 @@ const PokeSpecies = ({ id }: Props) => {
     const { data: species, isLoading, isError } = useGetPokeSpeciesQuery(id);
 
     if(isLoading) {
-        return <Loader />
+        return <Loader size='medium' />
     }
 
     if(isError) {

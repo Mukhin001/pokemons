@@ -52,7 +52,7 @@ const PokeList = ({ pokemons, isError, isLoading }: Props) => {
         return pokemons?.sort(getSortFn(keySort));
     }, [pokemons, keySort]);
 
-    if(isLoading) return <Loader />
+    if(isLoading) return <Loader size='medium' />
     if(isError) return <ErrorComponent size="Large" />
 
     // Вычисление страниц

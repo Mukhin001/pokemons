@@ -7,7 +7,7 @@ export const  cityApi = createApi({
         getCity: builder.query<any, {lat: any, lon: any}>({
             query: ({lat, lon}) => `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`,
         }),
-    }),
+    }),  
 });
 
 export const { useGetCityQuery } = cityApi;
