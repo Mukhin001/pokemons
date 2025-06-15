@@ -6,7 +6,7 @@ import { useAppSelector } from './app/hooks';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { selectCurrentTheme } from './utils/themeSlice/themeSlice';
 import WidthWindow from './utils/widthWindow/WidthWindow';
-
+//
 function App() {
     const theme = useAppSelector(selectCurrentTheme);
     

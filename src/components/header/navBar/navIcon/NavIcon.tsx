@@ -49,6 +49,7 @@ const NavIcon = () => {
         setModal(false);
         dispatch(userExit());
         (location.pathname === '/profile') && navigate('/', {replace: true});
+       
     };
 
     const handleMobClickProfileIcon = () => {
