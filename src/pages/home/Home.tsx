@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import st from './style.module.css';
 import { useAppSelector } from "../../app/hooks";
 import { selectWidth } from "../../utils/widthWindow/widthWindowSlice";
+import HomeSlide from "./homeSlide/HomeSlide";
 
 const Home = () => {
     const imgWrapper = useRef<HTMLDivElement>(null);
@@ -34,7 +35,7 @@ const Home = () => {
             }
       
         };
-
+        
         // Добавляем обработчик скролла
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll); // Убираем обработчик при размонтировании компонента
@@ -42,6 +43,7 @@ const Home = () => {
 
     return (
         <section>
+            <HomeSlide />
             <div className={st.imgWrapper}
                 ref={imgWrapper}
             >

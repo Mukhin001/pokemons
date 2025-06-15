@@ -19,6 +19,7 @@ export const widthWindowSlice = createSlice({
             const widthBoolean = action.payload;
             return { width: widthBoolean };
         },
+        
     },
 });
 

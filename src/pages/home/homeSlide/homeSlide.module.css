@@ -1,0 +1,20 @@
+.containerSlideHome {
+    position: relative;
+    height: 900px;
+    overflow: hidden;
+}
+
+.wrapSlide {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    transition: transform .7s ease-in-out;
+}
+
+.imgWrapper {
+    width: 1540px;
+}
+
+.imgWrapper img {
+    width: 100%;
+}

@@ -30,11 +30,11 @@
   }
 
   .loaderLight::before {
-    border: 5px solid #030303;
+    border: 3px solid #030303;
   }
 
   .loaderDark::before {
-    border: 5px solid #FFF;
+    border: 3px solid #FFF;
   }
 
   @keyframes rotate {
