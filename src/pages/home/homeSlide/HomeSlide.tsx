@@ -40,10 +40,7 @@ const HomeSlide = ({ stateWidth }: Props) => {
     const todsClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         const indexData: number | undefined = e.currentTarget.dataset.index ? +e.currentTarget.dataset.index : undefined;
         if(typeof indexData === 'number') {
-            setIndexSlide(indexData);
-            console.log(-stateWidth * indexData);
-            console.log(slideTranslateX);
-            
+            setIndexSlide(indexData);  
            setSlideTranslateX(-stateWidth * indexData)
         }
     };
