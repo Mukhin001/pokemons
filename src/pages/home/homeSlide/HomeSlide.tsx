@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react';
 import st from './homeSlide.module.css';
 
-const HomeSlide = () => {
+interface Props {
+    stateWidth: number;
+};
+
+const HomeSlide = ({ stateWidth }: Props) => {
     const [slideTranslateX, setSlideTranslateX] = useState<number>(0);
+    const [indexSlide, setIndexSlide] = useState<number>(0);
 
     useEffect(() => {
-
-    }, []);
-
+        setSlideTranslateX(0);
+    }, [stateWidth])
+    
     const arrSlide: string[] = [
         'pokemon-2.jpg',
         'pokemon-3.jpg',
@@ -19,31 +24,62 @@ const HomeSlide = () => {
         'pokemon-9.webp',
         'pokemon-10.jpg',
     ];
-
-    const slideWidth: number = (arrSlide.length - 1) * 1540;
+    
+    const slideWidth: number = (arrSlide.length - 1) * stateWidth;
 
     const prevSlide = () => {
-        setSlideTranslateX(prev => (prev >= 0) ? -slideWidth : prev + 1540);
+        setSlideTranslateX(prev => (prev >= 0) ? -slideWidth : prev + stateWidth);
+        setIndexSlide((indexSlide <= 0) ? arrSlide.length -1 : indexSlide -1);
     };
 
     const nextSlide = () => {
-        setSlideTranslateX(prev => (prev <= -slideWidth) ? 0 : prev - 1540);
+        setSlideTranslateX(prev => (prev <= -slideWidth) ? 0 : prev - stateWidth);
+        setIndexSlide((indexSlide >= arrSlide.length - 1) ? 0 : indexSlide + 1);
+    };
+
+    const todsClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        const indexData: number | undefined = e.currentTarget.dataset.index ? +e.currentTarget.dataset.index : undefined;
+        if(typeof indexData === 'number') {
+            setIndexSlide(indexData);
+            console.log(-stateWidth * indexData);
+            console.log(slideTranslateX);
+            
+           setSlideTranslateX(-stateWidth * indexData)
+        }
     };
 
     return ( 
         <section>
-            <section className={st.containerSlideHome}>
+            <section className={st.containerSlideHome} style={{height: stateWidth / 2 + 100 + 'px'}}>
+
                 <div className={st.wrapSlide} style={{transform: `translateX(${slideTranslateX}px)`}}>
                     {arrSlide.map(img => 
-                        <div className={st.imgWrapper} key={img}>
+                        <div className={st.imgWrapper} key={img} style={stateWidth ? {width: stateWidth + 'px'} : {}}>
                             <img src={`/home-fon/${img}`} alt={img} />
                         </div>
                     )}
                 </div>
-            </section>
-            <section>
-                <button onClick={prevSlide}>prev</button>
-                <button onClick={nextSlide}>next</button>
+
+                <section className={st.wrapBtnSlideHome}>
+                    <div className={st.wrapArrow} onClick={prevSlide}>
+                        <img src="arrow/next-grey.svg" alt="" />
+                    </div>
+                    <div className={st.wrapArrow} onClick={nextSlide}>
+                        <img src="arrow/next-grey.svg" alt="" />
+                    </div>
+                </section>
+
+                <section className={st.toodsSlide}>
+                    {arrSlide.map((img, i) => 
+                        <div key={img} 
+                            className={`${st.todSlide} ${i === indexSlide && st.todSlideActive}`}
+                            data-index={i}
+                            onClick={todsClick}
+                        >
+                        </div>
+                    )}
+                </section>
+
             </section>
         </section>
      );

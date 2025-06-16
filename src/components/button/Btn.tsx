@@ -10,7 +10,15 @@ interface Props {
 
 const Btn = ({ id, content, disabled, width, onclickFn }: Props) => {
     return ( 
-        <button style={{width: width}} data-btnid={id} onClick={onclickFn} disabled={disabled} className={st.btn}>{content}</button>
+        <button 
+            style={{width: width}} 
+            data-btnid={id} 
+            onClick={onclickFn} 
+            disabled={disabled} 
+            className={st.btn}
+        >
+            {content}
+        </button>
     );
 };
  
