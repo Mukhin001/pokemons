@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import st from './homeSlide.module.css';
 
 interface Props {
@@ -11,7 +11,27 @@ const HomeSlide = ({ stateWidth }: Props) => {
 
     useEffect(() => {
         setSlideTranslateX(0);
-    }, [stateWidth])
+    }, [stateWidth]);
+
+    const getMouse = () => {
+        console.log(3);
+    };
+    
+    const onMouseDownFn = () => {
+       console.log(1);
+
+        window.addEventListener('mousemove', getMouse);
+        //document.addEventListener('mouseup', onMouseUpFn);     
+    }; 
+
+    const onMouseUpFn = () => {
+        console.log(2);
+        window.removeEventListener('mousemove', getMouse); 
+        window.removeEventListener('mouseup', onMouseUpFn); 
+    };
+
+    document.addEventListener('mouseup', onMouseUpFn);
+    
     
     const arrSlide: string[] = [
         'pokemon-2.jpg',
@@ -47,9 +67,14 @@ const HomeSlide = ({ stateWidth }: Props) => {
 
     return ( 
         <section>
-            <section className={st.containerSlideHome} style={{height: stateWidth / 2 + 100 + 'px'}}>
+            <section className={st.containerSlideHome} style={{height: stateWidth / 2 + 100 + 'px'}}
+                
+            >
 
-                <div className={st.wrapSlide} style={{transform: `translateX(${slideTranslateX}px)`}}>
+                <div 
+                    className={st.wrapSlide}  onMouseDown={onMouseDownFn}
+                    style={{transform: `translateX(${slideTranslateX}px)`}}
+                    >
                     {arrSlide.map(img => 
                         <div className={st.imgWrapper} key={img} style={stateWidth ? {width: stateWidth + 'px'} : {}}>
                             <img src={`/home-fon/${img}`} alt={img} />
@@ -69,7 +94,8 @@ const HomeSlide = ({ stateWidth }: Props) => {
                 <section className={st.toodsSlide}>
                     {arrSlide.map((img, i) => 
                         <div key={img} 
-                            className={`${st.todSlide} ${i === indexSlide && st.todSlideActive}`}
+                            className={`${st.todSlide} ${i === indexSlide && st.todSlideActive}
+                             ${indexSlide > i + 1 && st.todEnd} ${indexSlide < i - 1 && st.todEnd}`}
                             data-index={i}
                             onClick={todsClick}
                         >
