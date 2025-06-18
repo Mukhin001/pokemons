@@ -62,7 +62,6 @@ const Home = () => {
     return (
         <section>
             <HomeSlide stateWidth={stateWidth}/>
-
             <div className={st.imgWrapper}
                 ref={imgWrapper}
             >

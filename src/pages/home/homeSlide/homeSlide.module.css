@@ -7,7 +7,6 @@
     display: flex;
     align-items: center;
     position: absolute;
-    transition: transform .7s ease-in-out;
 }
 
 .imgWrapper {
@@ -20,7 +19,7 @@
 
 .wrapBtnSlideHome {
     position: absolute;
-    top: 50%;
+    top: 45%;
     right: 1%;
 }
 
@@ -29,7 +28,7 @@
     height: 40px;
     background-color: var(--backGround-lightLight);
     border-radius: 50%;
-    padding: 9px 9px;
+    padding: 12px;
     transition: background-color .3s ease-in-out;
     margin-bottom: 8px;
 }
@@ -45,8 +44,8 @@
  
 .toodsSlide {
     position: absolute;
-    left: 50%;
-    bottom: 7%;
+    left: 45%;
+    bottom: 5%;
     display: flex;
     align-items: center;
     gap: 5px;

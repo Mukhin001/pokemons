@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import st from './homeSlide.module.css';
+import { useAppSelector } from '../../../app/hooks';
+import { selectWidth } from '../../../utils/widthWindow/widthWindowSlice';
 
 interface Props {
     stateWidth: number;
@@ -8,40 +10,7 @@ interface Props {
 const HomeSlide = ({ stateWidth }: Props) => {
     const [slideTranslateX, setSlideTranslateX] = useState<number>(0);
     const [indexSlide, setIndexSlide] = useState<number>(0);
-
-    useEffect(() => {
-        setSlideTranslateX(0);
-    }, [stateWidth]);
-
-    const mousedownFn = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        const shiftX = e.clientX;
-        let moveSlide = 0;
-        
-        const mouseMoveFn = (moveEvent: MouseEvent) => {
-            moveSlide = moveEvent.pageX - shiftX;
-        };
-
-        const mouseUpFn = () => {  
-            setSlideTranslateX(prev => (moveSlide >= 0) ? 
-                (prev >= 0) ? -slideWidth : prev + stateWidth 
-                : 
-                (prev <= -slideWidth) ? 0 : prev - stateWidth
-            );
-
-            setIndexSlide((moveSlide >= 0) ?
-                (indexSlide <= 0) ? arrSlide.length -1 : indexSlide -1
-                :
-                (indexSlide >= arrSlide.length - 1) ? 0 : indexSlide + 1
-            );
-            document.removeEventListener('mousemove' , mouseMoveFn);
-            document.removeEventListener('mouseup' , mouseUpFn);
-        };
-                
-        document.addEventListener('mousemove' , mouseMoveFn);
-        document.addEventListener('mouseup' , mouseUpFn);
-    };
-    
-    
+    const widthWindow = useAppSelector(selectWidth);
     const arrSlide: string[] = [
         'pokemon-2.jpg',
         'pokemon-3.jpg',
@@ -53,8 +22,94 @@ const HomeSlide = ({ stateWidth }: Props) => {
         'pokemon-9.webp',
         'pokemon-10.jpg',
     ];
-    
     const slideWidth: number = (arrSlide.length - 1) * stateWidth;
+ 
+    useEffect(() => {
+        setSlideTranslateX(0);
+        setIndexSlide(0);
+    }, [stateWidth]);
+
+    const touchdownFn = (e: React.TouchEvent<HTMLDivElement>) => {
+        const shiftX = e.touches[0].clientX;
+        let moveSlide = 0;
+        const initialTranslateX = slideTranslateX;
+        const wrapSlide = e.currentTarget;
+
+        wrapSlide.style.transition = 'none';
+    
+        const touchMoveFn = (moveEvent: TouchEvent) => {
+            moveSlide = moveEvent.touches[0].pageX - shiftX;            
+            setSlideTranslateX(initialTranslateX + moveSlide)
+        };
+
+        const touchUpFn = () => {  
+            wrapSlide.style.transition = 'transform .7s ease-in-out';
+            
+            if(moveSlide < 50 && moveSlide > -50) {
+                setSlideTranslateX(initialTranslateX);
+                document.removeEventListener('touchmove' , touchMoveFn);
+                document.removeEventListener('touchend' , touchUpFn);
+                return;
+            }
+            setSlideTranslateX(prev => (moveSlide >= 0) ? 
+                (prev >= 0) ? 0 : prev + stateWidth - moveSlide
+                : 
+                (prev <= -slideWidth) ? -slideWidth : prev - stateWidth - moveSlide
+            );
+
+            setIndexSlide((moveSlide >= 0) ?
+                (indexSlide <= 0) ? 0 : indexSlide -1
+                :
+                (indexSlide >= arrSlide.length - 1) ? arrSlide.length -1 : indexSlide + 1
+            );
+            document.removeEventListener('touchmove' , touchMoveFn);
+            document.removeEventListener('touchend' , touchUpFn);
+        };
+                
+        document.addEventListener('touchmove' , touchMoveFn);
+        document.addEventListener('touchend' , touchUpFn);
+    };
+
+    const mousedownFn = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        const shiftX = e.clientX;
+        let moveSlide = 0;
+        const initialTranslateX = slideTranslateX;
+        const wrapSlide = e.currentTarget;
+
+        wrapSlide.style.transition = 'none';
+    
+        const mouseMoveFn = (moveEvent: MouseEvent) => {
+            moveSlide = moveEvent.pageX - shiftX;            
+            setSlideTranslateX(initialTranslateX + moveSlide)
+        };
+
+        const mouseUpFn = () => {  
+            wrapSlide.style.transition = 'transform .7s ease-in-out';
+            
+            if(moveSlide < 50 && moveSlide > -50) {
+                setSlideTranslateX(initialTranslateX);
+                document.removeEventListener('mousemove' , mouseMoveFn);
+                document.removeEventListener('mouseup' , mouseUpFn);
+                return;
+            }
+            setSlideTranslateX(prev => (moveSlide >= 0) ? 
+                (prev >= 0) ? 0 : prev + stateWidth - moveSlide
+                : 
+                (prev <= -slideWidth) ? -slideWidth : prev - stateWidth - moveSlide
+            );
+
+            setIndexSlide((moveSlide >= 0) ?
+                (indexSlide <= 0) ? 0 : indexSlide -1
+                :
+                (indexSlide >= arrSlide.length - 1) ? arrSlide.length -1 : indexSlide + 1
+            );
+            document.removeEventListener('mousemove' , mouseMoveFn);
+            document.removeEventListener('mouseup' , mouseUpFn);
+        };
+                
+        document.addEventListener('mousemove' , mouseMoveFn);
+        document.addEventListener('mouseup' , mouseUpFn);
+    };
 
     const prevSlide = () => {
         setSlideTranslateX(prev => (prev >= 0) ? -slideWidth : prev + stateWidth);
@@ -76,9 +131,10 @@ const HomeSlide = ({ stateWidth }: Props) => {
 
     return ( 
         <section>
-            <section className={st.containerSlideHome} style={{height: stateWidth / 2 + 100 + 'px'}}>
+            <section className={st.containerSlideHome} style={{height: stateWidth / 2 + 'px'}}>
                 <div 
-                    className={st.wrapSlide}  onMouseDown={mousedownFn}
+                    className={st.wrapSlide}  
+                    onMouseDown={mousedownFn} onTouchStart={touchdownFn}
                     style={{transform: `translateX(${slideTranslateX}px)`}}
                     >
                     {arrSlide.map(img => 
@@ -88,14 +144,16 @@ const HomeSlide = ({ stateWidth }: Props) => {
                     )}
                 </div>
 
-                <section className={st.wrapBtnSlideHome}>
-                    <div className={st.wrapArrow} onClick={prevSlide}>
-                        <img src="arrow/next-grey.svg" alt="" />
-                    </div>
-                    <div className={st.wrapArrow} onClick={nextSlide}>
-                        <img src="arrow/next-grey.svg" alt="" />
-                    </div>
-                </section>
+                {widthWindow && 
+                    <section className={st.wrapBtnSlideHome}>
+                         <div className={st.wrapArrow} onClick={nextSlide}>
+                            <img src="arrow/arrow-right-grey.svg" alt="" />
+                        </div>
+                        <div className={st.wrapArrow} onClick={prevSlide}>
+                            <img src="arrow/arrow-left-grey.svg" alt="" />
+                        </div>
+                    </section>
+                }
 
                 <section className={st.toodsSlide}>
                     {arrSlide.map((img, i) => 
