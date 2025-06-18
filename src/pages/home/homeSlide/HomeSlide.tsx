@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import st from './homeSlide.module.css';
 
 interface Props {
@@ -8,7 +8,6 @@ interface Props {
 const HomeSlide = ({ stateWidth }: Props) => {
     const [slideTranslateX, setSlideTranslateX] = useState<number>(0);
     const [indexSlide, setIndexSlide] = useState<number>(0);
-    //const [moveSlide, setMoveSlide] = useState<number>(0);
 
     useEffect(() => {
         setSlideTranslateX(0);
