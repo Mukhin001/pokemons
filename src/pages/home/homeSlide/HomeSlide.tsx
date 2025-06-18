@@ -11,6 +11,7 @@ const HomeSlide = ({ stateWidth }: Props) => {
     const [slideTranslateX, setSlideTranslateX] = useState<number>(0);
     const [indexSlide, setIndexSlide] = useState<number>(0);
     const widthWindow = useAppSelector(selectWidth);
+    /// slide 
     const arrSlide: string[] = [
         'pokemon-2.jpg',
         'pokemon-3.jpg',
@@ -23,7 +24,7 @@ const HomeSlide = ({ stateWidth }: Props) => {
         'pokemon-10.jpg',
     ];
     const slideWidth: number = (arrSlide.length - 1) * stateWidth;
- 
+    // slide
     useEffect(() => {
         setSlideTranslateX(0);
         setIndexSlide(0);
