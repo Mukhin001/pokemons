@@ -3,6 +3,8 @@ import st from './style.module.css';
 import { useAppSelector } from "../../app/hooks";
 import { selectWidth } from "../../utils/widthWindow/widthWindowSlice";
 import HomeSlide from "./homeSlide/HomeSlide";
+import Drag from "./drag/Drag";
+import Dragjs from "./dragjs/Dragjs";
 
 const Home = () => {
     const imgWrapper = useRef<HTMLDivElement>(null);
@@ -62,6 +64,8 @@ const Home = () => {
     return (
         <section>
             <HomeSlide stateWidth={stateWidth}/>
+            <Drag />
+            {/* <Dragjs /> */}
             <div className={st.imgWrapper}
                 ref={imgWrapper}
             >

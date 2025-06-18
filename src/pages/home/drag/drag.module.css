@@ -1,0 +1,20 @@
+.wrapDragUl {
+    position: relative;
+    background-color: grey;
+    width: 550px;
+    padding: 10px;
+}
+
+.wrapDragLi {
+    position: absolute;
+    padding: 10px 20px;
+    border: 1px solid gainsboro;
+    margin-bottom: 10px;
+    display: inline-block;
+    user-select: none;
+    z-index: 100;
+}
+
+.wrapDragLi:active {
+    background-color: green;
+}

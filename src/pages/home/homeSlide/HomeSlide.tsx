@@ -8,29 +8,41 @@ interface Props {
 const HomeSlide = ({ stateWidth }: Props) => {
     const [slideTranslateX, setSlideTranslateX] = useState<number>(0);
     const [indexSlide, setIndexSlide] = useState<number>(0);
+    //const [moveSlide, setMoveSlide] = useState<number>(0);
 
     useEffect(() => {
         setSlideTranslateX(0);
     }, [stateWidth]);
 
-    const getMouse = () => {
-        console.log(3);
+    const mousedownFn = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        const shiftX = e.clientX;
+        let moveSlide = 0;
+        
+        const mouseMoveFn = (moveEvent: MouseEvent) => {
+            moveSlide = moveEvent.pageX - shiftX;
+        };
+
+        const mouseUpFn = () => {  
+            //console.log(moveSlide,slideTranslateX);
+            
+            setSlideTranslateX(prev => (moveSlide >= 0) ? 
+                (prev >= 0) ? -slideWidth : prev + stateWidth 
+                : 
+                (prev <= -slideWidth) ? 0 : prev - stateWidth
+            );
+
+            setIndexSlide((moveSlide >= 0) ?
+                (indexSlide <= 0) ? arrSlide.length -1 : indexSlide -1
+                :
+                (indexSlide >= arrSlide.length - 1) ? 0 : indexSlide + 1
+            );
+            document.removeEventListener('mousemove' , mouseMoveFn);
+            document.removeEventListener('mouseup' , mouseUpFn);
+        };
+                
+        document.addEventListener('mousemove' , mouseMoveFn);
+        document.addEventListener('mouseup' , mouseUpFn);
     };
-    
-    const onMouseDownFn = () => {
-       console.log(1);
-
-        window.addEventListener('mousemove', getMouse);
-        //document.addEventListener('mouseup', onMouseUpFn);     
-    }; 
-
-    const onMouseUpFn = () => {
-        console.log(2);
-        window.removeEventListener('mousemove', getMouse); 
-        window.removeEventListener('mouseup', onMouseUpFn); 
-    };
-
-    document.addEventListener('mouseup', onMouseUpFn);
     
     
     const arrSlide: string[] = [
@@ -67,17 +79,14 @@ const HomeSlide = ({ stateWidth }: Props) => {
 
     return ( 
         <section>
-            <section className={st.containerSlideHome} style={{height: stateWidth / 2 + 100 + 'px'}}
-                
-            >
-
+            <section className={st.containerSlideHome} style={{height: stateWidth / 2 + 100 + 'px'}}>
                 <div 
-                    className={st.wrapSlide}  onMouseDown={onMouseDownFn}
+                    className={st.wrapSlide}  onMouseDown={mousedownFn}
                     style={{transform: `translateX(${slideTranslateX}px)`}}
                     >
                     {arrSlide.map(img => 
                         <div className={st.imgWrapper} key={img} style={stateWidth ? {width: stateWidth + 'px'} : {}}>
-                            <img src={`/home-fon/${img}`} alt={img} />
+                            <img src={`/home-fon/${img}`} alt={img} draggable={false}/>
                         </div>
                     )}
                 </div>
