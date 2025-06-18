@@ -23,8 +23,6 @@ const HomeSlide = ({ stateWidth }: Props) => {
         };
 
         const mouseUpFn = () => {  
-            //console.log(moveSlide,slideTranslateX);
-            
             setSlideTranslateX(prev => (moveSlide >= 0) ? 
                 (prev >= 0) ? -slideWidth : prev + stateWidth 
                 : 
